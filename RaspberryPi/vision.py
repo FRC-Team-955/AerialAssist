@@ -15,7 +15,7 @@ imgNameIndex = 1
 imgNameMax = 100
 
 def update(prefSideLeft, isDebug):
-    logging.debug("update()" + str(isDebug) + str(imgNameIndex))
+    logging.debug("update() {} {}".format(isDebug, imgNameIndex))
 
     # Get color image from camera
     ret, img = camera.read() # img.shape 640x480 image
@@ -56,7 +56,8 @@ def update(prefSideLeft, isDebug):
                     logging.debug("Hot Target: " + str(foundHotTarget) + ", New Angle: " + str(viewAngle))
 
     # Save img so we can analyze it
-    saveImg(img)
+    if isDebug:
+        saveImg(img)
 
 def getFoundHotTarget():
     return foundHotTarget

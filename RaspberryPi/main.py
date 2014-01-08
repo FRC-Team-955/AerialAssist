@@ -3,6 +3,7 @@ import logging
 import vision as vision
 
 from ntClient import *
+from datetime import datetime
 import os
 import sys
 import time
@@ -24,7 +25,7 @@ prefSideLeftId = "prefSideLeft"
 
 if __name__ == '__main__':
  
-	logging.basicConfig(filename='/var/log/robovision/robovision.log',level=logging.DEBUG)
+	logging.basicConfig(filename='/var/log/robovision/robovision.log', filemode='w', level=logging.DEBUG)
 	logging.debug("vision services started.")
 	#logging.debug("uid {} euid {}".format(os.getuid(), os.geteuid()))
 
@@ -69,8 +70,10 @@ if __name__ == '__main__':
 			if table and table.getValue(tableDirectory + shutDownPi):
 				os.system("sudo shutdown -h now")
 				break
-
-			time.sleep(1/4.)
+			
+			now = datetime.utcnow()
+			logging.debug("time is {}:{}:{}".format(now.minute,now.second,now.microsecond/100000))
+			time.sleep(1/100.)
 	except Exception as ex:
 		logging.error(ex)
 	logging.debug("Done!")

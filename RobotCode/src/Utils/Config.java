@@ -14,8 +14,6 @@ public class Config {
     //Periscope related
     public static final int chnSolUp = 1;
     public static final int chnSolDown = 2;
-    public static final int periButtonUp = 3;
-    public static final int periButtonDown = 4;
     
     //Drive Chans defined
     public static final int chnLeft1 = 5;
@@ -25,4 +23,7 @@ public class Config {
     public static final int chnRight1 = 8;
     public static final int chnRight2 = 9;
     public static final int chnRight3 = 10;
+    //Button Numbers
+    public static final int periButtUp = 3;
+    public static final int periButtDown = 4;
 }

@@ -20,9 +20,9 @@ public class MyJoystick extends Joystick{
             buttonState[i] = false;
             
         }
-        if(buttonState[button] == false != getRawButton(button) && getRawButton(button)){
-            buttonState[button] = true;
-            return false;
+        if(buttonState[button] == false && buttonState[button] != getRawButton(button) ){
+            buttonState[button] = getRawButton(button);
+            return true;
         }
         else{
             buttonState[button] = getRawButton(button);

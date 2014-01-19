@@ -7,7 +7,7 @@
 package Sensor;
 import edu.wpi.first.wpilibj.Solenoid;
 import Utils.Config;
-import Utils.MyJoystick;
+import ModClasses.MyJoystick;
 /**
  *
  * @author raiderbot-3

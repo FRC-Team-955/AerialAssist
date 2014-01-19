@@ -5,6 +5,8 @@
  */
 
 package Core;
+import ModClasses.MyTalon;
+import ModClasses.MyJoystick;
 import Utils.*;
 /**
  *

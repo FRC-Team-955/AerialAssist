@@ -4,3 +4,9 @@
 *.jar
 *.war
 *.ear
+/nbproject/
+suite/
+j2meclasses/
+build/
+
+*.py[cod]

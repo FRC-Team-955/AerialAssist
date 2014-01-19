@@ -10,19 +10,16 @@ import Utils.Config;
 import Utils.MyJoystick;
 /**
  *
- * @author raiderbot-3
+ * @author raiderbot-4
  */
-public class Periscope {
-    Solenoid solUp = new Solenoid(Config.chnSolUp);
-    Solenoid solDown = new Solenoid(Config.chnSolDown);
+public class ConnorPeriscope {
+    Solenoid periUp = new Solenoid(Config.periButtUp);
+    Solenoid periDown = new Solenoid(Config.periButtDown);
     
-    
-    
-    public Periscope(){
-   
+    public void ConnorPeriscope(){
     }
-    public void set(boolean solSet){
-        solUp.set(solSet);
-        solDown.set(!solSet);
+    public void pos(boolean pos){
+        periUp.set(pos);
+        periDown.set(!pos);
     }
 }

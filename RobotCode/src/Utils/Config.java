@@ -10,20 +10,30 @@ package Utils;
  *
  * @author raiderbot-3
  */
-public class Config {
-    //Periscope related
-    public static final int chnSolUp = 1;
-    public static final int chnSolDown = 2;
+public class Config 
+{
+    public class Periscope
+    {
+        public static final int chnSolUp = 1;
+        public static final int chnSolDown = 2; 
+        
+        // Buttons
+        public static final int btUp = 3;
+        public static final int btDown = 4;
+    }
     
-    //Drive Chans defined
-    public static final int chnLeft1 = 5;
-    public static final int chnLeft2 = 6;
-    public static final int chnLeft3 = 7;
-    //Right motors:
-    public static final int chnRight1 = 8;
-    public static final int chnRight2 = 9;
-    public static final int chnRight3 = 10;
-    //Button Numbers
-    public static final int periButtUp = 3;
-    public static final int periButtDown = 4;
+    public class Drive
+    {
+        public static final int chnLeft1 = 5;
+        public static final int chnLeft2 = 6;
+        public static final int chnLeft3 = 7;
+        public static final int chnRight1 = 8;
+        public static final int chnRight2 = 9;
+        public static final int chnRight3 = 10;
+    }
+    
+    public class toBeChanged
+    {
+        public static final double min = 2.0; 
+    }
 }

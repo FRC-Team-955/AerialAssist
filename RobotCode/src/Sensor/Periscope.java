@@ -13,14 +13,13 @@ import ModClasses.MyJoystick;
  * @author raiderbot-3
  */
 public class Periscope {
-    Solenoid solUp = new Solenoid(Config.chnSolUp);
-    Solenoid solDown = new Solenoid(Config.chnSolDown);
-    
-    
+    Solenoid solUp = new Solenoid(Config.Periscope.chnSolUp);
+    Solenoid solDown = new Solenoid(Config.Periscope.chnSolDown);
     
     public Periscope(){
    
     }
+    
     public void set(boolean solSet){
         solUp.set(solSet);
         solDown.set(!solSet);

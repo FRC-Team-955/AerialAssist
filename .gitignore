@@ -8,5 +8,5 @@
 suite/
 j2meclasses/
 build/
-
+*.xml
 *.py[cod]

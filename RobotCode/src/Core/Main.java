@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package Core;
+import Utils.*;
+import ModClasses.*;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -18,12 +20,15 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class Main extends IterativeRobot {
+    MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chnMyJoystick);
+    Drive drive = new Drive(joy);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-
+   
+ 
     }
 
     /**
@@ -37,7 +42,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        drive.run();
     }
     
     /**

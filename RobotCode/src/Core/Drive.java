@@ -22,8 +22,14 @@ public class Drive {
     public MyTalon right1 = new MyTalon(Config.Drive.chnRight1);
     public MyTalon right2 = new MyTalon(Config.Drive.chnRight2);
     public MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
+    
+    MyJoystick joy;
+    
+    public Drive(MyJoystick joy1){
+        joy = joy1;
+}
 
-    public void setSpeed(MyJoystick joy) {
+    public void run() {
         double x = joy.getX();
         double y = joy.getY();
         setSpeed(y + x, y - x);

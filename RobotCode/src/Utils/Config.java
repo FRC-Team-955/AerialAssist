@@ -31,6 +31,10 @@ public class Config
         public static final int chnRight2 = 9;
         public static final int chnRight3 = 10;
     }
+    public class Joystick
+    {
+        public static final int chnMyJoystick = 11;
+    }
     
     public class toBeChanged
     {

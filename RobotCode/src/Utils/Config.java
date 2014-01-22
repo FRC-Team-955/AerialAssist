@@ -35,7 +35,12 @@ public class Config
     {
         public static final int chnMyJoystick = 11;
     }
-    
+    public class Catapult
+    {
+        public static final double loadingTime = 7.0;
+        public static final double fireTime = 7.0;
+        public static final int chnCat = 12;
+    }
     public class toBeChanged
     {
         public static final double min = 2.0; 

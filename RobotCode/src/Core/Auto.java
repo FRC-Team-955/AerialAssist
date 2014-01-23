@@ -6,6 +6,10 @@
 
 package Core;
 import edu.wpi.first.wpilibj.Timer;
+import Core.*;
+import Utils.*;
+import ModClasses.*;
+
 /**
  *
  * @author coders
@@ -16,20 +20,23 @@ public class Auto {
     //Else wait 5 seconds then shoot and go forward
     Timer timer = new Timer();
     boolean shot = false;
+    Catapult catapult = new Catapult();
+    MyJoystick joy = new MyJoystick(Config.Joystick.chnMyJoystick);
+    Drive drive = new Drive(joy);
     
     public void run() { 
         //if(hot target) {
             boolean hot = true;
         //}
         if(hot && !shot) {    
-            //shoot
+            catapult.loadCat(Config.Catapult.loadSpeed);
             timer.start();
             shot = true;
         }    
         if(shot) {
-            //drive.set(1,1);
-            if (timer.get() > /*Set time in config*/ 10) {
-                //drive.set(0,0);
+            drive.setSpeed(1,1);
+            if (timer.get() > Config.Auto.driveTime) {
+                drive.setSpeed(0,0);
             }    
          }
     }

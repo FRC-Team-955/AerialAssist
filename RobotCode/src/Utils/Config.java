@@ -40,6 +40,8 @@ public class Config
         public static final double loadingTime = 7.0;
         public static final double fireTime = 7.0;
         public static final int chnCat = 12;
+        public static final double fireSpeed = 1.0;
+        public static final double loadSpeed = 1.0;
     }
     public class toBeChanged
     {
@@ -49,5 +51,8 @@ public class Config
         public static final int pickupTalon1 = 5;
         public static final double pickupSpeed = 1.0;
         public static final double pickupTime = 5.0;
+    }
+    public class Auto {
+        public static final double driveTime = 5.0;
     }
 }

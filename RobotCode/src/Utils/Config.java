@@ -45,4 +45,9 @@ public class Config
     {
         public static final double min = 2.0; 
     }
+    public class Pickup {
+        public static final int pickupTalon1 = 5;
+        public static final double pickupSpeed = 1.0;
+        public static final double pickupTime = 5.0;
+    }
 }

@@ -10,7 +10,8 @@ import Utils.Config;
 import ModClasses.MyJoystick;
 /**
  *
- * @author raiderbot-3
+ * @author Seraj B.
+ * switches solenoids for the periscope
  */
 public class Periscope {
     Solenoid solUp = new Solenoid(Config.Periscope.chnSolUp);
@@ -19,7 +20,10 @@ public class Periscope {
     public Periscope(){
    
     }
-    
+    /**
+     * Turns one solenoid off if one is on and vice virsa
+     * @param solSet determines which solenoid is being activated
+     */
     public void set(boolean solSet){
         solUp.set(solSet);
         solDown.set(!solSet);

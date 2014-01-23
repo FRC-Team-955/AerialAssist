@@ -10,8 +10,8 @@ import ModClasses.MyJoystick;
 import Utils.*;
 
 /**
- *
- * @author raiderbot-4
+ *Controls the motors on the wheels of the bot.
+ * @author Matthew S.
  */
 public class Drive {
 
@@ -24,29 +24,44 @@ public class Drive {
     public MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
     
     MyJoystick joy;
-    
+/**
+ * Initializes the joystick
+ * @param joy1 Name of the joystick
+ */
     public Drive(MyJoystick joy1){
         joy = joy1;
 }
-
+/**
+ * Sets the motors to be controlled by the joystick.
+ */
     public void run() {
         double x = joy.getX();
         double y = joy.getY();
         setSpeed(y + x, y - x);
     }
-
+/**
+ * Sets the speed of the left talons.
+ * @param speed Name of the speed of the talons.
+ */
     public void setLeft(double speed) {
         left1.set(speed);
         left2.set(speed);
         left3.set(speed);
     }
-
+/**
+ * Sets the speed of the right talons.
+ * @param speed Name of the speed of the talons.
+ */
     public void setRight(double speed) {
         right1.set(speed);
         right2.set(speed);
         right3.set(speed);
     }
-
+/**
+ * Makes both sides go at the same speed.
+ * @param left Speed of left talons.
+ * @param right Speed of right talons.
+ */
     public void setSpeed(double left, double right) {
         setLeft(left);
         setRight(right);

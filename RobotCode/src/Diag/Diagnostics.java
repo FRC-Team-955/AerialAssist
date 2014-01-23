@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diag;
+package Diag;
 
 import ModClasses.MyJoystick;
 import Utils.Config.Drive;
@@ -75,16 +75,17 @@ public class Diagnostics {
 
     private void checkJoystick() {
 
-        printToFile(String.valueOf(joy.getX()));
-        printToFile(String.valueOf(joy.getY()));
+        printToFile("Joystick X is" + String.valueOf(joy.getX()));
+        printToFile("Joystick Y is" + String.valueOf(joy.getY()));
     }
 
 
     public void run(){
- 
-    checkJoystick();
-    
-    }
+        
+        printToFile(String.valueOf(System.currentTimeMillis()));
+        checkJoystick();
+        printToFile("\n");
+        }
 
 
 

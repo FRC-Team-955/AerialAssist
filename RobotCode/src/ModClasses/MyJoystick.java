@@ -7,14 +7,23 @@
 package ModClasses;
 import edu.wpi.first.wpilibj.Joystick;
 /**
- *
- * @author raiderbot-3
+ *Adds a debounce function to the joystick
+ * @author Seraj B.
  */
 public class MyJoystick extends Joystick{
     boolean [] buttonState = new boolean[12];
+    /**
+     * constructor for the class
+     * @param portNumber number of the joystick port
+     */
     public MyJoystick(int portNumber){
         super(portNumber);
     }
+    /**
+     * The button is pressed if the button was pressed but not pressed if held
+     * @param button number of the button being pressed
+     * @return true if the button was pressed but false if held
+     */
     public boolean Debounce(int button){
         for(int i = 0; i<buttonState.length; i++){
             buttonState[i] = false;

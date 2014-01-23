@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package diag;
+package Diag;
 
 import Core.Drive;
 import ModClasses.MyJoystick;

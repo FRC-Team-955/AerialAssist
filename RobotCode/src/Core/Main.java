@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chnMyJoystick);
     Drive drive = new Drive(joy);
+    Auto auto = new Auto();
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -35,7 +36,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        drive.setSpeed(-1, -1);
+        auto.run();
     }
 
     /**

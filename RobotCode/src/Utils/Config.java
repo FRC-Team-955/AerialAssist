@@ -42,6 +42,9 @@ public class Config
         public static final int chnCat = 12;
         public static final double fireSpeed = 1.0;
         public static final double loadSpeed = 1.0;
+        public static final int catLoadButton = 5;
+        public static final int catFireButton = 6;
+             
     }
     public class toBeChanged
     {

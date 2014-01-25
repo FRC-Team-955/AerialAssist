@@ -29,7 +29,7 @@ public class Auto {
             boolean hot = true;
         //}
         if(hot && !shot) {    
-            catapult.loadCat(Config.Catapult.loadSpeed);
+            catapult.loadFireCat();
             timer.start();
             shot = true;
         }    

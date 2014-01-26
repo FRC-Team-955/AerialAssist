@@ -37,6 +37,9 @@ public class Drive {
     public void run() {
         double x = joy.getX();
         double y = joy.getY();
+        
+        x *= Math.abs(x);
+        y *= Math.abs(y);
         setSpeed(y + x, y - x);
     }
 /**

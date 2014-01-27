@@ -15,13 +15,14 @@ import Utils.*;
  */
 public class Pickup {
     MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-    Timer timer = new Timer();
+    Main main = new Main();
     
     public void run() {
-        timer.start();
         pickupTalon.set(Config.Pickup.pickupSpeed);
+        double startTime = main.timer.get();
+        pickupTalon.set(1);
         
-        if(timer.get() > Config.Pickup.pickupTime) {
+        if(main.timer.get() > Config.Pickup.pickupTime) {
             pickupTalon.set(0);
         }
        

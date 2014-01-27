@@ -18,11 +18,12 @@ public class Auto {
     //Check if hot target
     //If hot target, then shoot and go forward
     //Else wait 5 seconds then shoot and go forward
-    Timer timer = new Timer();
     boolean shot = false;
     Catapult catapult = new Catapult();
     MyJoystick joy = new MyJoystick(Config.Joystick.chnMyJoystick);
     Drive drive = new Drive(joy);
+    Main main = new Main();
+    double startTime;
     
     public void run() { 
         //if(hot target) {
@@ -30,12 +31,13 @@ public class Auto {
         //}
         if(hot && !shot) {    
             catapult.loadFireCat();
-            timer.start();
+            startTime = main.timer.get();
             shot = true;
         }    
         if(shot) {
             drive.setSpeed(1,1);
-            if (timer.get() > Config.Auto.driveTime) {
+            double time = startTime - main.timer.get();
+            if (time > Config.Auto.driveTime) {
                 drive.setSpeed(0,0);
             }    
          }

@@ -15,13 +15,19 @@ import Utils.*;
  */
 public class Pickup {
     MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-    Timer timer = new Timer();
+    Main main = new Main();
     
+    /**
+     * runs when pickup is activated
+     */
     public void run() {
-        timer.start();
+        //Turns on motor for a certain time
         pickupTalon.set(Config.Pickup.pickupSpeed);
+        double startTime = main.timer.get();
+        pickupTalon.set(1);
         
-        if(timer.get() > Config.Pickup.pickupTime) {
+        //Once time is up turn off
+        if(main.timer.get() > Config.Pickup.pickupTime) {
             pickupTalon.set(0);
         }
        

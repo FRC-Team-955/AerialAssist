@@ -18,15 +18,10 @@ import ModClasses.MyTalon;
 public class Catapult {
 
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
-
     Timer loadTimer;
-
     Timer fireTimer;
-
     double currentLoadingTime;
-
     double currentFiringTime;
-
     MyJoystick joy;
 
     /**

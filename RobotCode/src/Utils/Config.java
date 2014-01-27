@@ -33,7 +33,8 @@ public class Config
     }
     public class Joystick
     {
-        public static final int chnMyJoystick = 11;
+        public static final int chn = 11;
+        public static final int numberOfButtons = 12;
     }
     public class Catapult
     {

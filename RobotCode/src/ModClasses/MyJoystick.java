@@ -6,12 +6,14 @@
 
 package ModClasses;
 import edu.wpi.first.wpilibj.Joystick;
+import Utils.Config;
 /**
  *Adds a debounce function to the joystick
  * @author Seraj B.
  */
 public class MyJoystick extends Joystick{
-    boolean [] buttonState = new boolean[12];
+    boolean [] gotPressed = new boolean[Config.Joystick.numberOfButtons];
+    boolean [] buttonState = new boolean[Config.Joystick.numberOfButtons];
     /**
      * constructor for the class
      * @param portNumber number of the joystick port
@@ -36,6 +38,14 @@ public class MyJoystick extends Joystick{
         else{
             buttonState[button] = getRawButton(button);
             return false;
+        }
+    }
+    /**
+     * 
+     */
+    public void update(){
+        for(int i = 0; i<gotPressed.length; i++){
+            gotPressed[i] = Debounce(i);
         }
     }
 }

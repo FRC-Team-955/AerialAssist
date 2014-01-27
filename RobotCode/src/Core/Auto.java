@@ -20,7 +20,7 @@ public class Auto {
     //Else wait 5 seconds then shoot and go forward
     boolean shot = false;
     Catapult catapult = new Catapult();
-    MyJoystick joy = new MyJoystick(Config.Joystick.chnMyJoystick);
+    MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
     Main main = new Main();
     double startTime;

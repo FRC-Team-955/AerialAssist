@@ -56,6 +56,7 @@ public class Config
         public static final int pickupTalon1 = 5;
         public static final double pickupSpeed = 1.0;
         public static final double pickupTime = 5.0;
+        public static final int button = 5;
     }
     public class Auto {
         public static final double driveTime = 5.0;

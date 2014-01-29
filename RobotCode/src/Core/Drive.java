@@ -15,25 +15,27 @@ import Utils.*;
  */
 public class Drive {
 
-    public MyTalon left1 = new MyTalon(Config.Drive.chnLeft1);
-    public MyTalon left2 = new MyTalon(Config.Drive.chnLeft2);
-    public MyTalon left3 = new MyTalon(Config.Drive.chnLeft3);
+    private MyTalon left1 = new MyTalon(Config.Drive.chnLeft1);
+    private MyTalon left2 = new MyTalon(Config.Drive.chnLeft2);
+    private MyTalon left3 = new MyTalon(Config.Drive.chnLeft3);
 
-    public MyTalon right1 = new MyTalon(Config.Drive.chnRight1);
-    public MyTalon right2 = new MyTalon(Config.Drive.chnRight2);
-    public MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
+    private MyTalon right1 = new MyTalon(Config.Drive.chnRight1);
+    private MyTalon right2 = new MyTalon(Config.Drive.chnRight2);
+    private MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
     
     MyJoystick joy;
-/**
- * Initializes the joystick
- * @param joy1 Name of the joystick
- */
+    
+    /**
+     * Initializes the joystick
+     * @param joy1 Name of the joystick
+     */
     public Drive(MyJoystick joy1){
         joy = joy1;
 }
-/**
- * Sets the motors to be controlled by the joystick.
- */
+    
+    /**
+     * Sets the motors to be controlled by the joystick.
+     */
     public void run() {
         double x = joy.getX();
         double y = joy.getY();
@@ -42,29 +44,32 @@ public class Drive {
         y *= Math.abs(y);
         setSpeed(y + x, y - x);
     }
-/**
- * Sets the speed of the left talons.
- * @param speed Name of the speed of the talons.
- */
+    
+    /**
+     * Sets the speed of the left talons.
+     * @param speed Name of the speed of the talons.
+     */
     public void setLeft(double speed) {
         left1.set(speed);
         left2.set(speed);
         left3.set(speed);
     }
-/**
- * Sets the speed of the right talons.
- * @param speed Name of the speed of the talons.
- */
+    
+    /**
+     * Sets the speed of the right talons.
+     * @param speed Name of the speed of the talons.
+     */
     public void setRight(double speed) {
         right1.set(speed);
         right2.set(speed);
         right3.set(speed);
     }
-/**
- * Makes both sides go at the same speed.
- * @param left Speed of left talons.
- * @param right Speed of right talons.
- */
+    
+    /**
+    * Makes both sides go at the same speed.
+    * @param left Speed of left talons.
+    * @param right Speed of right talons.
+    */
     public void setSpeed(double left, double right) {
         setLeft(left);
         setRight(right);

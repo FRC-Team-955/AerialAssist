@@ -23,7 +23,7 @@ public class Pickup {
      */
     public void run() {
         //Turns on motor for a certain time
-        if(joy.Debounce(Config.Pickup.button)){
+        if(joy.gotPressed(Config.Pickup.button)){
             pickupTalon.set(Config.Pickup.pickupSpeed);
             double startTime = main.timer.get();
             pickupTalon.set(1);

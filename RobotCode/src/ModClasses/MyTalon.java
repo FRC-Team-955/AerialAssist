@@ -17,9 +17,13 @@ public class MyTalon extends Talon {
     }
         public void ramp(double goal){
         double speed = get();
-        double pastVal = 0;
-        if(Math.abs(goal-speed)<Math.abs(Config.Drive.rampRate)){
-            
+        if(Math.abs(goal-speed)<Config.Drive.rampRate){
+            double toSet;
+            if(speed-Math.abs(speed)==1){
+                set(speed+Config.Drive.rampRate);
+            }else if(speed-Math.abs(speed)==-1){
+                set(speed-Config.Drive.rampRate);
+            }
         }
     }
 }

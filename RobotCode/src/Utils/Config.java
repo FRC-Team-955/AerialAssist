@@ -30,6 +30,7 @@ public class Config
         public static final int chnRight1 = 8;
         public static final int chnRight2 = 9;
         public static final int chnRight3 = 10;
+        public static final double rampRate = 0.125;
     }
     public class Joystick
     {

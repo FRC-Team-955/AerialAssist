@@ -12,7 +12,7 @@ import Utils.Config;
  * @author Seraj B.
  */
 public class MyJoystick extends Joystick{
-    boolean [] gotPressed = new boolean[Config.Joystick.numberOfButtons];
+    public boolean [] gotPressed = new boolean[Config.Joystick.numberOfButtons];
     boolean [] buttonState = new boolean[Config.Joystick.numberOfButtons];
     /**
      * constructor for the class

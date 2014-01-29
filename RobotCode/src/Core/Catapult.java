@@ -39,7 +39,7 @@ public class Catapult {
      * the correct action
      */
     public void loadFireCat() {
-        if (joy.getRawButton(Config.Catapult.catFireButton) == true) {
+        if (joy.gotPressed[Config.Catapult.catFireButton] == true) {
             loadTimer.start();
             if (currentLoadingTime != Config.Catapult.loadingTime) {
                 catMotor.set(Config.Catapult.loadSpeed);
@@ -49,7 +49,7 @@ public class Catapult {
                 loadTimer.reset();
             }
         }
-        else if (joy.getRawButton(Config.Catapult.catFireButton) == true) {
+        else if (joy.gotPressed[Config.Catapult.catFireButton] == true) {
             fireTimer.start();
             if (currentFiringTime != Config.Catapult.fireTime) {
                 catMotor.set(Config.Catapult.fireSpeed);

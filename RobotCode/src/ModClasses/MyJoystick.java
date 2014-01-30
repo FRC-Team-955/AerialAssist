@@ -31,9 +31,6 @@ public class MyJoystick extends Joystick{
      * @param button number of the button being pressed
      * @return true if the button was pressed but false if held
      */
-    public boolean gotPressed(int i) {
-        return gotPressed[i];
-    }
     
     public boolean debounce(int button){
         
@@ -47,6 +44,15 @@ public class MyJoystick extends Joystick{
             buttonState[button] = getRawButton(button);
             return false;
         }
+    }
+    
+    /**
+     * Checks if the button was pressed
+     * @param i number of the button
+     * @return Whether the button was pressed of not
+     */
+    public boolean gotPressed(int i) {
+        return gotPressed[i];
     }
     
     /**

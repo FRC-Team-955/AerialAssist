@@ -15,6 +15,10 @@ public class MyTalon extends Talon {
     public MyTalon(int chan){
         super(chan);
     }
+        /**
+         * Makes sure the motors do not accelerate too fast
+         * @param goal The speed that was requested
+         */
         public void ramp(double goal){
         double speed = get();
         if(Math.abs(goal-speed)<Config.Drive.rampRate){

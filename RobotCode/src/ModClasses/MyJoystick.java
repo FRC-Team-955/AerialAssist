@@ -33,17 +33,16 @@ public class MyJoystick extends Joystick{
      */
     
     public boolean debounce(int button){
+        boolean ret;
         
+        if(buttonState[button - 1] == false && getRawButton(button) )
+            ret = true;
             
+        else
+            ret = false;
         
-        if(buttonState[button] == false && buttonState[button] != getRawButton(button) ){
-            buttonState[button] = getRawButton(button);
-            return true;
-        }
-        else{
-            buttonState[button] = getRawButton(button);
-            return false;
-        }
+        buttonState[button - 1] = getRawButton(button);
+        return ret;
     }
     
     /**
@@ -59,8 +58,8 @@ public class MyJoystick extends Joystick{
      * Updates all the buttons
      */
     public void update(){
-        for(int i = 0; i<gotPressed.length; i++){
-            gotPressed[i] = debounce(i);
+        for(int i = 1; i<=gotPressed.length; i++){
+            gotPressed[i - 1] = debounce(i);
         }
     }
 }

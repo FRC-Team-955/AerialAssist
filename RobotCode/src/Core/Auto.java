@@ -22,8 +22,8 @@ public class Auto {
     Catapult catapult = new Catapult();
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
-    Main main = new Main();
     double startTime;
+    Timer timer = new Timer();
     /**
      * Called from main while auto is active
      */
@@ -35,13 +35,13 @@ public class Auto {
         //if the target is hot and hasnt been shot then shoot
         if(hot && !shot) {    
             catapult.runCat();
-            startTime = main.timer.get();
+            startTime = timer.get();
             shot = true;
         }    
         //Once shot drive forward
         if(shot) {
             drive.setSpeed(1,1);
-            double time = startTime - main.timer.get();
+            double time = startTime - timer.get();
             if (time > Config.Auto.driveTime) {
                 drive.setSpeed(0,0);
             }    

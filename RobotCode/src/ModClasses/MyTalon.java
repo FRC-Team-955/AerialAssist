@@ -7,9 +7,10 @@
 package ModClasses;
 import edu.wpi.first.wpilibj.Talon;
 import Utils.Config;
+
 /**
  *
- * @author raiderbot-4
+ *  @author raiderbot-4
  */
 public class MyTalon extends Talon {
     public MyTalon(int chan){

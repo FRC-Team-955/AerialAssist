@@ -15,8 +15,8 @@ import Utils.*;
  */
 public class Pickup {
     MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-    Main main = new Main();
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
+    Timer timer = new Timer();
     
     /**
      * runs when pickup is activated
@@ -25,11 +25,11 @@ public class Pickup {
         //Turns on motor for a certain time
         if(joy.gotPressed(Config.Pickup.button)){
             pickupTalon.set(Config.Pickup.pickupSpeed);
-            double startTime = main.timer.get();
+            double startTime = timer.get();
             pickupTalon.set(1);
 
             //Once time is up turn off
-            if(main.timer.get() > Config.Pickup.pickupTime) {
+            if(timer.get() > Config.Pickup.pickupTime) {
                 pickupTalon.set(0);
             }
         }

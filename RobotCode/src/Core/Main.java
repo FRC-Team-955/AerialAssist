@@ -23,7 +23,6 @@ public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chn);
     Drive drive = new Drive(joy);
     Auto auto = new Auto();
-    Timer timer = new Timer();
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -45,7 +44,6 @@ public class Main extends IterativeRobot {
      */
     public void teleopPeriodic() {
         drive.run();
-        timer.start();
         joy.update();
     }
     

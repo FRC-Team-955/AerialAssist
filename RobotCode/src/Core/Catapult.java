@@ -20,8 +20,8 @@ public class Catapult {
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
     Timer loadTimer;
     Timer fireTimer;
-    double currentLoadingTime;
-    double currentFiringTime;
+    double currentLoadingTime = 0;
+    double currentFiringTime = 0;
     MyJoystick joy;
 
     /**
@@ -30,35 +30,39 @@ public class Catapult {
     public Catapult() {
         this.loadTimer = new Timer();
         this.fireTimer = new Timer();
-        this.currentLoadingTime = loadTimer.get();
-        this.currentFiringTime = fireTimer.get();
-
     }
+    
     /**
      * Decides if the button to load or fire the catapult is pressed then do 
      * the correct action
      */
-    public void loadFireCat() {
-        if (joy.gotPressed(Config.Catapult.catFireButton) == true) {
+    public void runCat() {
+        currentLoadingTime = loadTimer.get();
+        currentFiringTime = fireTimer.get();
+        if (joy.gotPressed(Config.Catapult.catLoadButton) == true) {
             loadTimer.start();
-            if (currentLoadingTime != Config.Catapult.loadingTime) {
+            
+            if (currentLoadingTime < Config.Catapult.loadingTime) {
                 catMotor.set(Config.Catapult.loadSpeed);
             }
+            
             else {
                 loadTimer.stop();
                 loadTimer.reset();
             }
         }
+        
         else if (joy.gotPressed(Config.Catapult.catFireButton) == true) {
             fireTimer.start();
-            if (currentFiringTime != Config.Catapult.fireTime) {
+            
+            if (currentFiringTime < Config.Catapult.fireTime) {
                 catMotor.set(Config.Catapult.fireSpeed);
             }
+            
             else {
                 fireTimer.stop();
                 fireTimer.reset();
             }
         }
     }
-
 }

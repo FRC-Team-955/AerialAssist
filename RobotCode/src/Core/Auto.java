@@ -34,7 +34,7 @@ public class Auto {
         //}
         //if the target is hot and hasnt been shot then shoot
         if(hot && !shot) {    
-            catapult.loadFireCat();
+            catapult.runCat();
             startTime = main.timer.get();
             shot = true;
         }    

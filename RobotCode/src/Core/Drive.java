@@ -50,9 +50,9 @@ public class Drive {
      * @param speed Name of the speed of the talons.
      */
     public void setLeft(double speed) {
-        left1.set(speed);
-        left2.set(speed);
-        left3.set(speed);
+        left1.ramp(speed);
+        left2.ramp(speed);
+        left3.ramp(speed);
     }
     
     /**
@@ -60,9 +60,9 @@ public class Drive {
      * @param speed Name of the speed of the talons.
      */
     public void setRight(double speed) {
-        right1.set(speed);
-        right2.set(speed);
-        right3.set(speed);
+        right1.ramp(speed);
+        right2.ramp(speed);
+        right3.ramp(speed);
     }
     
     /**

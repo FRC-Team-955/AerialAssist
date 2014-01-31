@@ -32,32 +32,37 @@ public class Config
         public static final int chnRight3 = 10;
         public static final double rampRate = 0.125;
     }
+    
     public class Joystick
     {
-        public static final int chn = 11;
+        public static final int chn = 1;
         public static final int numberOfButtons = 12;
     }
+    
     public class Catapult
     {
         public static final double loadingTime = 7.0;
-        public static final double fireTime = 7.0;
-        public static final int chnCat = 12;
+        public static final double fireTime = 7.0;      
         public static final double fireSpeed = 1.0;
         public static final double loadSpeed = 1.0;
         public static final int catLoadButton = 5;
+        public static final int chnCat = 12;
         public static final int catFireButton = 6;
              
     }
+    
     public class toBeChanged
     {
         public static final double min = 2.0; 
     }
-    public class Pickup {
-        public static final int pickupTalon1 = 5;
+    
+    public class Pickup {   
         public static final double pickupSpeed = 1.0;
         public static final double pickupTime = 5.0;
         public static final int button = 5;
+        public static final int pickupTalon1 = 5;
     }
+    
     public class Auto {
         public static final double driveTime = 5.0;
     }

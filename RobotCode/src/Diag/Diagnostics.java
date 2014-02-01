@@ -28,7 +28,12 @@ public class Diagnostics {
     FileConnection connector;
     Drive d;
     MyJoystick joy;
-
+    
+    /**
+     * 
+     * @param d 
+     * @param joy 
+     */
     public Diagnostics(Drive d, MyJoystick joy) {
 
         this.joy = joy;

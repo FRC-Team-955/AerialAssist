@@ -47,11 +47,9 @@ public class Auto {
                 loadTimer.stop();
                 loadTimer.reset();
             } 
-
-            if (joy.gotPressed(Config.Catapult.catFireButton) == true) {
-                fireTimer.start();
-                catMotor.set(Config.Catapult.fireSpeed);
-            }
+   
+            fireTimer.start();
+            catMotor.set(Config.Catapult.fireSpeed);        
 
             if (fireTimer.get() > Config.Catapult.fireTime) {
                 catMotor.set(0);

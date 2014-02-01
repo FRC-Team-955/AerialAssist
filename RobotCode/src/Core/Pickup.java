@@ -25,13 +25,15 @@ public class Pickup {
         //Turns on motor for a certain time
         if(joy.gotPressed(Config.Pickup.button)){
             pickupTalon.set(Config.Pickup.pickupSpeed);
-            double startTime = timer.get();
-            pickupTalon.set(1);
+            timer.start();
+        }
 
             //Once time is up turn off
-            if(timer.get() > Config.Pickup.pickupTime) {
-                pickupTalon.set(0);
-            }
+        if(timer.get() > Config.Pickup.pickupTime) {
+            pickupTalon.set(0);
+            timer.stop();
+            timer.reset();
         }
+        
     }
 }

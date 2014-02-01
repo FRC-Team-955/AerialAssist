@@ -24,6 +24,9 @@ public class Auto {
     Drive drive = new Drive(joy);
     double startTime;
     Timer timer = new Timer();
+    Timer loadTimer = new Timer();
+    Timer fireTimer = new Timer();
+    public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
     /**
      * Called from main while auto is active
      */
@@ -34,7 +37,29 @@ public class Auto {
         //}
         //if the target is hot and hasnt been shot then shoot
         if(hot && !shot) {    
-            catapult.runCat();
+            
+            
+            loadTimer.start();
+            catMotor.set(Config.Catapult.loadSpeed);          
+
+            if (loadTimer.get() > Config.Catapult.loadingTime) {
+                catMotor.set(0);
+                loadTimer.stop();
+                loadTimer.reset();
+            } 
+
+            if (joy.gotPressed(Config.Catapult.catFireButton) == true) {
+                fireTimer.start();
+                catMotor.set(Config.Catapult.fireSpeed);
+            }
+
+            if (fireTimer.get() > Config.Catapult.fireTime) {
+                catMotor.set(0);
+                fireTimer.stop();
+                fireTimer.reset();
+
+            }
+            
             startTime = timer.get();
             shot = true;
         }    

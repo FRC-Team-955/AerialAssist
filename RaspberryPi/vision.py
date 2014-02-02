@@ -14,9 +14,6 @@ horizTarget = Rectangle(0.0, 0.0, 23.5, 4.0)
 imgNameIndex = 1
 imgNameMax = 100
 
-logging.basicConfig(level=logging.DEBUG)
-logging.debug("vision services started.")
-
 def update(prefSideLeft, isDebug):
     logging.debug("update()" + str(isDebug) + str(imgNameIndex))
 

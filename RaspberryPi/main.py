@@ -3,7 +3,15 @@ import logging
 import vision as vision
 
 from ntClient import *
+import os
 import time
+
+# Id's for reading data from networktable
+isGoalHotId = "isGoalHot"
+shutDownPi = "shutdown"
+debugId = "debugMode"
+runVisionId = "runVision"
+prefSideLeftId = "prefSideLeft"
 
 ################################################################################
 #
@@ -20,19 +28,20 @@ if __name__ == '__main__':
 
 	# Table name  = team number, used for ip address
 	tableName = "955"
-	#table = NetworkTableClient(tableName)
 	tableDirectory = '/' + tableName + '/'
-	logging.debug("Network table initialized.")
-	# Id's for reading data from networktable
-	isGoalHotId = "isGoalHot"
-	shutDownPi = "shutdown"
-	debugId = "debugMode"
-	runVisionId = "runVision"
-	prefSideLeftId = "prefSideLeft"
+
+	# test for table existing by setting a value.  If table not accessible, wait and try.
+	while True:
+		try:
+			table = NetworkTableClient(tableName)
+			logging.debug("Network table initialized.")
+			table.setValue(tableDirectory + isGoalHotId, False) # Set foundHotTarget
+			break # leave the while loop if the table is accessible
+		except Exception as ex:
+			logging.error(ex)
+			time.sleep(1/4.)
 
 	try:
-		table.setValue(tableDirectory + isGoalHotId, False) # Set foundHotTarget
-
 		while True:
 			runVision = table.getValue(tableDirectory + runVisionId)
 			debugMode = table.getValue(tableDirectory + debugId)
@@ -43,9 +52,9 @@ if __name__ == '__main__':
 				table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget()) # Set foundHotTarget
 
 			if table.getValue(tableDirectory + shutDownPi):
-				os.sys("sudo shutdown -h now")
+				os.system("sudo shutdown -h now")
 
-			time.sleep(1.0 / 4.0)
+			time.sleep(1/4.)
 	except Exception as ex:
 		logging.error(ex)
 	logging.debug("Done!")

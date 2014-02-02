@@ -30,6 +30,15 @@ public class Config
         */
         public static final double rampRate = 0.125;
     }
+	public class NetworkTable
+	{
+		public static final String tableId = "955";
+		public static final String gyroAngleId = "gyroAngle";
+		public static final String goalDistanceId = "goalDistance";
+		public static final String isGoalHotId = "isGoalHot";
+		public static final String isGoalHorzId = "isGoalHorz";
+		public static final String runVisionId = "runVision";
+	}
     public class Joystick
     {
         /*

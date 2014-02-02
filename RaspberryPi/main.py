@@ -1,4 +1,5 @@
-#! /usr/bin/python
+#!/usr/bin/env python
+import logging
 import vision as vision
 
 from ntClient import *
@@ -13,6 +14,9 @@ import time
 # is run because it is imported, then __name__ is the module name.
 
 if __name__ == '__main__': 
+        logging.basicConfig(filename='/var/log/robovision/robovision.log',level=logging.DEBUG)
+        logging.debug("vision services started.")
+        logging.debug("uid {} euid {}".format(os.getuid(), os.geteuid()))
 
 	# Table name  = team number, used for ip address
 	tableName = "955"

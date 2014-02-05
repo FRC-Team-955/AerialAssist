@@ -22,10 +22,12 @@ public class Auto {
     Catapult catapult = new Catapult();
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
-    double startTime;
     Timer timer = new Timer();
     Timer loadTimer = new Timer();
     Timer fireTimer = new Timer();
+    boolean feeding = true;
+    double startTime = 0;
+    boolean shooting = false;
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
     /**
      * Called from main while auto is active
@@ -36,38 +38,51 @@ public class Auto {
             boolean hot = true;
         //}
         //if the target is hot and hasnt been shot then shoot
-        if(hot && !shot) {    
+        if(feeding) {
+                catMotor.set(Config.Catapult.loadSpeed);      
+                feeding = false;
+                shooting = true;
+            }    
             
-            
-            loadTimer.start();
-            catMotor.set(Config.Catapult.loadSpeed);          
-
-            if (loadTimer.get() > Config.Catapult.loadingTime) {
-                catMotor.set(0);
-                loadTimer.stop();
-                loadTimer.reset();
-            } 
-   
-            fireTimer.start();
-            catMotor.set(Config.Catapult.fireSpeed);        
-
-            if (fireTimer.get() > Config.Catapult.fireTime) {
+        if (fireTimer.get() > Config.Catapult.fireTime) {
                 catMotor.set(0);
                 fireTimer.stop();
                 fireTimer.reset();
-
+                shot = true;
+                feeding = true;
+                shooting = false;      
+                startTime = timer.get();
+        }
+        
+        if (loadTimer.get() > Config.Catapult.loadingTime) {
+                catMotor.set(0);
+                loadTimer.stop();
+                loadTimer.reset();
+                feeding = false;
+                shooting = true;
+        } 
+        
+        if(hot && !shot) {    
+            
+            if(feeding) {
+                
+                catMotor.set(Config.Catapult.loadSpeed);      
+                
             }
             
-            startTime = timer.get();
-            shot = true;
-        }    
-        //Once shot drive forward
-        if(shot) {
-            drive.setSpeed(1,1);
-            double time = startTime - timer.get();
-            if (time > Config.Auto.driveTime) {
-                drive.setSpeed(0,0);
+            if(shooting) {
+                fireTimer.start();
+                catMotor.set(Config.Catapult.fireSpeed);        
             }    
-         }
+            //Once shot drive forward
+            
+        }
+        if(shot) {
+                drive.setSpeed(1,1);
+                double time = startTime - timer.get();
+                if (time > Config.Auto.driveTime) {
+                    drive.setSpeed(0,0);
+                }    
+            }
     }
 }

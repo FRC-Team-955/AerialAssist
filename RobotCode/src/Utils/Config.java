@@ -101,4 +101,13 @@ public class Config
         */
         public static final double driveTime = 5.0;
     }
+    
+    public class Diagnostics {
+        public static final double forwardTime = 10;
+        public static final double backTime = 10;
+        public static final double leftTime = 10;
+        public static final double rightTime = 10;
+        public static final double loadTime = 5;
+        
+    }
 }

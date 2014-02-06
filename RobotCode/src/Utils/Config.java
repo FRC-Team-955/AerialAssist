@@ -17,18 +17,21 @@ public class Config
         /*
         Motor channels        
         */
-        public static final int chnLeft1 = 5; 
-        public static final int chnLeft2 = 6;
-        public static final int chnLeft3 = 7;
+        public static final int chnLeft1 = 1; 
+        public static final int chnLeft2 = 2;
+        public static final int chnLeft3 = 3;
         public static final int chnRight1 = 8;
         public static final int chnRight2 = 9;
         public static final int chnRight3 = 10;
         
+		
+		public static final int switchButton = 10;
         /*
         The speed of the steps at which the talon will take to get to the 
         target speed  
         */
-        public static final double rampRate = 0.125;
+        public stat
+				ic final double rampRate = 0.125;
     }
 	public class NetworkTable
 	{
@@ -44,7 +47,7 @@ public class Config
         /*
         The channel number of the buttons
         */
-        public static final int chn = 11;
+        public static final int chn = 1;
         /*
         The number of buttons of the joystick 
         */
@@ -100,14 +103,5 @@ public class Config
         The amount of time the robot will drive forward during auto
         */
         public static final double driveTime = 5.0;
-    }
-    
-    public class Diagnostics {
-        public static final double forwardTime = 10;
-        public static final double backTime = 10;
-        public static final double leftTime = 10;
-        public static final double rightTime = 10;
-        public static final double loadTime = 5;
-        
     }
 }

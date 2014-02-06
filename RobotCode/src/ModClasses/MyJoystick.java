@@ -49,7 +49,7 @@ public class MyJoystick extends Joystick{
      * @return Whether the button was pressed of not
      */
     public boolean gotPressed(int i) {
-        return gotPressed[i];
+        return gotPressed[i - 1];
     }
     
     /**

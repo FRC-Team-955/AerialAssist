@@ -24,7 +24,7 @@ public class Drive {
     private MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
     
     MyJoystick joy;
-    
+    boolean isForwardSwitched = false;
     /**
      * Initializes the joystick
      * @param joy1 Name of the joystick
@@ -37,12 +37,23 @@ public class Drive {
      * Sets the motors to be controlled by the joystick.
      */
     public void run() {
-        double x = joy.getX();
-        double y = joy.getY();
-        
-        x *= Math.abs(x);
-        y *= Math.abs(y);
-        setSpeed(y + x, y - x);
+		
+        if(joy.gotPressed(Config.Drive.switchButton)){
+			isForwardSwitched = !isForwardSwitched;	
+		} 
+		
+		double x = joy.getX();
+		double y = joy.getY();
+
+		if(isForwardSwitched) {
+			y *= -1;
+		}
+		
+		x *= Math.abs(x);
+		y *= Math.abs(y);
+		setSpeed(-(y + x), y - x);
+		
+		System.out.println("Is Switched: " + isForwardSwitched);
     }
     
     /**

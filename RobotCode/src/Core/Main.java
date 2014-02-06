@@ -22,21 +22,24 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chn);
     Drive drive = new Drive(joy);
-    Auto auto = new Auto();
+//    Auto auto = new Auto();
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-   
- 
+		// Setting to get regular drive Working properly on the ps3 Controller
+        // should be 3, 2
+        joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
+        joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
+		System.out.println("Init called");
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        auto.run();
+//        auto.run();
     }
 
     /**

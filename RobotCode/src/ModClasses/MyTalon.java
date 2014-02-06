@@ -25,10 +25,10 @@ public class MyTalon extends Talon {
         double speed = get();
         double difference = Math.abs(goal-speed);
         
-        if(difference > Config.Drive.rampRate && goal > 0)
+        if(difference > Config.Drive.rampRate && goal > speed)
             set(speed + Config.Drive.rampRate);      
         
-        else if(difference > Config.Drive.rampRate && goal < 0)
+        else if(difference > Config.Drive.rampRate && goal < speed)
             set(speed - Config.Drive.rampRate);      
                
         else if(difference < Config.Drive.rampRate) 

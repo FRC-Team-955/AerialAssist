@@ -12,10 +12,25 @@ package Utils;
  */
 public class Config 
 {
+
+    public static class Diagnostics {
+        /*
+            Times for Marco
+        */
+        public static double backTime = 0;
+        public static double forwardTime = 0;
+        public static double rightTime = 0;
+        public static double leftTime = 0;
+        public static double loadTime = 0;
+
+        public Diagnostics() {
+            
+        }
+    }
        public class Drive
     {
         /*
-        Motor channels        
+            Motor channels        
         */
         public static final int chnLeft1 = 1; 
         public static final int chnLeft2 = 2;
@@ -27,11 +42,10 @@ public class Config
 		
 		public static final int switchButton = 10;
         /*
-        The speed of the steps at which the talon will take to get to the 
-        target speed  
+            The speed of the steps at which the talon will take to get to the 
+            target speed  
         */
-        public stat
-				ic final double rampRate = 0.125;
+        public static final double rampRate = 0.125;
     }
 	public class NetworkTable
 	{
@@ -45,32 +59,38 @@ public class Config
     public class Joystick
     {
         /*
-        The channel number of the buttons
+            The channel number of the buttons
         */
+        
         public static final int chn = 1;
+        
         /*
-        The number of buttons of the joystick 
+            The number of buttons of the joystick 
         */
+        
         public static final int numberOfButtons = 12;
     }
     public class Catapult
     {
         /*
-        The loading times for loading and firing
-        */
+            The loading times for loading and firing
+        */        
         public static final double loadingTime = 7.0;
         public static final double fireTime = 7.0;
+        
         /*
-        The channel number for the catapult
+            The channel number for the catapult
         */
         public static final int chnCat = 12;
+        
         /*
-        The speeds at which the catapult motors moves to fire and load
+            The speeds at which the catapult motors moves to fire and load
         */
         public static final double fireSpeed = 1.0;
         public static final double loadSpeed = 1.0;
+        
         /*
-        The buttons on the joystick for loading and firing
+            The buttons on the joystick for loading and firing
         */
         public static final int catLoadButton = 5;
         public static final int catFireButton = 6;
@@ -82,25 +102,25 @@ public class Config
     }
     public class Pickup {
         /*
-        The talon number for the pick up motor
+            The talon number for the pick up motor
         */
         public static final int pickupTalon1 = 5;
         /*
-        The speed that the pickup motor runs
+            The speed that the pickup motor runs
         */
         public static final double pickupSpeed = 1.0;
         /*
-        The time that the motor runs before stopping
+            The time that the motor runs before stopping
         */
         public static final double pickupTime = 5.0;
         /*
-        The button on the joystick that activates the pickup
+            The button on the joystick that activates the pickup
         */
         public static final int button = 5;
     }
     public class Auto {
         /*
-        The amount of time the robot will drive forward during auto
+            The amount of time the robot will drive forward during auto
         */
         public static final double driveTime = 5.0;
     }

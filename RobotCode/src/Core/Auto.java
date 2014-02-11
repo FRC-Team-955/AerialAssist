@@ -29,6 +29,8 @@ public class Auto {
     double startTime = 0;
     boolean shooting = false;
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
+    Catapult cat = new Catapult();
+    boolean firstCock = true;
     /**
      * Called from main while auto is active
      */
@@ -37,43 +39,14 @@ public class Auto {
         //if(hot target) {
             boolean hot = true;
         //}
-        //if the target is hot and hasnt been shot then shoot
-        if(feeding) {
-                catMotor.set(Config.Catapult.cockSpeed);      
-                feeding = false;
-                shooting = true;
-            }    
-            
-        if (fireTimer.get() > Config.Catapult.fireTime) {
-                catMotor.set(0);
-                fireTimer.stop();
-                fireTimer.reset();
-                shot = true;
-                feeding = true;
-                shooting = false;      
-                startTime = timer.get();
+        //if the target is hot and hasnt been shot then shoot  
+        if(firstCock) {
+            cat.cock();
+            firstCock = false;
         }
-        
-        if (cockTimer.get() > Config.Catapult.cockTime) {
-                catMotor.set(0);
-                cockTimer.stop();
-                cockTimer.reset();
-                feeding = false;
-                shooting = true;
-        } 
-        
         if(hot && !shot) {    
             
-            if(feeding) {
-                
-                catMotor.set(Config.Catapult.cockSpeed);      
-                
-            }
-            
-            if(shooting) {
-                fireTimer.start();
-                catMotor.set(Config.Catapult.fireSpeed);        
-            }    
+            cat.fire();    
             //Once shot drive forward
             
         }

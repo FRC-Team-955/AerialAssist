@@ -24,20 +24,14 @@ public class Catapult {
     DigitalInput limitSwitch;
     Pickup pickup = new Pickup();
 
-    /**
-     * Constructs timers for the loading time and firing time.
-     */
     public Catapult() {
         this.limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
     }
     
-    /**
-     * Decides if the button to cock or fire the catapult is pressed then do 
-     * the correct action
-     */
+    
     public void run () {
         if (pickup.ready){
-            cock();
+            preFire();
         }
         if (joy.gotPressed(Config.Catapult.catFireButton)){
             fire();

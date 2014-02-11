@@ -5,7 +5,7 @@
  */
 package Diag;
 
-import Core.Drive;
+import Core.*;
 import ModClasses.MyJoystick;
 import ModClasses.MyTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,12 +23,13 @@ public class Macro {
     Timer timer;
     Drive drive;
     Vision vision = new Vision();
-
-    public Macro(MyJoystick joy, Drive drive) {
+    Catapult cat;
+    
+    public Macro(MyJoystick joy, Drive drive, Catapult cat) {
 
         this.drive = drive;
         this.joy = joy;
-
+        this.cat = cat;
     }
 
     public void run() {
@@ -107,26 +108,19 @@ public class Macro {
     }
     
     public void testCat() {
-        Timer cockTimer = new Timer();
         MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
         Timer fireTimer = new Timer();
         Timer timer = new Timer();
-        
-        cockTimer.start();
-        catMotor.set(Config.Catapult.cockSpeed);
+        DigitalInput = new DigitalInput(Utils.Config.Catapult.chnLS);
+        catMotor.set(Config.Catapult.preFireSpeed);
         
 
-        if (cockTimer.get() > Config.Catapult.cockTime) {
+        if (limitSwitch.get() == true) {
             catMotor.set(0);
-            cockTimer.stop();
-            cockTimer.reset();
             timer.start();
-        } 
-        
-        if (timer.get() > Config.Diagnostics.cockTime) {
             fireTimer.start();
-            catMotor.set(Config.Catapult.fireSpeed);
-        }
+            catMotor.set(Config.Catapult.fireSpeed)
+        } 
         
         if (fireTimer.get() > Config.Catapult.fireTime) {
             catMotor.set(0);

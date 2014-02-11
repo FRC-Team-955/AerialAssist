@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Catapult {
 
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
-    Timer preFireTimer;
     Timer fireTimer;
     MyJoystick joy;
     DigitalInput limitSwitch;
@@ -47,23 +46,16 @@ public class Catapult {
         
     }
     
-    public void cock(){
-        catMotor.set(Config.Catapult.cockSpeed);
+    public void preFire(){
+        catMotor.set(Config.Catapult.preFireSpeed);
         if (limitSwitch.get() == true) {
             catMotor.set(0);
         }
     } 
     
     public void fire() {
-        preFireTimer.start();
-        catMotor.set(Config.Catapult.preFireSpeed);
-        
-        if (preFireTimer.get() > Config.Catapult.preFireTime) {
-            catMotor.set(Config.Catapult.fireSpeed);
-            preFireTimer.stop();
-            preFireTimer.reset();
-            fireTimer.start();
-        }
+        fireTimer.start();
+        catMotor.ste(Config.Catapult.fireSpeed);
         if(fireTimer.get() > Config.Catapult.fireTime){
             catMotor.set(0);
         }

@@ -88,9 +88,8 @@ public class Config
         public static final double fireSpeed = -1.0;
         
         /*
-            The buttons on the joystick for loading and firing
+            The buttons on the joystick for loading
         */
-        public static final int catCockButton = 5;
         public static final int catFireButton = 6;
              
     }

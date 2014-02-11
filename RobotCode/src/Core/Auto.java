@@ -30,7 +30,7 @@ public class Auto {
     boolean shooting = false;
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
     Catapult cat = new Catapult();
-    boolean firstCock = true;
+    boolean firstPreFire = true;
     /**
      * Called from main while auto is active
      */
@@ -40,9 +40,9 @@ public class Auto {
             boolean hot = true;
         //}
         //if the target is hot and hasnt been shot then shoot  
-        if(firstCock) {
-            cat.cock();
-            firstCock = false;
+        if(firstPreFire) {
+            cat.preFire();
+            firstPreFire = false;
         }
         if(hot && !shot) {    
             

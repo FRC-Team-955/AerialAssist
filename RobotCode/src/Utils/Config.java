@@ -73,8 +73,6 @@ public class Config
         /*
             The loading times for cock and firing
         */        
-        public static final double cockTime = 7.0;
-        public static final double preFireTime = 7.0;
         public static final double fireTime = 7.0;
         public static final int chnLS = 1;
         
@@ -86,9 +84,8 @@ public class Config
         /*
             The speeds at which the catapult motors moves to fire and load
         */
-        public static final double cockSpeed = 1.0;
-        public static final double preFireSpeed = 1.0;
-        public static final double fireSpeed = 1.0;
+        public static final double preFireSpeed = -1.0;
+        public static final double fireSpeed = -1.0;
         
         /*
             The buttons on the joystick for loading and firing

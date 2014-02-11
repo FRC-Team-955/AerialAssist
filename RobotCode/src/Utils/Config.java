@@ -21,11 +21,9 @@ public class Config
         public static double forwardTime = 0;
         public static double rightTime = 0;
         public static double leftTime = 0;
-        public static double loadTime = 0;
+        public static double cockTime = 0;
+        
 
-        public Diagnostics() {
-            
-        }
     }
        public class Drive
     {
@@ -73,10 +71,12 @@ public class Config
     public class Catapult
     {
         /*
-            The loading times for loading and firing
+            The loading times for cock and firing
         */        
-        public static final double loadingTime = 7.0;
+        public static final double cockTime = 7.0;
+        public static final double preFireTime = 7.0;
         public static final double fireTime = 7.0;
+        public static final int chnLS = 1;
         
         /*
             The channel number for the catapult
@@ -86,13 +86,14 @@ public class Config
         /*
             The speeds at which the catapult motors moves to fire and load
         */
+        public static final double cockSpeed = 1.0;
+        public static final double preFireSpeed = 1.0;
         public static final double fireSpeed = 1.0;
-        public static final double loadSpeed = 1.0;
         
         /*
             The buttons on the joystick for loading and firing
         */
-        public static final int catLoadButton = 5;
+        public static final int catCockButton = 5;
         public static final int catFireButton = 6;
              
     }

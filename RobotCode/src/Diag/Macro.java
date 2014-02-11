@@ -107,23 +107,23 @@ public class Macro {
     }
     
     public void testCat() {
-        Timer loadTimer = new Timer();
+        Timer cockTimer = new Timer();
         MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
         Timer fireTimer = new Timer();
         Timer timer = new Timer();
         
-        loadTimer.start();
-        catMotor.set(Config.Catapult.loadSpeed);
+        cockTimer.start();
+        catMotor.set(Config.Catapult.cockSpeed);
         
 
-        if (loadTimer.get() > Config.Catapult.loadingTime) {
+        if (cockTimer.get() > Config.Catapult.cockTime) {
             catMotor.set(0);
-            loadTimer.stop();
-            loadTimer.reset();
+            cockTimer.stop();
+            cockTimer.reset();
             timer.start();
         } 
         
-        if (timer.get() > Config.Diagnostics.loadTime) {
+        if (timer.get() > Config.Diagnostics.cockTime) {
             fireTimer.start();
             catMotor.set(Config.Catapult.fireSpeed);
         }

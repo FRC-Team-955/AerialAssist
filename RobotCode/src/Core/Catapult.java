@@ -9,6 +9,7 @@ import ModClasses.MyJoystick;
 import Utils.Config;
 import edu.wpi.first.wpilibj.Timer;
 import ModClasses.MyTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * Activates a motor that loads and launches the catapult.
@@ -18,45 +19,54 @@ import ModClasses.MyTalon;
 public class Catapult {
 
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
-    Timer loadTimer;
+    Timer preFireTimer;
     Timer fireTimer;
     MyJoystick joy;
+    DigitalInput limitSwitch;
+    Pickup pickup = new Pickup();
 
     /**
      * Constructs timers for the loading time and firing time.
      */
     public Catapult() {
-        this.loadTimer = new Timer();
-        this.fireTimer = new Timer();
+        this.limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
     }
     
     /**
-     * Decides if the button to load or fire the catapult is pressed then do 
+     * Decides if the button to cock or fire the catapult is pressed then do 
      * the correct action
      */
-    public void runCat() {
-        
-        if (joy.gotPressed(Config.Catapult.catLoadButton) == true) {
-            loadTimer.start();
-            catMotor.set(Config.Catapult.loadSpeed);
+    public void run () {
+        if (pickup.ready){
+            cock();
         }
-
-        if (loadTimer.get() > Config.Catapult.loadingTime) {
-            catMotor.set(0);
-            loadTimer.stop();
-            loadTimer.reset();
-        } 
+        if (joy.gotPressed(Config.Catapult.catFireButton)){
+            fire();
+        }
         
-        if (joy.gotPressed(Config.Catapult.catFireButton) == true) {
-            fireTimer.start();
+        
+    }
+    
+    public void cock(){
+        catMotor.set(Config.Catapult.cockSpeed);
+        if (limitSwitch.get() == true) {
+            catMotor.set(0);
+        }
+    } 
+    
+    public void fire() {
+        preFireTimer.start();
+        catMotor.set(Config.Catapult.preFireSpeed);
+        
+        if (preFireTimer.get() > Config.Catapult.preFireTime) {
             catMotor.set(Config.Catapult.fireSpeed);
+            preFireTimer.stop();
+            preFireTimer.reset();
+            fireTimer.start();
         }
-        
-        if (fireTimer.get() > Config.Catapult.fireTime) {
+        if(fireTimer.get() > Config.Catapult.fireTime){
             catMotor.set(0);
-            fireTimer.stop();
-            fireTimer.reset();
-
         }
+       
     }
 }

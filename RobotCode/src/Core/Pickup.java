@@ -17,7 +17,7 @@ public class Pickup {
     MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Timer timer = new Timer();
-    
+    boolean ready = false;
     /**
      * runs when pickup is activated
      */
@@ -31,6 +31,7 @@ public class Pickup {
             //Once time is up turn off
         if(timer.get() > Config.Pickup.pickupTime) {
             pickupTalon.set(0);
+            ready = true;
             timer.stop();
             timer.reset();
         }

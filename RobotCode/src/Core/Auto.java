@@ -23,7 +23,7 @@ public class Auto {
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
     Timer timer = new Timer();
-    Timer loadTimer = new Timer();
+    Timer cockTimer = new Timer();
     Timer fireTimer = new Timer();
     boolean feeding = true;
     double startTime = 0;
@@ -39,7 +39,7 @@ public class Auto {
         //}
         //if the target is hot and hasnt been shot then shoot
         if(feeding) {
-                catMotor.set(Config.Catapult.loadSpeed);      
+                catMotor.set(Config.Catapult.cockSpeed);      
                 feeding = false;
                 shooting = true;
             }    
@@ -54,10 +54,10 @@ public class Auto {
                 startTime = timer.get();
         }
         
-        if (loadTimer.get() > Config.Catapult.loadingTime) {
+        if (cockTimer.get() > Config.Catapult.cockTime) {
                 catMotor.set(0);
-                loadTimer.stop();
-                loadTimer.reset();
+                cockTimer.stop();
+                cockTimer.reset();
                 feeding = false;
                 shooting = true;
         } 
@@ -66,7 +66,7 @@ public class Auto {
             
             if(feeding) {
                 
-                catMotor.set(Config.Catapult.loadSpeed);      
+                catMotor.set(Config.Catapult.cockSpeed);      
                 
             }
             

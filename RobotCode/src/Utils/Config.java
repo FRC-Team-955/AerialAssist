@@ -114,6 +114,13 @@ public class Config
             The button on the joystick that activates the pickup
         */
         public static final int button = 5;
+        /*
+            The Ports that the solenoids are one
+        */
+        public static final int solRightPortOne = 1;
+        public static final int solRightPortTwo = 2;
+        public static final int solLeftPortOne = 3;
+        public static final int solLeftPortTwo = 4;
     }
     public class Auto {
         /*

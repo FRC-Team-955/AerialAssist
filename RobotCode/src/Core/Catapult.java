@@ -49,7 +49,7 @@ public class Catapult {
     
     public void fire() {
         fireTimer.start();
-        catMotor.ste(Config.Catapult.fireSpeed);
+        catMotor.set(Config.Catapult.fireSpeed);
         if(fireTimer.get() > Config.Catapult.fireTime){
             catMotor.set(0);
         }

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import Utils.Config;
 import Core.Vision;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 /**
  *
  * @author raiderbot-2
@@ -111,7 +111,7 @@ public class Macro {
         MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
         Timer fireTimer = new Timer();
         Timer timer = new Timer();
-        DigitalInput = new DigitalInput(Utils.Config.Catapult.chnLS);
+        DigitalInput limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
         catMotor.set(Config.Catapult.preFireSpeed);
         
 
@@ -119,7 +119,7 @@ public class Macro {
             catMotor.set(0);
             timer.start();
             fireTimer.start();
-            catMotor.set(Config.Catapult.fireSpeed)
+            catMotor.set(Config.Catapult.fireSpeed);
         } 
         
         if (fireTimer.get() > Config.Catapult.fireTime) {

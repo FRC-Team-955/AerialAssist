@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * Activates a motor that loads and launches the catapult.
  *
  * @author Seraj B. and Warren E.
- */
+ *//
 public class Catapult {
 
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
@@ -23,36 +23,42 @@ public class Catapult {
     MyJoystick joy;
     DigitalInput limitSwitch;
     boolean ready = false;
+    double motorSpeed = 0;
     public Catapult() {
         this.limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
+    
     }
     
     
     public void run () {
-        if (!ready){
-            preFire();
-        }
-        if (joy.gotPressed(Config.Catapult.catFireButton)){
-            fire();
-        }
-        
+        // if (!ready){
+        //     preFire();
+        // }
+        // if (joy.gotPressed(Config.Catapult.catFireButton)){
+        //     fire();
+        // }
+        if(limitSwitch.get())
+            motorSpeed = 0;
+        if(joy.getRawButton(Config.Catapult.catFireButton))
+            motorSpeed = Config.Catapult.fireSpeed;
+        catMotor.set(motorSpeed);
         
     }
     
-    public void preFire(){
-        catMotor.set(Config.Catapult.preFireSpeed);
-        if (limitSwitch.get() == true) {
-            catMotor.set(0);
-            ready = true;
-        }
-    } 
+    // public void preFire(){
+    //     catMotor.set(Config.Catapult.preFireSpeed);
+    //     if (limitSwitch.get() == true) {
+    //         catMotor.set(0);
+    //         ready = true;
+    //     }
+    // } 
     
-    public void fire() {
-        fireTimer.start();
-        catMotor.set(Config.Catapult.fireSpeed);
-        if(fireTimer.get() > Config.Catapult.fireTime){
-            catMotor.set(0);
-        }
+    // public void fire() {
+    //     fireTimer.start();
+    //     catMotor.set(Config.Catapult.fireSpeed);
+    //     if(fireTimer.get() > Config.Catapult.fireTime){
+    //         catMotor.set(0);
+    //     }
        
     }
 }

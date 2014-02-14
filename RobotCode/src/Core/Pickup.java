@@ -33,16 +33,16 @@ public class Pickup {
     public void run() {
         //Turns on motor for a certain time
         if(joy.gotPressed(Config.Pickup.button)){
-            solenoidLeft.solenoidSwitch();
-            solenoidRight.solenoidSwitch();
+            solenoidLeft.off();
+            solenoidRight.off();
             pickupTalon.set(Config.Pickup.pickupSpeed);
             timer.start();
         }
 
             //Once time is up turn off
         if(timer.get() > Config.Pickup.pickupTime) {
-            solenoidLeft.solenoidSwitch();
-            solenoidRight.solenoidSwitch();
+            solenoidLeft.on();
+            solenoidRight.on();
             pickupTalon.set(0);
             ready = true;
             timer.stop();

@@ -17,12 +17,19 @@ public class Pickup {
     MySolenoid solenoidLeft = new MySolenoid(Config.Pickup.solLeftPortOne,Config.Pickup.solLeftPortTwo);
     MySolenoid solenoidRight = new MySolenoid(Config.Pickup.solRightPortOne,Config.Pickup.solRightPortTwo);
     MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-    MyJoystick joy = new MyJoystick(Config.Joystick.chn);
+    MyJoystick joy;
     Timer timer = new Timer();
     boolean ready = false;
+    
+    public Pickup(MyJoystick joy) {
+        this.joy = joy;
+        solenoidLeft.set(true);
+        solenoidRight.set(true);
+    }
+
     /**
      * runs when pickup is activated
-     */
+     */    
     public void run() {
         //Turns on motor for a certain time
         if(joy.gotPressed(Config.Pickup.button)){

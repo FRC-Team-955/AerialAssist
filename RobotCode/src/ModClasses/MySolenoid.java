@@ -35,10 +35,12 @@ public class MySolenoid extends Solenoid {
         //Switches the solenoids, one is true, one false, just switches which in is which
         if (solenoidOne.get()) {
             solenoidOne.set(false);
+            solenoidTwo.set(true);
             
         }
         //Switches in the other instance, when solenoidTwo is true, not solenoidOne
-        if (solenoidTwo.get()) {
+        else {
+            solenoidOne.set(true);
             solenoidTwo.set(false);
         }
     }   

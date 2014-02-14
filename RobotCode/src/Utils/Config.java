@@ -128,4 +128,8 @@ public class Config
         */
         public static final double driveTime = 5.0;
     }
+    public class Compressor{
+        public static final int chnDigOutCompressor = 1;
+        public static final int chnDigInSensor = 5;
+    }
 }

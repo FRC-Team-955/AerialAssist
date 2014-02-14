@@ -22,15 +22,14 @@ public class Catapult {
     Timer fireTimer;
     MyJoystick joy;
     DigitalInput limitSwitch;
-    Pickup pickup = new Pickup();
-
+    boolean ready = false;
     public Catapult() {
         this.limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
     }
     
     
     public void run () {
-        if (pickup.ready){
+        if (!ready){
             preFire();
         }
         if (joy.gotPressed(Config.Catapult.catFireButton)){
@@ -44,6 +43,7 @@ public class Catapult {
         catMotor.set(Config.Catapult.preFireSpeed);
         if (limitSwitch.get() == true) {
             catMotor.set(0);
+            ready = true;
         }
     } 
     

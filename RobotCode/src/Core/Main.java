@@ -6,10 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package Core;
-import Utils.*;
+import Diag.Testing;
 import ModClasses.*;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
@@ -21,9 +20,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  */
 public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chn);
-    //Drive drive = new Drive(joy);
+    Drive drive = new Drive(joy);
 	Catapult cat = new Catapult();
+	Pickup pick = new Pickup(joy);
 //    Auto auto = new Auto();
+	Testing test = new Testing(joy, drive, cat, pick);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -49,7 +50,7 @@ public class Main extends IterativeRobot {
     public void teleopPeriodic() {
 //        drive.run();
 //        joy.update();
-		cat.testCat();
+		test.run();
     }
     
     /**

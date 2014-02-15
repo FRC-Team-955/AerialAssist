@@ -65,11 +65,6 @@ public class Catapult {
         }
     
     }
-	public void testCat(){
-		System.out.println(limitSwitch.get());
-//		catMotor.set(1);
-//		catMotorTwo.set(1);
-	}
 	/*
 	 * This is the new catapult code I quickly wrote that does not need timmer
 	 * Look over this or make the fresshmen re-write it if you want

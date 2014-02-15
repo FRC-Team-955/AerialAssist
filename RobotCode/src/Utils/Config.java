@@ -30,12 +30,12 @@ public class Config
         /*
             Motor channels        
         */
-        public static final int chnLeft1 = 1; 
-        public static final int chnLeft2 = 2;
-        public static final int chnLeft3 = 3;
-        public static final int chnRight1 = 8;
-        public static final int chnRight2 = 9;
-        public static final int chnRight3 = 10;
+        public static final int chnLeft1 = 2; 
+        public static final int chnLeft2 = 3;
+        public static final int chnLeft3 = 4;
+        public static final int chnRight1 = 7;
+        public static final int chnRight2 = 8;
+        public static final int chnRight3 = 9;
         
 		
 		public static final int switchButton = 10;
@@ -102,7 +102,7 @@ public class Config
         /*
             The talon number for the pick up motor
         */
-        public static final int pickupTalon1 = 5;
+        public static final int pickupTalon1 = 1;
         /*
             The speed that the pickup motor runs
         */
@@ -120,8 +120,7 @@ public class Config
         */
         public static final int solRightPortOne = 1;
         public static final int solRightPortTwo = 2;
-        public static final int solLeftPortOne = 3;
-        public static final int solLeftPortTwo = 4;
+ 
     }
     public class Auto {
         /*

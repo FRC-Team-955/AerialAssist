@@ -14,17 +14,15 @@ import Utils.*;
  * @author raiderbot-4
  */
 public class Pickup {
-    MySolenoid solenoidLeft = new MySolenoid(Config.Pickup.solLeftPortOne,Config.Pickup.solLeftPortTwo);
     MySolenoid solenoidRight = new MySolenoid(Config.Pickup.solRightPortOne,Config.Pickup.solRightPortTwo);
-    MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-    MyJoystick joy;
-    Timer timer = new Timer();
-    boolean ready = false;
+   private MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
+  private  MyJoystick joy;
+   private Timer timer = new Timer();
+   private boolean ready = false;
     
     public Pickup(MyJoystick joy) {
         this.joy = joy;
-        solenoidLeft.set(true);
-        solenoidRight.set(true);
+        solenoidRight.on();
     }
 
     /**
@@ -33,7 +31,6 @@ public class Pickup {
     public void run() {
         //Turns on motor for a certain time
         if(joy.gotPressed(Config.Pickup.button)){
-            solenoidLeft.off();
             solenoidRight.off();
             pickupTalon.set(Config.Pickup.pickupSpeed);
             timer.start();
@@ -41,13 +38,18 @@ public class Pickup {
 
             //Once time is up turn off
         if(timer.get() > Config.Pickup.pickupTime) {
-            solenoidLeft.on();
             solenoidRight.on();
             pickupTalon.set(0);
             ready = true;
             timer.stop();
             timer.reset();
         }
+	}
         
-    }
+	public void runMotor(double speed){
+		pickupTalon.set(speed);
+	}
+	
+		
+    
 }

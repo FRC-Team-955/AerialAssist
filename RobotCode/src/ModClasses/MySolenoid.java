@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  *
  * @author coders
  */
-public class MySolenoid extends Solenoid {
+public class MySolenoid {
     //Declares solenoids
     Solenoid solenoidOne;
     Solenoid solenoidTwo;
@@ -22,7 +22,6 @@ public class MySolenoid extends Solenoid {
      * @param portThree
      */
     public MySolenoid(int portOne, int portTwo) {
-        super(portOne, portTwo);
         //Creates solenoids
         solenoidOne = new Solenoid(portOne);
         solenoidTwo = new Solenoid(portTwo);

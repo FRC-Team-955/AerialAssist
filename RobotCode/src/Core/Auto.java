@@ -41,15 +41,25 @@ public class Auto {
         //}
         //if the target is hot and hasnt been shot then shoot  
         if(firstPreFire) {
-            cat.preFire();
+            catMotor.set(Config.Catapult.preFireSpeed);
             firstPreFire = false;
         }
+        if(cat.limitSwitch.get())
+            cat.catMotor.set(0);
+        
         if(hot && !shot) {    
+            fireTimer.start();
+            cat.catMotor.set(Config.Catapult.fireSpeed);
             
-            cat.fire();    
             //Once shot drive forward
             
         }
+        
+        if(fireTimer.get() > Config.Catapult.fireTime){
+            cat.catMotor.set(0);
+            shot = true;
+        }
+        
         if(shot) {
                 drive.setSpeed(1,1);
                 double time = startTime - timer.get();

@@ -35,13 +35,19 @@ public class Catapult {
     
     
     public void run () {
-        if (pickup.ready){
-            preFire();
-        }
-        if (joy.gotPressed(Config.Catapult.catFireButton)){
-            fire();
-        }
+        // if (!ready){
+        //     preFire();
+        // }
+        // if (joy.gotPressed(Config.Catapult.catFireButton)){
+        //     fire();
+        // }
+        if(joy.getRawButton(Config.Catapult.catFireButton))
+            motorSpeed = Config.Catapult.fireSpeed;
         
+        else if(limitSwitch.get())
+            motorSpeed = 0;
+        
+        catMotor.set(motorSpeed);
         
     }
     

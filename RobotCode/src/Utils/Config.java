@@ -85,8 +85,11 @@ public class Config
         /*
             The speeds at which the catapult motors moves to fire and load
         */
-        public static final double preFireSpeed = -1.0;
-        public static final double fireSpeed = -1.0;
+		
+		//1 is the correct direction
+		//Do not doubt this
+        public static final double preFireSpeed = 1.0;
+        public static final double fireSpeed = 1.0;
         
         /*
             The buttons on the joystick for loading

@@ -26,10 +26,11 @@ public class Catapult {
     LimitSwitch limitSwitch;
 	Timer preFireTimer;
 
-    public Catapult() {
+    public Catapult(MyJoystick joy1) {
 		this.preFireTimer = new Timer();
 		this.fireTimer = new Timer();
         this.limitSwitch = new LimitSwitch(Utils.Config.Catapult.chnLS, true);
+		joy = joy1;
     }
     
     
@@ -77,7 +78,7 @@ public class Catapult {
 		if (limitSwitch.get()){
              speed =0;
         }
-		if (joy.gotPressed(Config.Catapult.catFireButton)){
+		if (joy.getRawButton(Config.Catapult.catFireButton)){
              speed = Config.Catapult.fireSpeed;
         }
 		catMotor.set(speed);

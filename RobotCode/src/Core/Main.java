@@ -21,8 +21,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chn);
     Drive drive = new Drive(joy);
-	Catapult cat = new Catapult();
+	Catapult cat = new Catapult(joy);
 	Pickup pick = new Pickup(joy);
+	Compressor compressor = new Compressor();
 //    Auto auto = new Auto();
 	Testing test = new Testing(joy, drive, cat, pick);
     /**
@@ -49,8 +50,10 @@ public class Main extends IterativeRobot {
      */
     public void teleopPeriodic() {
 //        drive.run();
-//        joy.update();
+        joy.update();
 		test.run();
+		compressor.run();
+		
     }
     
     /**

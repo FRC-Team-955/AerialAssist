@@ -24,7 +24,6 @@ public class Catapult {
 	Timer fireTimer;
     MyJoystick joy;
     LimitSwitch limitSwitch;
-    Pickup pickup = new Pickup();
 	Timer preFireTimer;
 
     public Catapult() {
@@ -41,14 +40,14 @@ public class Catapult {
         // if (joy.gotPressed(Config.Catapult.catFireButton)){
         //     fire();
         // }
-        if(joy.getRawButton(Config.Catapult.catFireButton))
-            motorSpeed = Config.Catapult.fireSpeed;
-        
-        else if(limitSwitch.get())
-            motorSpeed = 0;
-        
-        catMotor.set(motorSpeed);
-        
+//        if(joy.getRawButton(Config.Catapult.catFireButton))
+//            motorSpeed = Config.Catapult.fireSpeed;
+//        
+//        else if(limitSwitch.get())
+//            motorSpeed = 0;
+//        
+//        catMotor.set(motorSpeed);
+         //Not going to work due to button needs to go after limit switch
     }
     
     public void preFire(){

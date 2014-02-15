@@ -9,6 +9,7 @@ import ModClasses.MyJoystick;
 import Utils.Config;
 import edu.wpi.first.wpilibj.Timer;
 import ModClasses.MyTalon;
+import Sensor.LimitSwitch;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
@@ -19,13 +20,17 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Catapult {
 
     public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
-    Timer fireTimer;
+    public MyTalon catMotorTwo = new MyTalon(Config.Catapult.chnCatTwo);
+	Timer fireTimer;
     MyJoystick joy;
-    DigitalInput limitSwitch;
+    LimitSwitch limitSwitch;
     Pickup pickup = new Pickup();
+	Timer preFireTimer;
 
     public Catapult() {
-        this.limitSwitch = new DigitalInput(Utils.Config.Catapult.chnLS);
+		this.preFireTimer = new Timer();
+		this.fireTimer = new Timer();
+        this.limitSwitch = new LimitSwitch(Utils.Config.Catapult.chnLS, true);
     }
     
     
@@ -53,6 +58,28 @@ public class Catapult {
         if(fireTimer.get() > Config.Catapult.fireTime){
             catMotor.set(0);
         }
-       
+    
     }
+	public void testCat(){
+		System.out.println(limitSwitch.get());
+//		catMotor.set(1);
+//		catMotorTwo.set(1);
+	}
+	/*
+	 * This is the new catapult code I quickly wrote that does not need timmer
+	 * Look over this or make the fresshmen re-write it if you want
+	 * We could make them do it sunday and just use this code for the time being
+	 * Also I know I don't need the brackets but I like it anyways
+	 * -Ryan
+	 */
+	double speed = 0;
+	public void newCat () {
+		if (limitSwitch.get()){
+             speed =0;
+        }
+		if (joy.gotPressed(Config.Catapult.catFireButton)){
+             speed = Config.Catapult.fireSpeed;
+        }
+		catMotor.set(speed);
+	}
 }

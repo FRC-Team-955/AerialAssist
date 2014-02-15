@@ -73,13 +73,14 @@ public class Config
         /*
             The loading times for cock and firing
         */        
-        public static final double fireTime = 7.0;
+        public static final double fireTime = 5.0;
         public static final int chnLS = 1;
         
         /*
             The channel number for the catapult
         */
-        public static final int chnCat = 12;
+        public static final int chnCat = 10; //CHANGE TO 10!!!!!!!!!!, 1
+		public static final int chnCatTwo = 6;
         
         /*
             The speeds at which the catapult motors moves to fire and load

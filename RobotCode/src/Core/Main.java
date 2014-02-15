@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  */
 public class Main extends IterativeRobot {
     MyJoystick joy = new MyJoystick(Utils.Config.Joystick.chn);
-    Drive drive = new Drive(joy);
+    //Drive drive = new Drive(joy);
+	Catapult cat = new Catapult();
 //    Auto auto = new Auto();
     /**
      * This function is run when the robot is first started up and should be
@@ -30,9 +31,9 @@ public class Main extends IterativeRobot {
     public void robotInit() {
 		// Setting to get regular drive Working properly on the ps3 Controller
         // should be 3, 2
-        joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
-        joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
-		System.out.println("Init called");
+//        joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
+//        joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
+//		System.out.println("Init called");
     }
 
     /**
@@ -46,15 +47,16 @@ public class Main extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        drive.run();
-        joy.update();
+//        drive.run();
+//        joy.update();
+		cat.testCat();
     }
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    
+		
     }
     
 }

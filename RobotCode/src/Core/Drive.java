@@ -18,7 +18,6 @@ public class Drive
     private MyTalon mtRight2 = new MyTalon(Config.Drive.chnRight2);
     private MyTalon mtRight3 = new MyTalon(Config.Drive.chnRight3);
     MyJoystick joy;
-    boolean slowModeActive = false;
     
     /**
      * Initializes the joystick
@@ -60,7 +59,7 @@ public class Drive
         
         setSpeed(left, right);
         
-        Station.print(Config.Station.drive, "Is Forward Flipped: " + joy.getSwitch(Config.Joystick.btSwitchDriveDir));
+        Station.print(Config.Station.drive, "Front Flipped: " + joy.getSwitch(Config.Joystick.btSwitchDriveDir));
     }
     
     /**

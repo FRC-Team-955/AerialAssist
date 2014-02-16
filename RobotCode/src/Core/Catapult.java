@@ -35,6 +35,6 @@ public class Catapult
         mtCat1.set(catSpeed);
         mtCat2.set(catSpeed);
         
-        Station.print(Config.Station.catapult, "Cat Speed: " + mtCat1.get() + " - " + mtCat2);
+        Station.print(Config.Station.catapult, "Cat Speed: " + mtCat1.get() + " - " + mtCat2.get());
     }
 }

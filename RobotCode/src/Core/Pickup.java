@@ -46,7 +46,7 @@ public class Pickup
         if(joy.getButton(Config.Joystick.btMovePickup))
             solPickup.flip();
         
-        Station.print(Config.Station.pickup, "Inward: " + joy.getSwitch(Config.Joystick.btPickupInward));
+        Station.print(Config.Station.pickup, "Pickup: " + mtPickup.get());
     }
     
     public void setPickup(boolean newState)

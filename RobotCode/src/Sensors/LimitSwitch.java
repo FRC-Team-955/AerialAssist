@@ -1,4 +1,4 @@
-package Sensor;
+package Sensors;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 

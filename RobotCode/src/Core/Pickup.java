@@ -28,22 +28,22 @@ public class Pickup
     public void run() 
     {
         // Setting pickup speed to inward/outward if pressed
-        // Inward
-        if(joy.getButton(Config.Joystick.btPickupInward))
-            pickupSpeed = -Config.Pickup.motorSpeed;
-        
         // Outward
         if(joy.getButton(Config.Joystick.btPickupOutward))
+            pickupSpeed = -Config.Pickup.motorSpeed;
+        
+        // Inward
+        if(joy.getButton(Config.Joystick.btPickupInward))
             pickupSpeed = Config.Pickup.motorSpeed;
         
         // Determine whether the pick up should be on
-        if(joy.getButton(Config.Joystick.btRunPickupMotor))
+        if(joy.getButton(Config.Joystick.btStopPickupMotor))
           pickupSpeed = 0;
         
         mtPickup.ramp(pickupSpeed);
         
         // Flips the pickup solenoids when pressed
-        if(joy.getButton(Config.Joystick.btMovePickup))
+        if(joy.getButton(Config.Joystick.btMovePickupSols))
             solPickup.flip();
         
         Station.print(Config.Station.pickup, "Pickup: " + mtPickup.get());

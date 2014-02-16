@@ -4,7 +4,7 @@ import ModClasses.MyJoystick;
 import ModClasses.MyTalon;
 import ModClasses.Station;
 import Utils.Config;
-import Sensor.LimitSwitch;
+import Sensors.LimitSwitch;
 
 /**
  * Activates a motor that loads and launches the catapult.
@@ -26,15 +26,39 @@ public class Catapult
     
     public void run()
     {
-        if(limitSwitch.get() || joy.getButton(Config.Joystick.btStopCatapult))
-            catSpeed = 0;
+        if(joy.getButton(Config.Joystick.btManualFire))
+            joy.setSwitch(Config.Joystick.btManualFire, true);
         
-        if(joy.getRawButton(Config.Joystick.btFireCatapult))
-            catSpeed = Config.Catapult.fireSpeed;
+        if(joy.getButton(Config.Joystick.btAutoFire))
+            joy.setSwitch(Config.Joystick.btManualFire, false);
+        
+        if(joy.getSwitch(Config.Joystick.btManualFire)) // Move cat on button hold, stop otherwise
+        {
+            catSpeed = 0;
+            
+            if(joy.getRawButton(Config.Joystick.btFireCatapult))
+                catSpeed = Config.Catapult.manualSpeed;
+        }    
+        
+        else // Move cat on button hold/press, stops "cocks" by its self
+        {
+            if(limitSwitch.get() || joy.getButton(Config.Joystick.btStopCatapult))
+                catSpeed = 0;
+            
+            /*
+                We're using getRawButton instead of getButton because if we set
+                the motor speed once by using getButton the limit switch  still
+                might be being activated since the catapult hasn't moved that 
+                much since the last loop where button was pressed.
+            */
+            
+            if(joy.getRawButton(Config.Joystick.btFireCatapult))
+                catSpeed = Config.Catapult.fireSpeed;
+        }
         
         mtCat1.set(catSpeed);
         mtCat2.set(catSpeed);
         
-        Station.print(Config.Station.catapult, "Cat Speed: " + mtCat1.get() + " - " + mtCat2.get());
+        Station.print(Config.Station.catapult, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
     }
 }

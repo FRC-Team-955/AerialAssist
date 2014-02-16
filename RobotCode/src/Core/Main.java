@@ -11,6 +11,7 @@ import ModClasses.MyJoystick;
 import ModClasses.Station;
 import Utils.Config;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +26,7 @@ public class Main extends IterativeRobot
     Drive drive = new Drive(joy);
     Catapult catapult = new Catapult(joy);
     Pickup pickUp = new Pickup(joy);
-    Compressor compressor = new Compressor();
+    Compressor compressor = new Compressor(Config.Compressor.chnDigInPressure, Config.Compressor.chnDigOutCompressor);
     
     /**
      * This function is run when the robot is first started up and should be
@@ -59,6 +60,6 @@ public class Main extends IterativeRobot
 	drive.run();
         catapult.run();
         pickUp.run();
-        compressor.run();
+        compressor.start();
     }
 }

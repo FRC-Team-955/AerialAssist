@@ -36,17 +36,14 @@ public class Drive
         if(joy.getButton(Config.Joystick.btSlowMode))
             joy.flipSwitch(Config.Joystick.btSlowMode);
         
-        if(joy.getButton(Config.Joystick.btSwitchDriveDir))
-            joy.flipSwitch(Config.Joystick.btSwitchDriveDir);
+        if(joy.getButton(Config.Joystick.btFlipDriveDir))
+            joy.flipSwitch(Config.Joystick.btFlipDriveDir);
 		
-        double x = joy.getX();
-        double y = joy.getY();
-
-        if(joy.getSwitch(Config.Joystick.btSwitchDriveDir))
-            y = -y;
+        double x = joy.getX() * Math.abs(joy.getX()) * 0.75;
+        double y = joy.getY() * Math.abs(joy.getY());
         
-        x *= Math.abs(x);
-        y *= Math.abs(y);  
+        if(joy.getSwitch(Config.Joystick.btFlipDriveDir))
+            y = -y;  
         
         double left = y + x;
         double right = y - x;
@@ -59,7 +56,7 @@ public class Drive
         
         setSpeed(left, right);
         
-        Station.print(Config.Station.drive, "Front Flipped: " + joy.getSwitch(Config.Joystick.btSwitchDriveDir));
+        Station.print(Config.Station.drive, "Front Flipped: " + joy.getSwitch(Config.Joystick.btFlipDriveDir));
     }
     
     /**

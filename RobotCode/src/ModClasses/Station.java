@@ -53,6 +53,6 @@ public class Station
     
     public static void clearAllText()
     {
-        DriverStationLCD.getInstance().updateLCD();
+        DriverStationLCD.getInstance().clear();
     }
 }

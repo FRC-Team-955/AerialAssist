@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Utils;
 
 /**
@@ -12,24 +6,9 @@ package Utils;
  */
 public class Config 
 {
-
-    public static class Diagnostics {
-        /*
-            Times for Marco
-        */
-        public static double backTime = 0;
-        public static double forwardTime = 0;
-        public static double rightTime = 0;
-        public static double leftTime = 0;
-        public static double cockTime = 0;
-        
-
-    }
-       public class Drive
+    public class Drive
     {
-        /*
-            Motor channels        
-        */
+        // Motor channels
         public static final int chnLeft1 = 2; 
         public static final int chnLeft2 = 3;
         public static final int chnLeft3 = 4;
@@ -37,102 +16,55 @@ public class Config
         public static final int chnRight2 = 8;
         public static final int chnRight3 = 9;
         
-		
-		public static final int switchButton = 10;
-        /*
-            The speed of the steps at which the talon will take to get to the 
-            target speed  
-        */
         public static final double rampRate = 0.125;
     }
-	public class NetworkTable
-	{
-		public static final String tableId = "955";
-		public static final String gyroAngleId = "gyroAngle";
-		public static final String goalDistanceId = "goalDistance";
-		public static final String isGoalHotId = "isGoalHot";
-		public static final String isGoalHorzId = "isGoalHorz";
-		public static final String runVisionId = "runVision";
-	}
+    
     public class Joystick
     {
-        /*
-            The channel number of the buttons
-        */
-        
         public static final int chn = 1;
-        
-        /*
-            The number of buttons of the joystick 
-        */
-        
         public static final int numberOfButtons = 12;
+        public static final int chnDpadVert = 5;
+        public static final int chnDpadHorz = 6;
+        public static final double minDpadVal = 0.2;
+        
+        // Buttons
+        public static final int btSwitchDriveDir = 10;
+        public static final int btMovePickup = 6;
+        public static final int btRunPickupMotor = 2;
+        public static final int btPickupInward = 4;
+        public static final int btPickupOutward = 1;
+        public static final int btFireCatapult = 8;
+        public static final int btStopCatapult = 7;
+        public static final int btSlowMode = 9;
     }
+    
     public class Catapult
     {
-        /*
-            The loading times for cock and firing
-        */        
-        public static final double fireTime = 5.0;
-        public static final int chnLS = 1;
-        
-        /*
-            The channel number for the catapult
-        */
-        public static final int chnCat = 10; //CHANGE TO 10!!!!!!!!!!, 1
-		public static final int chnCatTwo = 6;
-        
-        /*
-            The speeds at which the catapult motors moves to fire and load
-        */
-		
-		//1 is the correct direction
-		//Do not doubt this
-        public static final double preFireSpeed = 1.0;
-        public static final double fireSpeed = 1.0;
-        
-        /*
-            The buttons on the joystick for loading
-        */
-        public static final int catFireButton = 6;
-             
+        public static final int chnLimitSwitch = 1;
+        public static final int chnCat1 = 10;
+        public static final int chnCat2 = 6;
+        public static final double fireSpeed = 1.0;             
     }
-    public class toBeChanged
+    
+    public class Station
     {
-        public static final double min = 2.0; 
+        public static final int drive = 1;
+        public static final int catapult = 2;
+        public static final int pickup = 3;
+        public static final int main = 4;
     }
-    public class Pickup {
-        /*
-            The talon number for the pick up motor
-        */
-        public static final int pickupTalon1 = 1;
-        /*
-            The speed that the pickup motor runs
-        */
-        public static final double pickupSpeed = 1.0;
-        /*
-            The time that the motor runs before stopping
-        */
-        public static final double pickupTime = 5.0;
-        /*
-            The button on the joystick that activates the pickup
-        */
-        public static final int button = 5;
-        /*
-            The Ports that the solenoids are one
-        */
+    
+    public class Pickup 
+    {
+        public static final int chnPickUpMotor1 = 1;
         public static final int solRightPortOne = 1;
         public static final int solRightPortTwo = 2;
- 
+        public static final double motorSpeed = 1.0; 
     }
-    public class Auto {
-        /*
-            The amount of time the robot will drive forward during auto
-        */
-        public static final double driveTime = 5.0;
-    }
-    public class Compressor{
-        public static final int chnDigOutCompressor = 1;
-        public static final int chnDigInSensor = 5;
+    
+    public class Compressor
+    {
+        public static final int chnDigOutCompressor = 2;
+        public static final int chnDigInPressure = 5;
     }
 }

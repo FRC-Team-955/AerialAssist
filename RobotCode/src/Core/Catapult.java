@@ -1,86 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Core;
 
 import ModClasses.MyJoystick;
-import Utils.Config;
-import edu.wpi.first.wpilibj.Timer;
 import ModClasses.MyTalon;
+import ModClasses.Station;
+import Utils.Config;
 import Sensor.LimitSwitch;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * Activates a motor that loads and launches the catapult.
  *
  * @author Seraj B. and Warren E.
  */
-public class Catapult {
+public class Catapult 
+{
+    private MyTalon mtCat1 = new MyTalon(Config.Catapult.chnCat1);
+    private MyTalon mtCat2 = new MyTalon(Config.Catapult.chnCat2);
+    private LimitSwitch limitSwitch = new LimitSwitch(Utils.Config.Catapult.chnLimitSwitch, true);
+    private double catSpeed = 0.0;
+    private MyJoystick joy;
 
-    public MyTalon catMotor = new MyTalon(Config.Catapult.chnCat);
-    public MyTalon catMotorTwo = new MyTalon(Config.Catapult.chnCatTwo);
-	Timer fireTimer;
-    MyJoystick joy;
-    LimitSwitch limitSwitch;
-	Timer preFireTimer;
-
-    public Catapult(MyJoystick joy1) {
-		this.preFireTimer = new Timer();
-		this.fireTimer = new Timer();
-        this.limitSwitch = new LimitSwitch(Utils.Config.Catapult.chnLS, true);
-		joy = joy1;
+    public Catapult(MyJoystick newJoy) 
+    {
+        joy = newJoy;
     }
     
-    
-    public void run () {
-        // if (!ready){
-        //     preFire();
-        // }
-        // if (joy.gotPressed(Config.Catapult.catFireButton)){
-        //     fire();
-        // }
-//        if(joy.getRawButton(Config.Catapult.catFireButton))
-//            motorSpeed = Config.Catapult.fireSpeed;
-//        
-//        else if(limitSwitch.get())
-//            motorSpeed = 0;
-//        
-//        catMotor.set(motorSpeed);
-         //Not going to work due to button needs to go after limit switch
+    public void run()
+    {
+        if(limitSwitch.get() || joy.getButton(Config.Joystick.btStopCatapult))
+            catSpeed = 0;
+        
+        if(joy.getRawButton(Config.Joystick.btFireCatapult))
+            catSpeed = Config.Catapult.fireSpeed;
+        
+        mtCat1.set(catSpeed);
+        mtCat2.set(catSpeed);
+        
+        Station.print(Config.Station.catapult, "Cat Speed: " + mtCat1.get() + " - " + mtCat2);
     }
-    
-    public void preFire(){
-        catMotor.set(Config.Catapult.preFireSpeed);
-        if (limitSwitch.get() == true) {
-            catMotor.set(0);
-        }
-    } 
-    
-    public void fire() {
-        fireTimer.start();
-        catMotor.set(Config.Catapult.fireSpeed);
-        if(fireTimer.get() > Config.Catapult.fireTime){
-            catMotor.set(0);
-        }
-    
-    }
-	/*
-	 * This is the new catapult code I quickly wrote that does not need timmer
-	 * Look over this or make the fresshmen re-write it if you want
-	 * We could make them do it sunday and just use this code for the time being
-	 * Also I know I don't need the brackets but I like it anyways
-	 * -Ryan
-	 */
-	double speed = 0;
-	public void newCat () {
-		if (limitSwitch.get()){
-             speed =0;
-        }
-		if (joy.getRawButton(Config.Catapult.catFireButton)){
-             speed = Config.Catapult.fireSpeed;
-        }
-		catMotor.set(speed);
-	}
 }

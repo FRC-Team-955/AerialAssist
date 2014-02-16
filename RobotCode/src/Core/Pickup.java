@@ -1,62 +1,121 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Core;
 
-import ModClasses.*;
-import edu.wpi.first.wpilibj.Timer;
-
-import Utils.*;
+import ModClasses.MySolenoid;
+import ModClasses.MyJoystick;
+import ModClasses.MyTalon;
+import ModClasses.Station;
+import Utils.Config;
 
 /**
  *
  * @author raiderbot-4
  */
-public class Pickup {
+public class Pickup 
+{
+    private MySolenoid solPickup = new MySolenoid(Config.Pickup.solRightPortOne, Config.Pickup.solRightPortTwo);
+    private MyTalon mtPickup = new MyTalon(Config.Pickup.chnPickUpMotor1);
+    private double pickupSpeed = 0;
+    private MyJoystick joy;
 
-	MySolenoid solenoidRight = new MySolenoid(Config.Pickup.solRightPortOne, Config.Pickup.solRightPortTwo);
-	private MyTalon pickupTalon = new MyTalon(Config.Pickup.pickupTalon1);
-	private MyJoystick joy;
-	private Timer timer = new Timer();
-	private boolean ready = false;
+    public Pickup(MyJoystick newJoy) 
+    {
+        joy = newJoy;
+    }
 
-	public Pickup(MyJoystick joy) {
-		this.joy = joy;
-		solenoidRight.on();
-	}
-
-	/**
-	 * runs when pickup is activated
-	 */
-	public void run() {
-		//Turns on motor for a certain time
-		if (joy.gotPressed(Config.Pickup.button)) {
-			solenoidRight.off();
-			pickupTalon.set(Config.Pickup.pickupSpeed);
-			timer.start();
-		}
-
-		//Once time is up turn off
-		if (timer.get() > Config.Pickup.pickupTime) {
-			solenoidRight.on();
-			pickupTalon.set(0);
-			ready = true;
-			timer.stop();
-			timer.reset();
-		}
-	}
-
-	public void runMotor(double speed) {
-		pickupTalon.set(speed);
-	}
-
-	public void piston() {
-		if (joy.gotPressed(Config.Pickup.button)) {
-			System.out.println("NOID BUTTON PRESSED!");
-			solenoidRight.solenoidSwitch();
-
-		}
-	}
+    /**
+     * Runs when pickup is activated
+     */
+    public void run() 
+    {
+        // Setting pickup speed to inward/outward if pressed
+        // Inward
+        if(joy.getButton(Config.Joystick.btPickupInward))
+            pickupSpeed = -Config.Pickup.motorSpeed;
+        
+        // Outward
+        if(joy.getButton(Config.Joystick.btPickupOutward))
+            pickupSpeed = Config.Pickup.motorSpeed;
+        
+        // Determine whether the pick up should be on
+        if(joy.getButton(Config.Joystick.btRunPickupMotor))
+          pickupSpeed = 0;
+        
+        mtPickup.set(pickupSpeed);
+        
+        // Flips the pickup solenoids when pressed
+        if(joy.getButton(Config.Joystick.btMovePickup))
+            solPickup.flip();
+        
+        Station.print(Config.Station.pickup, "Inward: " + joy.getSwitch(Config.Joystick.btPickupInward));
+    }
+    
+    public void setPickup(boolean newState)
+    {
+        solPickup.set(newState);
+    }
 }
+
+///**
+//     * Runs when pickup is activated
+//     */
+//    public void run() 
+//    {
+//        // Setting pickup speed to inward/outward if pressed
+//        
+//        // Inward
+//        if(joy.getButton(Config.Joystick.btPickupInward))
+//            joy.flipSwitch(Config.Joystick.btPickupInward);
+//        
+//        // Outward
+//        if(joy.getButton(Config.Joystick.btPickupOutward))
+//            joy.flipSwitch(Config.Joystick.btPickupOutward);
+//        
+//        // Change pickup speed
+//        if(joy.getSwitch(Config.Joystick.btPickupInward))
+//            pickupSpeed = -Config.Pickup.motorSpeed;
+//        
+//        if(joy.getSwitch(Config.Joystick.btPickupOutward))
+//            pickupSpeed = Config.Pickup.motorSpeed;
+//        
+//        // Determine whether the pick up should be on
+//        if(joy.getButton(Config.Joystick.btRunPickupMotor))
+//            joy.flipSwitch(Config.Joystick.btRunPickupMotor);
+//        
+//        if(joy.getSwitch(Config.Joystick.btRunPickupMotor))
+//          pickupSpeed = 0;
+//        
+//        mtPickup.set(pickupSpeed);
+//        
+//        // Flips the pickup solenoids when pressed
+//        if(joy.getButton(Config.Joystick.btMovePickup))
+//            solPickup.flip();
+//        
+//        Station.print(Config.Station.pickup, "Inward: " + joy.getSwitch(Config.Joystick.btPickupInward));
+//    }
+
+//public void run() 
+//    {
+//        // Setting pickup speed to inward/outward if pressed
+//        // Inward
+//        if(joy.getButton(Config.Joystick.btPickupInward))
+//            pickupSpeed = -Config.Pickup.motorSpeed;
+//        
+//        // Outward
+//        if(joy.getButton(Config.Joystick.btPickupOutward))
+//            pickupSpeed = Config.Pickup.motorSpeed;
+//        
+//        // Determine whether the pick up should be on
+//        if(joy.getButton(Config.Joystick.btRunPickupMotor))
+//            joy.flipSwitch(Config.Joystick.btRunPickupMotor);
+//        
+//        if(joy.getSwitch(Config.Joystick.btRunPickupMotor))
+//          pickupSpeed = 0;
+//        
+//        mtPickup.set(pickupSpeed);
+//        
+//        // Flips the pickup solenoids when pressed
+//        if(joy.getButton(Config.Joystick.btMovePickup))
+//            solPickup.flip();
+//        
+//        Station.print(Config.Station.pickup, "Inward: " + joy.getSwitch(Config.Joystick.btPickupInward));
+//    }

@@ -1,88 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Core;
 
 import ModClasses.MyTalon;
 import ModClasses.MyJoystick;
-import Utils.*;
+import ModClasses.Station;
+import Utils.Config;
 
 /**
- *Controls the motors on the wheels of the bot.
+ * Controls the motors on the wheels of the bot.
  * @author Matthew S.
  */
-public class Drive {
-
-    private MyTalon left1 = new MyTalon(Config.Drive.chnLeft1);
-    private MyTalon left2 = new MyTalon(Config.Drive.chnLeft2);
-    private MyTalon left3 = new MyTalon(Config.Drive.chnLeft3);
-
-    private MyTalon right1 = new MyTalon(Config.Drive.chnRight1);
-    private MyTalon right2 = new MyTalon(Config.Drive.chnRight2);
-    private MyTalon right3 = new MyTalon(Config.Drive.chnRight3);
-    
+public class Drive 
+{
+    private MyTalon mtLeft1 = new MyTalon(Config.Drive.chnLeft1);
+    private MyTalon mtLeft2 = new MyTalon(Config.Drive.chnLeft2);
+    private MyTalon mtLeft3 = new MyTalon(Config.Drive.chnLeft3);
+    private MyTalon mtRight1 = new MyTalon(Config.Drive.chnRight1);
+    private MyTalon mtRight2 = new MyTalon(Config.Drive.chnRight2);
+    private MyTalon mtRight3 = new MyTalon(Config.Drive.chnRight3);
     MyJoystick joy;
-    boolean isForwardSwitched = false;
+    boolean slowModeActive = false;
+    
     /**
      * Initializes the joystick
-     * @param joy1 Name of the joystick
+     * @param newJoy Name of the joystick
      */
-    public Drive(MyJoystick joy1){
-        joy = joy1;
-}
+    public Drive(MyJoystick newJoy)
+    {
+        joy = newJoy;
+    }
     
     /**
      * Sets the motors to be controlled by the joystick.
      */
-    public void run() {
+    public void run()
+    {
+        if(joy.getButton(Config.Joystick.btSlowMode))
+            slowModeActive = !slowModeActive;
+        
+        if(joy.getButton(Config.Joystick.btSwitchDriveDir))
+            joy.flipSwitch(Config.Joystick.btSwitchDriveDir);
 		
-        if(joy.gotPressed(Config.Drive.switchButton)){
-			isForwardSwitched = !isForwardSwitched;	
-		} 
-		
-		double x = joy.getX();
-		double y = joy.getY();
+        double x = joy.getX();
+        double y = joy.getY();
 
-		if(isForwardSwitched) {
-			y *= -1;
-		}
-		
-		x *= Math.abs(x);
-		y *= Math.abs(y);
-		setSpeed(-(y + x), y - x);
-		
-		System.out.println("Is Switched: " + isForwardSwitched);
-    }
-    
-    /**
-     * Sets the speed of the left talons.
-     * @param speed Name of the speed of the talons.
-     */
-    public void setLeft(double speed) {
-        left1.ramp(speed);
-        left2.ramp(speed);
-        left3.ramp(speed);
-    }
-    
-    /**
-     * Sets the speed of the right talons.
-     * @param speed Name of the speed of the talons.
-     */
-    public void setRight(double speed) {
-        right1.ramp(speed);
-        right2.ramp(speed);
-        right3.ramp(speed);
+        if(joy.getSwitch(Config.Joystick.btSwitchDriveDir))
+            y = -y;
+        
+        x *= Math.abs(x);
+        y *= Math.abs(y);  
+        
+        double left = y + x;
+        double right = y - x;
+        
+        if(slowModeActive)
+        {
+            left *= 0.5;
+            right *= 0.5;
+        }
+        
+        setSpeed(left, right);
+        
+        Station.print(Config.Station.drive, "Is Forward Flipped: " + joy.getSwitch(Config.Joystick.btSwitchDriveDir));
     }
     
     /**
     * Makes both sides go at the same speed.
-    * @param left Speed of left talons.
-    * @param right Speed of right talons.
+    * @param speedLeft Speed of left talons.
+    * @param speedRight Speed of right talons.
     */
-    public void setSpeed(double left, double right) {
-        setLeft(left);
-        setRight(right);
+    public void setSpeed(double speedLeft, double speedRight) 
+    {
+        speedLeft = -speedLeft;
+        
+        mtLeft1.ramp(speedLeft);
+        mtLeft2.ramp(speedLeft);
+        mtLeft3.ramp(speedLeft);
+        
+        mtRight1.ramp(speedRight);
+        mtRight2.ramp(speedRight);
+        mtRight3.ramp(speedRight);
     }
 }

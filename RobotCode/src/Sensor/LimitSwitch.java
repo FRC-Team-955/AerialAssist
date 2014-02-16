@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Sensor;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -10,18 +6,24 @@ import edu.wpi.first.wpilibj.DigitalInput;
  *
  * @author RaiderPC
  */
-public class LimitSwitch {
-	DigitalInput input;
-	boolean notNormal;
-	public LimitSwitch(int port, boolean flipped){
-		input = new DigitalInput(port);
-		notNormal = flipped;
-	}
-	
-	public boolean get() {
-		boolean value = input.get();
-		if (notNormal)
-			value = !value;
-		return value;
-	}
+public class LimitSwitch 
+{
+    private DigitalInput input;
+    private boolean flipped;
+    
+    public LimitSwitch(int port, boolean wantFlipped)
+    {
+            input = new DigitalInput(port);
+            flipped = wantFlipped;
+    }
+
+    public boolean get() 
+    {
+        boolean value = input.get();
+
+        if (flipped)
+                value = !value;
+
+        return value;
+    }
 }

@@ -15,8 +15,6 @@ public class Config
         public static final int chnRight1 = 7;
         public static final int chnRight2 = 8;
         public static final int chnRight3 = 9;
-        
-        public static final double rampRate = 0.125;
     }
     
     public class Joystick
@@ -66,5 +64,10 @@ public class Config
     {
         public static final int chnDigOutCompressor = 2;
         public static final int chnDigInPressure = 5;
+    }
+    
+    public class MyTalon
+    {
+        public static final double rampRate = 0.125;
     }
 }

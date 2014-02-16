@@ -23,13 +23,13 @@ public class MyTalon extends Talon
         double curSpeed = super.get();
         double difference = Math.abs(newSpeed-curSpeed);
         
-        if(difference > Config.Drive.rampRate)
+        if(difference > Config.MyTalon.rampRate)
         {
             if(newSpeed > curSpeed)
-                newSpeed = curSpeed + Config.Drive.rampRate;
+                newSpeed = curSpeed + Config.MyTalon.rampRate;
             
             else
-                newSpeed = curSpeed - Config.Drive.rampRate;
+                newSpeed = curSpeed - Config.MyTalon.rampRate;
         } 
          
         set(newSpeed);      

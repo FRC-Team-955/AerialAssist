@@ -35,7 +35,7 @@ public class Drive
     public void run()
     {
         if(joy.getButton(Config.Joystick.btSlowMode))
-            slowModeActive = !slowModeActive;
+            joy.flipSwitch(Config.Joystick.btSlowMode);
         
         if(joy.getButton(Config.Joystick.btSwitchDriveDir))
             joy.flipSwitch(Config.Joystick.btSwitchDriveDir);
@@ -52,7 +52,7 @@ public class Drive
         double left = y + x;
         double right = y - x;
         
-        if(slowModeActive)
+        if(joy.getSwitch(Config.Joystick.btSlowMode))
         {
             left *= 0.5;
             right *= 0.5;

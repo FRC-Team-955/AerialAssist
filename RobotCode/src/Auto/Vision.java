@@ -1,6 +1,5 @@
 package Auto;
 
-import Core.*;
 import Utils.Config;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
@@ -15,6 +14,10 @@ public class Vision
     public Vision()
     {
         table = NetworkTable.getTable(Config.Vision.tableId);
+        table.putBoolean(Config.Vision.prefSideLeftId, false);
+        table.putBoolean(Config.Vision.debugModeId, false);
+        table.putBoolean(Config.Vision.shutDownId, false);
+        table.putBoolean(Config.Vision.runVisionId, false);
     }
     
     public boolean foundHotTarget()
@@ -39,6 +42,12 @@ public class Vision
     
     public void turnOffPi()
     {
+        stopVision();
         table.putBoolean(Config.Vision.shutDownId, true);
+    }
+    
+    public void setDebugMode(boolean state)
+    {
+        table.putBoolean(Config.Vision.debugModeId, state);
     }
 }

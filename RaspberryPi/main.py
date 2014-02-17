@@ -24,6 +24,8 @@ if __name__ == '__main__':
 	runVisionId = "runVision"
 	prefSideLeftId = "prefSideLeft"
 
+	table.setValue(tableDirectory + isGoalHotId, False) # Set foundHotTarget
+
 	while True:
 		runVision = table.getValue(tableDirectory + runVisionId)
 		debugMode = table.getValue(tableDirectory + debugId)

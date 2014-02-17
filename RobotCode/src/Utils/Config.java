@@ -56,6 +56,7 @@ public class Config
         public static final int main = 4;
         
         public static final int chnPrefSideLeft = 1;
+        public static final int chnDebugMode = 2;
     }
     
     public class Pickup 
@@ -84,13 +85,14 @@ public class Config
         public static final String runVisionId = "runVision";
         public static final String shutDownId = "shutdown";
         public static final String prefSideLeftId = "prefSideLeft";
+        public static final String debugModeId = "debugMode";
     }
     
     public class Autonomous
     {
         public static final int maxAutoTime = 10;
-        public static final int driveForwardTime = 3;
-        public static final double driveForwardSpeed = 1;
+        public static final int driveForwardTime = 2;
+        public static final double driveForwardSpeed = 0.5;
         public static final double maxShootTime = 1;
     }
 }

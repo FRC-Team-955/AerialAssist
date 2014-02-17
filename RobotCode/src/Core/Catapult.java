@@ -24,9 +24,6 @@ public class Catapult
         joy = newJoy;
     }
     
-    /**
-     * Checks if the button to shoot the cat is pressed, and then launches it, automatically cocking it
-     */
     public void run()
     {
         if(joy.getButton(Config.Joystick.btManualFire))
@@ -65,10 +62,6 @@ public class Catapult
         Station.print(Config.Station.catapult, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
     }
     
-    /**
-     * Sets the cat to a specific speed
-     * @param speed 
-     */
     public void setCatMotor(double speed)
     {
         if(speed < 0)

@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  * @author Merfoo
- * 
  */
 public class Autonomous
 {
     private boolean shotAlready = false;
+    private double driveForwardTime = 3;
     private Timer shootTimer = new Timer();
     private Timer autoTimer = new Timer();
     private Vision vision = new Vision();
@@ -29,24 +29,20 @@ public class Autonomous
         pickup = newPickup;
     }
     
-    /**
-     * Turns on the vision when called
-     */
     public void init()
     {
         vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
+        vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
         vision.startVision();
         autoTimer.start();
+        driveForwardTime = Station.getAnalogIn(1);//Config.Autonomous.driveForwardTime;
     }
     
-    /**
-     * Checks if the goal is hot and then runs periodically 
-     */
     public void run()
     {
         if(autoTimer.get() < Config.Autonomous.maxAutoTime) // Run autonomous within autonomous time
         {
-            if(autoTimer.get() < Config.Autonomous.driveForwardTime)    // Driveforward the first secs
+            if(autoTimer.get() < driveForwardTime)    // Driveforward the first secs
                 drive.setSpeed(Config.Autonomous.driveForwardSpeed, Config.Autonomous.driveForwardSpeed);
             
             else
@@ -75,9 +71,6 @@ public class Autonomous
         }
     }
     
-    /**
-     * Turns off all of auto and everything associated with it
-     */
     public void stop()
     {
         vision.turnOffPi();

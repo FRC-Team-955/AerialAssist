@@ -44,6 +44,10 @@ public class MySolenoid
         }
     }   
     
+    /**
+     * Sets a solenoid value
+     * @param newState the state of the value you want to set the solenoids to
+     */
     public void set(boolean newState)
     {
         if(newState)

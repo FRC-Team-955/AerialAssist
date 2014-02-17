@@ -8,8 +8,10 @@ import Utils.Config;
  * @author Seraj B.
  */
 public class MyJoystick extends Joystick
-{
+{   
+    // current button state
     private boolean [] gotPressed = new boolean[Config.Joystick.numberOfButtons];
+    // previous button state
     private boolean [] lastButtonState = new boolean[Config.Joystick.numberOfButtons];
     private boolean [] switches = new boolean[Config.Joystick.numberOfButtons];
     
@@ -65,36 +67,66 @@ public class MyJoystick extends Joystick
             gotPressed[port - 1] = runDebounce(port);
     }
     
+    /**
+     * gets the value of a switch
+     * @param port port number of the switch
+     * @return value of a switch
+     */
     public boolean getSwitch(int port)
     {
         return switches[port - 1];
     }
     
+    /**
+     * Sets a switch the value of a switch
+     * @param port port number of a switch
+     * @param newVal the value you want to set the switch to
+     */
     public void setSwitch(int port, boolean newVal)
     {
         switches[port - 1] = newVal;
     }
     
+    /**
+     * Switches the values of a switch
+     * @param port switch port number
+     */
     public void flipSwitch(int port)
     {
         setSwitch(port, !getSwitch(port));
     }
     
+    /**
+     * Checks if the up dpad is pressed
+     * @return true if the up dpad is pressed
+     */
     public boolean getDpadUp()
     {
         return super.getRawAxis(Config.Joystick.chnDpadVert) > Config.Joystick.minDpadVal; 
     }
     
+    /**
+     *Checks if the down dpad is pressed
+     *@return true if the down dpad is pressed
+     */
     public boolean getDpadDown()
     {
         return super.getRawAxis(Config.Joystick.chnDpadVert) < -Config.Joystick.minDpadVal; 
     }
     
+    /**
+     * Checks if the left dpad is pressed 
+     * @return true if the left dpad is pressed
+     */
     public boolean getDpadLeft()
     {
         return super.getRawAxis(Config.Joystick.chnDpadHorz) < -Config.Joystick.minDpadVal; 
     }
     
+    /**
+     * Checks of the right dpad is pressed
+     * @return true if the right dpad is pressed
+     */
     public boolean getDpadRight()
     {
         return super.getRawAxis(Config.Joystick.chnDpadHorz) > Config.Joystick.minDpadVal; 

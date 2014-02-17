@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  * @author Merfoo
+ * 
  */
 public class Autonomous
 {
@@ -28,6 +29,9 @@ public class Autonomous
         pickup = newPickup;
     }
     
+    /**
+     * Turns on the vision when called
+     */
     public void init()
     {
         vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
@@ -35,6 +39,9 @@ public class Autonomous
         autoTimer.start();
     }
     
+    /**
+     * Checks if the goal is hot and then runs periodically 
+     */
     public void run()
     {
         if(autoTimer.get() < Config.Autonomous.maxAutoTime) // Run autonomous within autonomous time
@@ -68,6 +75,9 @@ public class Autonomous
         }
     }
     
+    /**
+     * Turns off all of auto and everything associated with it
+     */
     public void stop()
     {
         vision.turnOffPi();

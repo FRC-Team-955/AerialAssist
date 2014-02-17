@@ -54,6 +54,8 @@ public class Config
         public static final int drive = 2;
         public static final int pickup = 3;
         public static final int main = 4;
+        
+        public static final int chnPrefSideLeft = 1;
     }
     
     public class Pickup 
@@ -73,5 +75,22 @@ public class Config
     public class MyTalon
     {
         public static final double rampRate = 0.125;
+    }
+    
+    public class Vision
+    {
+        public static final String tableId = "955";
+        public static final String isGoalHotId = "isGoalHot";
+        public static final String runVisionId = "runVision";
+        public static final String shutDownId = "shutdown";
+        public static final String prefSideLeftId = "prefSideLeft";
+    }
+    
+    public class Autonomous
+    {
+        public static final int maxAutoTime = 10;
+        public static final int driveForwardTime = 3;
+        public static final double driveForwardSpeed = 1;
+        public static final double maxShootTime = 1;
     }
 }

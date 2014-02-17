@@ -10,6 +10,7 @@ package Core;
 import ModClasses.MyJoystick;
 import ModClasses.Station;
 import Utils.Config;
+import Auto.Autonomous;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Compressor;
 
@@ -26,6 +27,7 @@ public class Main extends IterativeRobot
     Drive drive = new Drive(joy);
     Catapult catapult = new Catapult(joy);
     Pickup pickUp = new Pickup(joy);
+    Autonomous auto = new Autonomous(catapult, drive, pickUp);
     Compressor compressor = new Compressor(Config.Compressor.chnDigInPressure, Config.Compressor.chnDigOutCompressor);
     
     /**
@@ -40,15 +42,32 @@ public class Main extends IterativeRobot
         pickUp.setPickup(false);
         System.out.println("Init called: CODE FOR SCRIMMAGE");
     }
-
+    
+    /**
+     * This function is called once before autonomous
+     */
+    public void autonomousInit()
+    {
+        auto.init();
+    }
+    
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic()
     {
-        // NO CODE HERE... LATERZZZ
+        auto.run();
     }
-
+    
+    /**
+     * This function is called once before teloepPeriodic
+     */
+    public void teleopInit()
+    {
+        compressor.start();
+        auto.stop();
+    }
+    
     /**
      * This function is called periodically during operator control
      */
@@ -60,6 +79,5 @@ public class Main extends IterativeRobot
 	drive.run();
         catapult.run();
         pickUp.run();
-        compressor.start();
     }
 }

@@ -19,24 +19,21 @@ if __name__ == '__main__':
 
 	# Id's for reading data from networktable
 	isGoalHotId = "isGoalHot"
-	isGoalHorzId = "isGoalHorz"
-	goalDistanceId = "goalDistance"
+	shutDownPi = "shutdown"
+	debugId = "debugMode"
+	runVisionId = "runVision"
+	prefSideLeftId = "prefSideLeft"
 
-	# Id's for setting data to networktable
-	gyroAngleId = "gyroAngle"
-	gyroAngle = 0.0
+	while True:
+		runVision = table.getValue(tableDirectory + runVisionId)
+		debugMode = table.getValue(tableDirectory + debugId)
+		prefSideLeft = table.getValue(tableDirectory + prefSideLeftId)
 
-	# Get the pref side
-	prefSide = table.getValue(tableDirectory + "prefSide")
+		if runVision: # Check if runVision is true
+			vision.update(prefSideLeft, debugMode)	# Run vision, check whether debug mode is true
+	    	table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget()) # Set foundHotTarget
 
-	# Get the debug value
-	debugMode = table.getValue(tableDirectory + "debugMode")
-
-	while  True:
-		gyroAngle = table.getValue(tableDirectory + gyroAngleId)
-    	vision.update(gyroAngle, prefSide, debugMode)
-    	table.setValue(tableDirectory + goalDistanceId, vision.getDistace())
-    	table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget())
-    	table.setValue(tableDirectory + isGoalHorzId, vision.getFoundHorzTarget())
+    	if table.getValue(tableDirectory + shutDownPi):
+    		os.sys("sudo shutdown -h now")
 
     	time.sleep(1.0 / 4.0)

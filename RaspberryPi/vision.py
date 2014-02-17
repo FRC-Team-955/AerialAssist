@@ -1,28 +1,26 @@
 import cv2
 import math
 import numpy as np
+import logging
 from rectangle import Rectangle
 
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 foundHotTarget = False
-foundHorzTarget = False
 viewAngleVert = 19.832 
-distance = 0.0
 resHalfY = 240
 resHalfX = 320
+distanceFromTarget = 229
 horizTarget = Rectangle(0.0, 0.0, 23.5, 4.0)
-vertTarget = Rectangle(0.0, 0.0, 4.0, 32.0)
-debugMode = False
 imgNameIndex = 0
 imgNameMax = 100
 
-print "vision name", __name__
+logging.basicConfig(level=logging.DEBUG)
+logging.debug("vision services started.")
 
-def update(viewAngleHorz, prefLeft, isDebug):
-    print "update()"
+logging.debug("vision name", __name__)
 
-    # Set debug mode
-    debugMode = isDebug
+def update(prefSideLeft, isDebug):
+    logging.debug("update()")
 
     # Get color image from camera
     ret, img = camera.read() # img.shape 640x480 image
@@ -42,11 +40,9 @@ def update(viewAngleHorz, prefLeft, isDebug):
     # Find all contours, counter is vector of points that are connected to make up a shape
     contours, hierarchy = cv2.findContours(filteredGreen, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     
-    # Resetting values
+    # Resetting foundHotTarget
     global foundHotTarget
     foundHotTarget = False;
-    global foundHorzTarget
-    foundHorzTarget = False;
 
     # Parse contours, calculate distance and check if it's the hot target
     for shape in contours:
@@ -55,44 +51,19 @@ def update(viewAngleHorz, prefLeft, isDebug):
         # Filter out small contours
         if target.getArea() > 300 and target.getArea() < 10000:
 
-            # Compensate for horizontal view of the target
-            target.width = target.width / math.cos(viewAngleHorz * math.PI / 180)
-            
             # If the width of the target is greater than its height then it's probably the hot target
             if target.width >= target.height * 2.5:
                 global foundHotTarget
-                foundHotTarget = inPrefSide(target.x + (target.width / 2), prefLeft)
-                distance = computeDistance(horizTarget.height, target.height)
+                foundHotTarget = inPrefSide(target.x + (target.width / 2), prefSideLeft)
                 
-                if debugMode:
+                if isDebug:
                     drawRect(img, target)
                     saveImg(img)
-                    viewAngle = computeAngle(horizTarget.height, target.height, 228)
-                    print "Distance: ", round(distance), ", Hot Target", viewAngle, viewAngleVert
-
-            # If the height of the target is greater than the its width its probably a vert target
-            if target.height >= target.width * 6:
-                global foundHorzTarget
-                foundHorzTarget = True
-                distance = computeDistance(vertTarget.height, target.height)
-
-                if debugMode:
-                    drawRect(img, target)
-                    saveImg(img)
-                    viewAngle = computeAngle(vertTarget.height, target.height, 228)
-                    print "Distance: ", round(distance), ", Vert Target", viewAngle, viewAngleVert
+                    viewAngle = computeAngle(horizTarget.height, target.height, distanceFromTarget)
+                    logging.debug("Hot Target: " + str(foundHotTarget) + ", New Angle: " + str(viewAngle))
 
 def getFoundHotTarget():
     return foundHotTarget
-
-def getFoundHorzTarget():
-    return foundHorzTarget
-
-def getDistance():
-    return distance
-
-def computeDistance(realHeight, targetHeight):
-    return ((realHeight / targetHeight) * resHalfY) / math.tan(viewAngleVert * math.pi / 180.0)
 
 def computeAngle(realHeight, targetHeight, distance):
     return math.atan(((realHeight / targetHeight) * resHalfY) / distance) * 180.0 / math.pi
@@ -108,11 +79,11 @@ def saveImg(img):
     cv2.imwrite(str(imgNameIndex) + ".png", img)
     imgNameIndex += 1
     if imgNameIndex > imgNameMax:
-        imgNameIndex = 0 
+        imgNameIndex = 0
 
 def inPrefSide(x, prefSideLeft):
-    if prefSideLeft == True and x <= resHalfX:
+    if prefSideLeft and x <= resHalfX:
         return True
-    elif prefSideLeft == False and x >= resHalfX:
+    elif not prefSideLeft and x >= resHalfX:
         return True
     return False

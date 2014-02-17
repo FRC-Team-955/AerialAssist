@@ -61,4 +61,19 @@ public class Catapult
         
         Station.print(Config.Station.catapult, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
     }
+    
+    public void setCatMotor(double speed)
+    {
+        if(speed < 0)
+        {
+            System.out.println("NOPE");
+            return;
+        }
+        
+        else
+        {
+            mtCat1.set(speed);
+            mtCat2.set(speed);
+        }
+    }
 }

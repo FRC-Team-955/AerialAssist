@@ -58,4 +58,9 @@ public class MySolenoid
             solTwo.set(true);
         }
     }
+    
+    public boolean get()
+    {
+        return solOne.get();
+    }
 }

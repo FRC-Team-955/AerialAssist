@@ -1,4 +1,6 @@
+#! /usr/bin/python
 import vision as vision
+
 from ntClient import *
 import time
 
@@ -14,7 +16,7 @@ if __name__ == '__main__':
 
 	# Table name  = team number, used for ip address
 	tableName = "955"
-	table = NetworkTableClient(tableName)
+	table = False#NetworkTableClient(tableName)
 	tableDirectory = '/' + tableName + '/'
 
 	# Id's for reading data from networktable

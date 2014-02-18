@@ -36,11 +36,11 @@ public class Main extends IterativeRobot
      */
     public void robotInit()
     {
-        // Setting to get regular drive Working properly on the ps3 Controller should be 3, 2
+        // Setting to get regular driveFlipped Working properly on the ps3 Controller should be 3, 2
         joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
         joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
         pickUp.setPickup(false);
-        System.out.println("Init called: CODE FOR SCRIMMAGE");
+        System.out.println("Init called: CODE FOR DISTRICT 1");
     }
     
     /**
@@ -74,7 +74,7 @@ public class Main extends IterativeRobot
     public void teleopPeriodic() 
     {
         Station.clearAllText();
-        Station.print(Config.Station.main, "CODE FOR SCRIMMAGE!");
+        Station.print(Config.Station.mainCodeType, "CODE FOR DISTRICT 1");
         joy.updateButtons();
 	drive.run();
         catapult.run();

@@ -7,7 +7,7 @@ import Utils.Config;
 import Sensors.LimitSwitch;
 
 /**
- * Activates a motor that loads and launches the catapult.
+ * Activates a motor that loads and launches the catapultManualFire.
  *
  * @author Seraj B. and Warren E.
  */
@@ -48,7 +48,7 @@ public class Catapult
             /*
                 We're using getRawButton instead of getButton because if we set
                 the motor speed once by using getButton the limit switch  still
-                might be being activated since the catapult hasn't moved that 
+                might be being activated since the catapultManualFire hasn't moved that 
                 much since the last loop where button was pressed.
             */
             
@@ -59,7 +59,7 @@ public class Catapult
         mtCat1.set(catSpeed);
         mtCat2.set(catSpeed);
         
-        Station.print(Config.Station.catapult, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
+        Station.print(Config.Station.catapultManualFire, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
     }
     
     public void setCatMotor(double speed)

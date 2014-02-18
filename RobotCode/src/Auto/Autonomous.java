@@ -17,7 +17,7 @@ public class Autonomous
     private double driveForwardTime = 3;
     private Timer shootTimer = new Timer();
     private Timer autoTimer = new Timer();
-    private Vision vision = new Vision();
+    //private Vision vision = new Vision();
     private Catapult catapult;
     private Drive drive;
     private Pickup pickup;
@@ -31,9 +31,9 @@ public class Autonomous
     
     public void init()
     {
-        vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
-        vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
-        vision.startVision();
+//        vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
+//        vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
+//        vision.startVision();
         autoTimer.start();
         driveForwardTime = Station.getAnalogIn(1);//Config.Autonomous.driveForwardTime;
     }
@@ -51,7 +51,7 @@ public class Autonomous
                 
                 if(!shotAlready)
                 {
-                    if(vision.foundHotTarget() || autoTimer.get() > 5)
+                    if(/*vision.foundHotTarget() || */autoTimer.get() > 5)
                     {
                         shootTimer.start();
                         catapult.setCatMotor(Config.Catapult.fireSpeed);
@@ -73,7 +73,7 @@ public class Autonomous
     
     public void stop()
     {
-        vision.turnOffPi();
+        //vision.turnOffPi();
         catapult.setCatMotor(0);
         drive.setSpeed(0, 0);
         shotAlready = false;

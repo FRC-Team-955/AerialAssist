@@ -17,14 +17,12 @@ imgNameMax = 100
 logging.basicConfig(level=logging.DEBUG)
 logging.debug("vision services started.")
 
-logging.debug("vision name", __name__)
-
 def update(prefSideLeft, isDebug):
-    logging.debug("update()")
+    logging.debug("update()"+ str(isDebug))
 
     # Get color image from camera
     ret, img = camera.read() # img.shape 640x480 image
-
+    saveImg(img)
     # Convert to hsv img
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -75,6 +73,7 @@ def round(value):
     return math.floor((value * 100) + 0.5) / 100
 
 def saveImg(img):
+    logging.debug("saving")
     global imgNameIndex
     cv2.imwrite(str(imgNameIndex) + ".png", img)
     imgNameIndex += 1

@@ -56,7 +56,8 @@ public class Drive
         
         setSpeed(left, right);
         
-        Station.print(Config.Station.drive, "Front Flipped: " + joy.getSwitch(Config.Joystick.btFlipDriveDir));
+        Station.print(Config.Station.driveFlipped, "Front Flipped: " + joy.getSwitch(Config.Joystick.btFlipDriveDir));
+        Station.print(Config.Station.driveSlowMode, "Slow Mode: " + joy.getSwitch(Config.Joystick.btSlowMode));
     }
     
     /**

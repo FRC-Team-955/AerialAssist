@@ -23,11 +23,11 @@ public class Pickup
     }
 
     /**
-     * Runs when pickup is activated
+     * Runs when pickupSpeed is activated
      */
     public void run() 
     {
-        // Setting pickup speed to inward/outward if pressed
+        // Setting pickupSpeed speed to inward/outward if pressed
         // Outward
         if(joy.getButton(Config.Joystick.btPickupOutward))
             pickupSpeed = -Config.Pickup.motorSpeed;
@@ -42,11 +42,16 @@ public class Pickup
         
         mtPickup.ramp(pickupSpeed);
         
-        // Flips the pickup solenoids when pressed
+        // Flips the pickupSpeed solenoids when pressed
         if(joy.getButton(Config.Joystick.btMovePickupSols))
+        {
             solPickup.flip();
+            
+            if(!solPickup.get()) // If solPick is false then stop pickupSpeed motorz
+                pickupSpeed = 0;
+        }
         
-        Station.print(Config.Station.pickup, "Pickup: " + mtPickup.get());
+        Station.print(Config.Station.pickupSpeed, "Pickup: " + mtPickup.get());
     }
     
     public void setPickup(boolean newState)

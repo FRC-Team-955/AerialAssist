@@ -50,13 +50,14 @@ public class Config
     public class Station
     {
         // Print lines, 1-6 only
-        public static final int catapult = 1;
-        public static final int drive = 2;
-        public static final int pickup = 3;
-        public static final int main = 4;
+        public static final int catapultManualFire = 1;
+        public static final int driveFlipped = 2;
+        public static final int driveSlowMode = 3;
+        public static final int pickupSpeed = 4;
+        public static final int mainCodeType = 5;
         
-        public static final int chnPrefSideLeft = 1;
-        public static final int chnDebugMode = 2;
+//        public static final int chnPrefSideLeft = 1;
+//        public static final int chnDebugMode = 2;
     }
     
     public class Pickup 
@@ -78,15 +79,15 @@ public class Config
         public static final double rampRate = 0.125;
     }
     
-    public class Vision
-    {
-        public static final String tableId = "955";
-        public static final String isGoalHotId = "isGoalHot";
-        public static final String runVisionId = "runVision";
-        public static final String shutDownId = "shutdown";
-        public static final String prefSideLeftId = "prefSideLeft";
-        public static final String debugModeId = "debugMode";
-    }
+//    public class Vision
+//    {
+//        public static final String tableId = "955";
+//        public static final String isGoalHotId = "isGoalHot";
+//        public static final String runVisionId = "runVision";
+//        public static final String shutDownId = "shutdown";
+//        public static final String prefSideLeftId = "prefSideLeft";
+//        public static final String debugModeId = "debugMode";
+//    }
     
     public class Autonomous
     {

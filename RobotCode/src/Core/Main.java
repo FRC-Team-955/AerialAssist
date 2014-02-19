@@ -39,7 +39,7 @@ public class Main extends IterativeRobot
         // Setting to get regular driveFlipped Working properly on the ps3 Controller should be 3, 2
         joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
         joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
-        pickUp.setPickup(false);
+        pickUp.up();
         System.out.println("Init called: CODE FOR DISTRICT 1");
     }
     
@@ -65,7 +65,7 @@ public class Main extends IterativeRobot
     public void teleopInit()
     {
         compressor.start();
-        auto.stop();
+        auto.reset();
     }
     
     /**

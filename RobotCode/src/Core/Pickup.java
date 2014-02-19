@@ -54,8 +54,18 @@ public class Pickup
         Station.print(Config.Station.pickupSpeed, "Pickup: " + mtPickup.get());
     }
     
-    public void setPickup(boolean newState)
+    public void setMotor(double speed)
     {
-        solPickup.set(newState);
+        mtPickup.set(speed);
+    }
+    
+    public void up()
+    {
+        solPickup.set(false);
+    }
+    
+    public void down()
+    {
+        solPickup.set(true);
     }
 }

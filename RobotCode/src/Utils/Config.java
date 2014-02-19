@@ -58,6 +58,11 @@ public class Config
         
 //        public static final int chnPrefSideLeft = 1;
 //        public static final int chnDebugMode = 2;
+        
+        // Digital Channels 1-8 available only
+        public static final int chnNoBallNoVisionWhite = 3;
+        public static final int chnOneBallNoVisionWhite = 4;
+        public static final int chnTwoBallNoVisionWhite = 5;
     }
     
     public class Pickup 
@@ -71,7 +76,7 @@ public class Config
     public class Compressor
     {
         public static final int chnDigOutCompressor = 2;
-        public static final int chnDigInPressure = 5;
+        public static final int chnDigInPressure = 3;
     }
     
     public class MyTalon
@@ -91,9 +96,20 @@ public class Config
     
     public class Autonomous
     {
+        // Max auto time
         public static final int maxAutoTime = 10;
-        public static final int driveForwardTime = 2;
-        public static final double driveForwardSpeed = 0.5;
+        
+        // Shoot time
         public static final double maxShootTime = 1;
+        
+        // Pickup time
+        public static final double pickupMidInTime = 1;
+        public static final double pickupMidInSpeed = 0.5;
+        public static final double pickupBallInTime = 2;
+        public static final double pickupMoveUpTime = 1;
+        
+        // Drive time
+        public static final double driveToAllianceTime = 1.25;
+        public static final double driveToAllianceSpeed = 1;
     }
 }

@@ -103,9 +103,7 @@ public class Config
         public static final double maxShootTime = 1;
         
         // Pickup time
-        public static final double pickupMidInTime = 1;
-        public static final double pickupMidInSpeed = 0.5;
-        public static final double pickupBallInTime = 2;
+        public static final double pickupBallTime = 1;
         public static final double pickupMoveUpTime = 1;
         
         // Drive time

@@ -17,6 +17,7 @@ public class Catapult
     private MyTalon mtCat2 = new MyTalon(Config.Catapult.chnCat2);
     private LimitSwitch limitSwitch = new LimitSwitch(Utils.Config.Catapult.chnLimitSwitch, true);
     private double catSpeed = 0.0;
+    private boolean isManualFireMode = false;
     private MyJoystick joy;
 
     public Catapult(MyJoystick newJoy) 
@@ -27,12 +28,12 @@ public class Catapult
     public void run()
     {
         if(joy.getButton(Config.Joystick.btManualFire))
-            joy.setSwitch(Config.Joystick.btManualFire, true);
+            isManualFireMode = true;
         
         if(joy.getButton(Config.Joystick.btAutoFire))
-            joy.setSwitch(Config.Joystick.btManualFire, false);
+            isManualFireMode = false;
         
-        if(joy.getSwitch(Config.Joystick.btManualFire)) // Move cat on button hold, stop otherwise
+        if(isManualFireMode) // Move cat on button hold, stop otherwise
         {
             catSpeed = 0;
             
@@ -59,7 +60,7 @@ public class Catapult
         mtCat1.set(catSpeed);
         mtCat2.set(catSpeed);
         
-        Station.print(Config.Station.catapultManualFire, "Manual Fire: " + joy.getSwitch(Config.Joystick.btManualFire));
+        Station.print(Config.Station.catapultManualFire, "Manual Fire: " + isManualFireMode);
     }
     
     public void setCatMotor(double speed)

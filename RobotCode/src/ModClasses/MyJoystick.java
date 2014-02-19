@@ -11,7 +11,6 @@ public class MyJoystick extends Joystick
 {
     private boolean [] gotPressed = new boolean[Config.Joystick.numberOfButtons];
     private boolean [] lastButtonState = new boolean[Config.Joystick.numberOfButtons];
-    private boolean [] switches = new boolean[Config.Joystick.numberOfButtons];
     
     /**
      * constructor for the class
@@ -25,7 +24,6 @@ public class MyJoystick extends Joystick
         {
             lastButtonState[i] = false;
             gotPressed[i] = false;
-            switches[i] = false;
         }
     }
     
@@ -63,21 +61,6 @@ public class MyJoystick extends Joystick
     {
         for(int port = 1; port <= gotPressed.length; port++)
             gotPressed[port - 1] = runDebounce(port);
-    }
-    
-    public boolean getSwitch(int port)
-    {
-        return switches[port - 1];
-    }
-    
-    public void setSwitch(int port, boolean newVal)
-    {
-        switches[port - 1] = newVal;
-    }
-    
-    public void flipSwitch(int port)
-    {
-        setSwitch(port, !getSwitch(port));
     }
     
     public boolean getDpadUp()

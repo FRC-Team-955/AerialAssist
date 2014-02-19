@@ -17,6 +17,8 @@ public class Drive
     private MyTalon mtRight1 = new MyTalon(Config.Drive.chnRight1);
     private MyTalon mtRight2 = new MyTalon(Config.Drive.chnRight2);
     private MyTalon mtRight3 = new MyTalon(Config.Drive.chnRight3);
+    private boolean isSlowMode = false;
+    private boolean isDriveFlipped = false;
     MyJoystick joy;
     
     /**
@@ -34,21 +36,21 @@ public class Drive
     public void run()
     {
         if(joy.getButton(Config.Joystick.btSlowMode))
-            joy.flipSwitch(Config.Joystick.btSlowMode);
+            isSlowMode = !isSlowMode;
         
         if(joy.getButton(Config.Joystick.btFlipDriveDir))
-            joy.flipSwitch(Config.Joystick.btFlipDriveDir);
+            isDriveFlipped = !isDriveFlipped;
 		
         double x = joy.getX() * Math.abs(joy.getX()) * 0.75;
         double y = joy.getY() * Math.abs(joy.getY());
         
-        if(joy.getSwitch(Config.Joystick.btFlipDriveDir))
+        if(isDriveFlipped)
             y = -y;  
         
         double left = y + x;
         double right = y - x;
         
-        if(joy.getSwitch(Config.Joystick.btSlowMode))
+        if(isSlowMode)
         {
             left *= 0.5;
             right *= 0.5;
@@ -56,8 +58,8 @@ public class Drive
         
         setSpeed(left, right);
         
-        Station.print(Config.Station.driveFlipped, "Front Flipped: " + joy.getSwitch(Config.Joystick.btFlipDriveDir));
-        Station.print(Config.Station.driveSlowMode, "Slow Mode: " + joy.getSwitch(Config.Joystick.btSlowMode));
+        Station.print(Config.Station.driveFlipped, "Front Flipped: " + isDriveFlipped);
+        Station.print(Config.Station.driveSlowMode, "Slow Mode: " + isSlowMode);
     }
     
     /**

@@ -31,6 +31,10 @@ public class Autonomous
         pickup = newPickup;
     }
     
+    /**
+     * Inits the autonomous class, starts/resets timers, reset autoStep, 
+     * get auto Version
+     */
     public void init()
     {
 //        vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
@@ -44,6 +48,9 @@ public class Autonomous
         getAutoVersion();
     }
     
+    /**
+     * Resets/stops eveything autonomous
+     */
     public void reset()
     {
         //vision.turnOffPi();
@@ -65,6 +72,9 @@ public class Autonomous
         pickup.setMotor(0);
     }
     
+    /**
+     * Gets which autonomous code should be ran from driverstation digitalIn
+     */
     private void getAutoVersion()
     {
         if(Station.getDitigalIn(Config.Station.chnNoBallNoVisionWhite))
@@ -77,6 +87,9 @@ public class Autonomous
             twoBallNoVisionWhiteMode = true;
     }
     
+    /**
+     * Runs the autonomous code
+     */
     public void run()
     {
         if(autoTimer.get() <= Config.Autonomous.maxAutoTime)
@@ -124,19 +137,19 @@ public class Autonomous
     }
     
     /**
-     * Start white, drive forward to alliance zone, shoot
+     * Start white, shoot one ball, drive forward
      */
     private void oneBallNoVisionWhite()
     {
         switch(autoStep)
         {
-            case 0: // Drive to alliance zone 
+            case 0: // Shoot one ball
             {
-                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed, true);
+                catapult.setCatMotor(Config.Catapult.fireSpeed);
                 
-                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
+                if(autoTimer.get() >= Config.Autonomous.maxShootTime)
                 {
-                    drive.setSpeed(0, 0, false);
+                    catapult.setCatMotor(0);
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -144,13 +157,13 @@ public class Autonomous
                 break;
             }
             
-            case 1: // Shoot one ball
+            case 1: // Drive to alliance zone 
             {
-                catapult.setCatMotor(Config.Catapult.fireSpeed);
+                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed, true);
                 
-                if(autoTimer.get() >= Config.Autonomous.maxShootTime)
+                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
                 {
-                    catapult.setCatMotor(0);
+                    drive.setSpeed(0, 0, false);
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -166,7 +179,7 @@ public class Autonomous
     }
     
     /** 
-     * Start white, partially pick up 2nd ball, drive to alliance, shoot both
+     * Start white, shoot 1st ball, pick up 2nd ball, shoot 2nd ball
      */
     private void twoBallNoVisionWhite()
     {

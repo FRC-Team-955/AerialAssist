@@ -12,7 +12,7 @@ import Utils.Config;
  */
 public class Pickup 
 {
-    private MySolenoid solPickup = new MySolenoid(Config.Pickup.solRightPortOne, Config.Pickup.solRightPortTwo);
+    private MySolenoid solPickup = new MySolenoid(Config.Pickup.solPortOne, Config.Pickup.solPortTwo);
     private MyTalon mtPickup = new MyTalon(Config.Pickup.chnPickUpMotor1);
     private double pickupSpeed = 0;
     private MyJoystick joy;
@@ -59,11 +59,17 @@ public class Pickup
         mtPickup.set(speed);
     }
     
+    /**
+     * Puts the pickup solenoids up
+     */
     public void up()
     {
         solPickup.set(false);
     }
     
+    /**
+     * Puts the pickup solenoids down
+     */
     public void down()
     {
         solPickup.set(true);

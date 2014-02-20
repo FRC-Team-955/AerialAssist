@@ -63,6 +63,10 @@ public class Catapult
         Station.print(Config.Station.catapultManualFire, "Manual Fire: " + isManualFireMode);
     }
     
+    /**
+     * Sets the catapult motor if its positive.
+     * @param speed 
+     */
     public void setCatMotor(double speed)
     {
         if(speed < 0)

@@ -68,8 +68,8 @@ public class Config
     public class Pickup 
     {
         public static final int chnPickUpMotor1 = 1;
-        public static final int solRightPortOne = 1;
-        public static final int solRightPortTwo = 2;
+        public static final int solPortOne = 1;
+        public static final int solPortTwo = 2;
         public static final double motorSpeed = 1.0; 
     }
     
@@ -103,7 +103,7 @@ public class Config
         public static final double maxShootTime = 1;
         
         // Pickup time
-        public static final double pickupBallTime = 1;
+        public static final double pickupBallTime = 1.25;
         public static final double pickupMoveUpTime = 1;
         
         // Drive time

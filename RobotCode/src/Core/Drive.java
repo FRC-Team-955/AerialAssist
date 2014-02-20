@@ -56,7 +56,7 @@ public class Drive
             right *= 0.5;
         }
         
-        setSpeed(left, right);
+        setSpeed(left, right, true);
         
         Station.print(Config.Station.driveFlipped, "Front Flipped: " + isDriveFlipped);
         Station.print(Config.Station.driveSlowMode, "Slow Mode: " + isSlowMode);
@@ -66,8 +66,9 @@ public class Drive
     * Makes both sides go at the same speed.
     * @param speedLeft Speed of left talons.
     * @param speedRight Speed of right talons.
+    * @param ramp True to ramp, false to not ramp to the desired speed
     */
-    public void setSpeed(double speedLeft, double speedRight) 
+    public void setSpeed(double speedLeft, double speedRight, boolean ramp) 
     {
         speedLeft = -speedLeft;
         

@@ -47,9 +47,7 @@ public class Autonomous
     public void reset()
     {
         //vision.turnOffPi();
-        catapult.setCatMotor(0);
-        drive.setSpeed(0, 0);
-        pickup.setMotor(0);
+        stopEverything();
         autoTimer.stop();
         autoGlobalTimer.stop();
         noBallNoVisionWhiteMode = false;
@@ -63,7 +61,7 @@ public class Autonomous
     private void stopEverything()
     {
         catapult.setCatMotor(0);
-        drive.setSpeed(0, 0);
+        drive.setSpeed(0, 0, false);
         pickup.setMotor(0);
     }
     
@@ -106,11 +104,11 @@ public class Autonomous
         {
             case 0: // Drive to alliance zone 
             {
-                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed);
+                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed, true);
                 
                 if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
                 {
-                    drive.setSpeed(0, 0);
+                    drive.setSpeed(0, 0, false);
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -134,11 +132,11 @@ public class Autonomous
         {
             case 0: // Drive to alliance zone 
             {
-                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed);
+                drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed, true);
                 
                 if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
                 {
-                    drive.setSpeed(0, 0);
+                    drive.setSpeed(0, 0, false);
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -244,11 +242,11 @@ public class Autonomous
             
             case 6: // Drive to alliance zone
             {
-                drive.setSpeed(Config.Autonomous.driveToAllianceTime, Config.Autonomous.driveToAllianceTime);
+                drive.setSpeed(Config.Autonomous.driveToAllianceTime, Config.Autonomous.driveToAllianceTime, true);
                 
                 if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
                 {
-                    drive.setSpeed(0, 0);
+                    drive.setSpeed(0, 0, false);
                     autoTimer.reset();
                     autoStep++;
                 }

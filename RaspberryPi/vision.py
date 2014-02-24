@@ -11,18 +11,18 @@ resHalfY = 240
 resHalfX = 320
 distanceFromTarget = 229
 horizTarget = Rectangle(0.0, 0.0, 23.5, 4.0)
-imgNameIndex = 0
+imgNameIndex = 1
 imgNameMax = 100
 
 logging.basicConfig(level=logging.DEBUG)
 logging.debug("vision services started.")
 
 def update(prefSideLeft, isDebug):
-    logging.debug("update()"+ str(isDebug))
+    logging.debug("update()" + str(isDebug) + str(imgNameIndex))
 
     # Get color image from camera
     ret, img = camera.read() # img.shape 640x480 image
-    saveImg(img)
+
     # Convert to hsv img
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -35,7 +35,7 @@ def update(prefSideLeft, isDebug):
     # Filter out small objects
     filteredGreen = cv2.morphologyEx(filteredGreen, cv2.MORPH_OPEN, np.ones((3, 3)))
 
-    # Find all contours, counter is vector of points that are connected to make up a shape
+    # Find all contours, countours is vector of points that are connected to make up a shape
     contours, hierarchy = cv2.findContours(filteredGreen, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     
     # Resetting foundHotTarget
@@ -51,14 +51,15 @@ def update(prefSideLeft, isDebug):
 
             # If the width of the target is greater than its height then it's probably the hot target
             if target.width >= target.height * 2.5:
-                global foundHotTarget
                 foundHotTarget = inPrefSide(target.x + (target.width / 2), prefSideLeft)
-                
+
                 if isDebug:
                     drawRect(img, target)
-                    saveImg(img)
                     viewAngle = computeAngle(horizTarget.height, target.height, distanceFromTarget)
                     logging.debug("Hot Target: " + str(foundHotTarget) + ", New Angle: " + str(viewAngle))
+
+    # Save img so we can analyze it
+    saveImg(img)
 
 def getFoundHotTarget():
     return foundHotTarget
@@ -75,12 +76,20 @@ def round(value):
 def saveImg(img):
     logging.debug("saving")
     global imgNameIndex
-    cv2.imwrite(str(imgNameIndex) + ".png", img)
+
+    if foundHotTarget:
+        cv2.imwrite(str(imgNameIndex) + "HOT.png", img)
+
+    else:
+        cv2.imwrite(str(imgNameIndex) + ".png", img)
+
     imgNameIndex += 1
     if imgNameIndex > imgNameMax:
-        imgNameIndex = 0
+        imgNameIndex = 1
 
 def inPrefSide(x, prefSideLeft):
+    logging.debug("x: " + str(x))
+    
     if prefSideLeft and x <= resHalfX:
         return True
     elif not prefSideLeft and x >= resHalfX:

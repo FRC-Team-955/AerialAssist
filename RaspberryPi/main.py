@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
 	# Table name  = team number, used for ip address
 	tableName = "955"
-	table = False#NetworkTableClient(tableName)
+	#table = NetworkTableClient(tableName)
 	tableDirectory = '/' + tableName + '/'
 
 	# Id's for reading data from networktable
@@ -35,9 +35,9 @@ if __name__ == '__main__':
 
 		if runVision: # Check if runVision is true
 			vision.update(prefSideLeft, debugMode)	# Run vision, check whether debug mode is true
-	    	table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget()) # Set foundHotTarget
+			table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget()) # Set foundHotTarget
 
-    	if table.getValue(tableDirectory + shutDownPi):
-    		os.sys("sudo shutdown -h now")
+		if table.getValue(tableDirectory + shutDownPi):
+			os.sys("sudo shutdown -h now")
 
-    	time.sleep(1.0 / 4.0)
+		time.sleep(1.0 / 4.0)

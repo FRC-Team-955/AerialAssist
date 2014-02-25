@@ -236,10 +236,11 @@ public class Autonomous
                 break;
             }
             
-            case 4:
+            case 4: // Dont shoot till pick up is all the way up
             {
                 if(autoTimer.get() >= Config.Autonomous.pickupMoveUpTime)
                 {
+                    pickup.setMotor(0);
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -247,7 +248,15 @@ public class Autonomous
                 break;
             }
             
-            case 5: // Shoot 2nd ball
+            case 5: // Put pickup down
+            {
+                pickup.down();
+                autoTimer.reset();
+                autoStep++;
+                break;
+            }
+            
+            case 6: // Shoot 2nd ball
             {
                 catapult.setCatMotor(Config.Catapult.fireSpeed);
                 
@@ -261,7 +270,7 @@ public class Autonomous
                 break;
             }
             
-            case 6: // Drive to alliance zone
+            case 7: // Drive to alliance zone
             {
                 drive.setSpeed(Config.Autonomous.driveToAllianceTime, Config.Autonomous.driveToAllianceTime, true);
                 

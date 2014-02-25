@@ -143,11 +143,19 @@ public class Autonomous
     {
         switch(autoStep)
         {
-            case 0: // Shoot one ball
+            case 0: // Put pickup down
+            {
+                pickup.down();
+                autoTimer.reset();
+                autoStep++;
+                break;
+            }
+            
+            case 1: // Shoot one ball
             {
                 catapult.setCatMotor(Config.Catapult.fireSpeed);
                 
-                if(autoTimer.get() >= Config.Autonomous.maxShootTime)
+                if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
                 {
                     catapult.setCatMotor(0);
                     autoTimer.reset();
@@ -157,7 +165,7 @@ public class Autonomous
                 break;
             }
             
-            case 1: // Drive to alliance zone 
+            case 2: // Drive to alliance zone 
             {
                 drive.setSpeed(Config.Autonomous.driveToAllianceSpeed, Config.Autonomous.driveToAllianceSpeed, true);
                 
@@ -197,7 +205,7 @@ public class Autonomous
             {
                 catapult.setCatMotor(Config.Catapult.fireSpeed);
                 
-                if(autoTimer.get() >= Config.Autonomous.maxShootTime)
+                if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
                 {
                     catapult.setCatMotor(0);
                     autoTimer.reset();
@@ -243,7 +251,7 @@ public class Autonomous
             {
                 catapult.setCatMotor(Config.Catapult.fireSpeed);
                 
-                if(autoTimer.get() >= Config.Autonomous.maxShootTime)
+                if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
                 {
                     catapult.setCatMotor(0);
                     autoTimer.reset();

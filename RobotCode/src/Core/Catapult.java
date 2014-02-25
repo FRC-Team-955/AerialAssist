@@ -43,7 +43,7 @@ public class Catapult
         
         else // Move cat on button hold/press, stops "cocks" by its self
         {
-            if(limitSwitch.get() || joy.getButton(Config.Joystick.btStopCatapult))
+            if(isCocked() || joy.getButton(Config.Joystick.btStopCatapult))
                 catSpeed = 0;
             
             /*
@@ -80,5 +80,14 @@ public class Catapult
             mtCat1.set(speed);
             mtCat2.set(speed);
         }
+    }
+    
+    /**
+     * Checks if the catapult is cocked based off limitswitch, true = cocked
+     * @return 
+     */
+    public boolean isCocked()
+    {
+        return limitSwitch.get();
     }
 }

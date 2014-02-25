@@ -100,7 +100,8 @@ public class Config
         public static final int maxAutoTime = 10;
         
         // Shoot time
-        public static final double maxShootTime = 1;
+        //public static final double maxShootTime = 1;
+        public static final double minShootTime = 1;
         
         // Pickup time
         public static final double pickupBallTime = 1.25;

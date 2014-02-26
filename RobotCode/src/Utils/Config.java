@@ -56,10 +56,9 @@ public class Config
         public static final int pickupSpeed = 4;
         public static final int mainCodeType = 5;
         
-//        public static final int chnPrefSideLeft = 1;
-//        public static final int chnDebugMode = 2;
-        
-        // Digital Channels 1-8 available only
+		// Digital Channels 1-8 available only
+        public static final int chnPrefSideLeft = 1;
+        public static final int chnDebugMode = 2;
         public static final int chnNoBallNoVisionWhite = 3;
         public static final int chnOneBallNoVisionWhite = 4;
         public static final int chnTwoBallNoVisionWhite = 5;
@@ -84,15 +83,15 @@ public class Config
         public static final double rampRate = 0.125;
     }
     
-//    public class Vision
-//    {
-//        public static final String tableId = "955";
-//        public static final String isGoalHotId = "isGoalHot";
-//        public static final String runVisionId = "runVision";
-//        public static final String shutDownId = "shutdown";
-//        public static final String prefSideLeftId = "prefSideLeft";
-//        public static final String debugModeId = "debugMode";
-//    }
+    public class Vision
+    {
+        public static final String tableId = "955";
+        public static final String isGoalHotId = "isGoalHot";
+        public static final String runVisionId = "runVision";
+        public static final String shutDownId = "shutdown";
+        public static final String prefSideLeftId = "prefSideLeft";
+        public static final String debugModeId = "debugMode";
+    }
     
     public class Autonomous
     {

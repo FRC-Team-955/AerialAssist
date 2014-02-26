@@ -19,7 +19,7 @@ public class Autonomous
     private boolean twoBallNoVisionWhiteMode = false;
     private Timer autoGlobalTimer = new Timer();
     private Timer autoTimer = new Timer();
-    //private Vision vision = new Vision();
+    private Vision vision = new Vision();
     private Catapult catapult;
     private Drive drive;
     private Pickup pickup;
@@ -37,9 +37,10 @@ public class Autonomous
      */
     public void init()
     {
-//        vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
-//        vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
-//        vision.startVision();
+		vision = new Vision();
+        vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
+        vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
+        vision.startVision();
         autoGlobalTimer.reset();
         autoGlobalTimer.start();
         autoTimer.reset();
@@ -53,7 +54,7 @@ public class Autonomous
      */
     public void reset()
     {
-        //vision.turnOffPi();
+        vision.turnOffPi();
         stopEverything();
         autoTimer.stop();
         autoGlobalTimer.stop();

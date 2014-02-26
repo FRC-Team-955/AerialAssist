@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
 			if table.getValue(tableDirectory + shutDownPi):
 				os.system("sudo shutdown -h now")
+				break
 
 			time.sleep(1/4.)
 	except Exception as ex:

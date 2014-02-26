@@ -54,6 +54,10 @@ public class Pickup
         Station.print(Config.Station.pickupSpeed, "Pickup: " + mtPickup.get());
     }
     
+    /**
+     * Sets the pickup motor to a specific speed
+     * @param speed 
+     */
     public void setMotor(double speed)
     {
         mtPickup.set(speed);

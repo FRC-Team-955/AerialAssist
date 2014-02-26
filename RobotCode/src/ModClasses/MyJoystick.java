@@ -63,21 +63,37 @@ public class MyJoystick extends Joystick
             gotPressed[port - 1] = runDebounce(port);
     }
     
+    /**
+     * Returns if the dpad up is pressed or not
+     * @return 
+     */
     public boolean getDpadUp()
     {
         return super.getRawAxis(Config.Joystick.chnDpadVert) > Config.Joystick.minDpadVal; 
     }
     
+    /**
+     * Returns if the dpad down is pressed or not
+     * @return 
+     */
     public boolean getDpadDown()
     {
         return super.getRawAxis(Config.Joystick.chnDpadVert) < -Config.Joystick.minDpadVal; 
     }
     
+    /**
+     * Returns if the dpad left is pressed or not
+     * @return 
+     */
     public boolean getDpadLeft()
     {
         return super.getRawAxis(Config.Joystick.chnDpadHorz) < -Config.Joystick.minDpadVal; 
     }
     
+    /**
+     * Returns if the dpad right is pressed or not
+     * @return 
+     */
     public boolean getDpadRight()
     {
         return super.getRawAxis(Config.Joystick.chnDpadHorz) > Config.Joystick.minDpadVal; 

@@ -51,6 +51,9 @@ public class Station
         DriverStationLCD.getInstance().updateLCD(); 
     }
     
+    /**
+     * Clears all the text in the driver station
+     */
     public static void clearAllText()
     {
         DriverStationLCD.getInstance().clear();

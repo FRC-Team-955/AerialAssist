@@ -44,6 +44,10 @@ public class MySolenoid
         }
     }   
     
+    /**
+     * Sets the solenoids to a specific state
+     * @param newState 
+     */
     public void set(boolean newState)
     {
         if(newState)
@@ -59,6 +63,10 @@ public class MySolenoid
         }
     }
     
+    /**
+     * Returns the position of the solenoid
+     * @return 
+     */
     public boolean get()
     {
         return solOne.get();

@@ -25,6 +25,9 @@ public class Catapult
         joy = newJoy;
     }
     
+    /**
+     * Runs the catapult motor when the button is pushed
+     */
     public void run()
     {
         if(joy.getButton(Config.Joystick.btManualFire))

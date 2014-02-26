@@ -17,6 +17,10 @@ public class LimitSwitch
             flipped = wantFlipped;
     }
 
+    /**
+     * Returns position of the limit switch
+     * @return 
+     */
     public boolean get() 
     {
         boolean value = input.get();

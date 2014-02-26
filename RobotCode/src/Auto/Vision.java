@@ -14,41 +14,69 @@ public class Vision
     public Vision()
     {
         table = NetworkTable.getTable(Config.Vision.tableId);
-        table.putBoolean(Config.Vision.prefSideLeftId, false);
-        table.putBoolean(Config.Vision.debugModeId, true);
-        table.putBoolean(Config.Vision.shutDownId, false);
-        table.putBoolean(Config.Vision.runVisionId, false);
-		table.putBoolean(Config.Vision.isGoalHotId, false);
+        resetTable();
     }
     
+    /**
+     * Check if raspberry pi found hot target
+     * @return 
+     */
     public boolean foundHotTarget()
     {
         return table.getBoolean(Config.Vision.isGoalHotId);
     }
     
+    /**
+     * Tell raspberry pi side preference for hot target
+     * @param prefLeft 
+     */
     public void setPrefSideLeft(boolean prefLeft)
     {
         table.putBoolean(Config.Vision.prefSideLeftId, prefLeft);
     }
     
+    /**
+     * Tell raspberry pi to start vision
+     */
     public void startVision()
     {
         table.putBoolean(Config.Vision.runVisionId, true);
     }
      
+    /**
+     * Tell raspberry pi to stop vision
+     */
     public void stopVision()
     {
         table.putBoolean(Config.Vision.runVisionId, false);
     }
     
+    /**
+     * Turn off the raspberry pi
+     */
     public void turnOffPi()
     {
-        stopVision();
         table.putBoolean(Config.Vision.shutDownId, true);
     }
     
+    /**
+     * Set debug mode for raspberry pi
+     * @param state 
+     */
     public void setDebugMode(boolean state)
     {
         table.putBoolean(Config.Vision.debugModeId, state);
+    }
+    
+    /**
+     * Initializes all the values in the vision network table
+     */
+    public void resetTable()
+    {
+        table.putBoolean(Config.Vision.prefSideLeftId, false);
+        table.putBoolean(Config.Vision.debugModeId, true);
+        table.putBoolean(Config.Vision.shutDownId, false);
+        table.putBoolean(Config.Vision.runVisionId, false);
+        table.putBoolean(Config.Vision.isGoalHotId, false);
     }
 }

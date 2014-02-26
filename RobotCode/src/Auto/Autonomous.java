@@ -37,7 +37,7 @@ public class Autonomous
      */
     public void init()
     {
-		vision = new Vision();
+        vision.resetTable();
         vision.setPrefSideLeft(Station.getDitigalIn(Config.Station.chnPrefSideLeft));
         vision.setDebugMode(Station.getDitigalIn(Config.Station.chnDebugMode));
         vision.startVision();
@@ -50,9 +50,9 @@ public class Autonomous
     }
     
     /**
-     * Resets/stops eveything autonomous
+     * Ends autonomous, turns off raspberry pi
      */
-    public void reset()
+    public void end()
     {
         vision.turnOffPi();
         stopEverything();
@@ -61,6 +61,14 @@ public class Autonomous
         noBallNoVisionWhiteMode = false;
         oneBallNoVisionWhiteMode = false;
         twoBallNoVisionWhiteMode = false;
+    }
+    
+    /**
+     * Resets the vision networktable
+     */
+    public void resetVision()
+    {
+        vision.resetTable();
     }
     
     /**

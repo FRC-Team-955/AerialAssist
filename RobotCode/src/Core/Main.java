@@ -65,7 +65,7 @@ public class Main extends IterativeRobot
     public void teleopInit()
     {
         compressor.start();
-        auto.reset();
+        auto.end();
     }
     
     /**
@@ -79,5 +79,13 @@ public class Main extends IterativeRobot
 	drive.run();
         catapult.run();
         pickUp.run();
+    }
+
+    /**
+     * This function is called once before robot is disabled.
+     */
+    public void disabledInit()
+    {
+        auto.resetVision();
     }
 }

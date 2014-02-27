@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.Compressor;
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentation. If you change the name of this class or the package after
- * creating this project, you must also updateButtons the manifest file in the resource
+ * creating this project, you must also update the manifest file in the resource
  * directory.
  */
 public class Main extends IterativeRobot 
@@ -36,7 +36,7 @@ public class Main extends IterativeRobot
      */
     public void robotInit()
     {
-        // Setting to get regular driveFlipped Working properly on the ps3 Controller should be 3, 2
+        // Setting to get regular drive working properly on the ps3 Controller should be 3, 2
         joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
         joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
         pickUp.up();
@@ -64,6 +64,7 @@ public class Main extends IterativeRobot
      */
     public void teleopInit()
     {
+        Station.clearAllText();
         compressor.start();
         auto.end();
     }
@@ -74,7 +75,7 @@ public class Main extends IterativeRobot
     public void teleopPeriodic() 
     {
         Station.clearAllText();
-        Station.print(Config.Station.mainCodeType, "CODE FOR DISTRICT 1");
+        Station.print(Config.Station.mainCodeType, "CODE FOR OREGON CITY");
         joy.updateButtons();
 	drive.run();
         catapult.run();

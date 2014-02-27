@@ -67,22 +67,21 @@ public class Catapult
     }
     
     /**
-     * Sets the catapult motor if its positive.
-     * @param speed 
+     * Fires the catapult motor to fire speed
      */
-    public void setCatMotor(double speed)
+    public void fire()
     {
-        if(speed < 0)
-        {
-            System.out.println("NOPE");
-            return;
-        }
-        
-        else
-        {
-            mtCat1.set(speed);
-            mtCat2.set(speed);
-        }
+        mtCat1.set(Config.Catapult.fireSpeed);
+        mtCat2.set(Config.Catapult.fireSpeed);
+    }
+    
+    /**
+     * Stops the catapult motors
+     */
+    public void stop()
+    {
+        mtCat1.set(0);
+        mtCat2.set(0);
     }
     
     /**

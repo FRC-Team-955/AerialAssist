@@ -55,15 +55,6 @@ public class Pickup
     }
     
     /**
-     * Sets the pickup motor to a specific speed
-     * @param speed 
-     */
-    public void setMotor(double speed)
-    {
-        mtPickup.set(speed);
-    }
-    
-    /**
      * Puts the pickup solenoids up
      */
     public void up()
@@ -77,5 +68,29 @@ public class Pickup
     public void down()
     {
         solPickup.set(true);
+    }
+    
+    /**
+     * Runs the pickup motors inward
+     */
+    public void inward()
+    {
+        mtPickup.set(Config.Pickup.motorSpeed);
+    }
+    
+    /**
+     * Runs the pickup motors outward
+     */
+    public void outward()
+    {
+        mtPickup.set(-Config.Pickup.motorSpeed);
+    }
+    
+    /**
+     * Stops the pickup motors
+     */
+    public void stop()
+    {
+        mtPickup.set(0);
     }
 }

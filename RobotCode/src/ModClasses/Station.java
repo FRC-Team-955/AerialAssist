@@ -14,12 +14,12 @@ public class Station
      * @param iChan
      * @return 
      */
-    public static boolean getDitigalIn(int iChan)
+    public static boolean getDigitalIn(int iChan)
     {
         return DriverStation.getInstance().getDigitalIn(iChan);
     }
     
-	/**
+    /**
      * Gets the analog value from the driverstation, 1 - 8 available.
      * @param iChan
      * @return 
@@ -32,6 +32,8 @@ public class Station
     /**
      * Prints specified message to the driver station on the corresponding line
      * 1-6 are available.
+     * @param line
+     * @param msg
      */
     public static void print(int line, String msg)
     {

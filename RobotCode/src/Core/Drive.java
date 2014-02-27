@@ -68,7 +68,7 @@ public class Drive
     * @param speedRight Speed of right talons.
     * @param ramp True to ramp, false to not ramp to the desired speed
     */
-    public void setSpeed(double speedLeft, double speedRight, boolean ramp) 
+    private void setSpeed(double speedLeft, double speedRight, boolean ramp) 
     {
         speedLeft = -speedLeft;
         
@@ -79,5 +79,53 @@ public class Drive
         mtRight1.ramp(speedRight);
         mtRight2.ramp(speedRight);
         mtRight3.ramp(speedRight);
+    }
+    
+    /**
+     * Turns right
+     * @param speed
+     * @param ramp 
+     */
+    public void turnRight(double speed, boolean ramp)
+    {
+        setSpeed(speed, -speed, ramp);
+    }
+    
+    /** 
+     * Turns left
+     * @param speed
+     * @param ramp 
+     */
+    public void turnLeft(double speed, boolean ramp)
+    {
+        setSpeed(-speed, speed, ramp);
+    }
+    
+    /**
+     * Moves forward at specified speed
+     * @param speed
+     * @param ramp 
+     */
+    public void moveForward(double speed, boolean ramp)
+    {
+        setSpeed(Math.abs(speed), Math.abs(speed), ramp);
+    }
+    
+    /**
+     * Moves backward at specified speed
+     * @param speed
+     * @param ramp 
+     */
+    public void moveBackward(double speed, boolean ramp)
+    {
+        setSpeed(-Math.abs(speed), -Math.abs(speed), ramp);
+    }
+    
+    /**
+     * Stops the drive motors
+     */
+    public void stop()
+    {
+        setSpeed(0, 0, false);
     }
 }

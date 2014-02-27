@@ -54,14 +54,17 @@ public class Config
         public static final int driveFlipped = 2;
         public static final int driveSlowMode = 3;
         public static final int pickupSpeed = 4;
-        public static final int mainCodeType = 5;
+        public static final int autonomousStep = 5;
+        public static final int mainCodeType = 6;
         
-		// Digital Channels 1-8 available only
-        public static final int chnPrefSideLeft = 1;
-        public static final int chnDebugMode = 2;
+        // Digital Channels 1-8 available only
+        public static final int chnDebugMode = 1;
+        public static final int chnPrefSideLeft = 2;
         public static final int chnNoBallNoVisionWhite = 3;
         public static final int chnOneBallNoVisionWhite = 4;
         public static final int chnTwoBallNoVisionWhite = 5;
+        public static final int chnOneBallVisionWhite = 6;
+        public static final int chnTwoBallVisionWhite = 7;
     }
     
     public class Pickup 
@@ -99,15 +102,19 @@ public class Config
         public static final int maxAutoTime = 10;
         
         // Shoot time
-        //public static final double maxShootTime = 1;
         public static final double minShootTime = 1;
         
         // Pickup time
         public static final double pickupBallTime = 1.25;
-        public static final double pickupMoveUpTime = 1;
+        public static final double pickupMoveUpTime = 0.75;
         
         // Drive time
-        public static final double driveToAllianceTime = 1.25;
+        public static final double driveToAllianceTime = 1;
         public static final double driveToAllianceSpeed = 1;
+        public static final double turnToOtherGoalTime = 1;
+        public static final double turnToOtherGoalSpeed = 0.75;
+        
+        // Vision
+        public static final double visionFindTime = 1;
     }
 }

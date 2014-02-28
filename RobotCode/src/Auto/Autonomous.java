@@ -113,7 +113,7 @@ public class Autonomous
      */
     public void run()
     {
-        String status = "";
+        String status = "No Auto";
         
         if(autoTimer.get() <= Config.Autonomous.maxAutoTime)
         {
@@ -254,7 +254,7 @@ public class Autonomous
             
             case 1: // See if goal we're pointed at is hot
             {
-                if(vision.foundHotTarget())
+                if(vision.foundHotTarget() || autoGlobalTimer.get() >= 5)
                 {
                     autoTimer.reset();
                     autoStep++;

@@ -24,7 +24,7 @@ prefSideLeftId = "prefSideLeft"
 # is run because it is imported, then __name__ is the module name.
 
 if __name__ == '__main__':
- 
+
 	logging.basicConfig(filename='/var/log/robovision/robovision.log', filemode='w', level=logging.DEBUG)
 	logging.debug("vision services started.")
 	#logging.debug("uid {} euid {}".format(os.getuid(), os.geteuid()))
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 				prefSideLeft = table.getValue(tableDirectory + prefSideLeftId)
 
 			if runVision: # Check if runVision is true
-				vision.update(prefSideLeft, debugMode)	# Run vision, check whether debug mode is true
+				vision.update(prefSideLeft, debugMode) # Run vision, check whether debug mode is true
 				if table:
 					table.setValue(tableDirectory + isGoalHotId, vision.getFoundHotTarget()) # Set foundHotTarget
 

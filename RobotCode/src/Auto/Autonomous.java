@@ -8,7 +8,6 @@ import ModClasses.Station;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
  * @author Merfoo
  */
 public class Autonomous
@@ -259,8 +258,9 @@ public class Autonomous
                 {
                     autoTimer.reset();
                     autoStep++;
-                    break;
                 }
+                
+                break;
             }
             
             case 2: // Shoot one ball
@@ -414,23 +414,22 @@ public class Autonomous
         else
         {
             switch(autoStep)
-            {
-                case 0: // Put pickup down
+            {       
+                case 0: // Start the timer
                 {
                     pickup.down();
                     autoTimer.reset();
+                    autoTimer.start();
                     autoStep++;
-                    break;
                 }
                 
-                case 1: // If goal in front of us is hot shootfirst, otherwise turn to other goal
+                case 1: // If we dont shoot first, turn to other goal
                 {
                     if(shootFirst || (autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime))
                     {
                         drive.stop();
                         autoTimer.reset();
                         autoStep++;
-                        break;
                     }
                     
                     else
@@ -441,6 +440,8 @@ public class Autonomous
                         else // Turn to the left
                             drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
                     }
+                    
+                    break;
                 }
                 
                 case 2: // Shoot 1st ball
@@ -453,28 +454,42 @@ public class Autonomous
                         autoTimer.reset();
                         autoStep++;
                     }
-
+                    
                     break;
                 }
 
-                case 3: // Get 2nd ball
+                case 3: // If we didn't shoot first turn back before picking up ball
+                {
+                    if(shootFirst || autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
+                    {
+                        drive.stop();
+                        autoTimer.reset();
+                        autoStep++;
+                    }
+                    
+                    else
+                    {
+                        if(startedLeft)
+                            drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
+                        
+                        else
+                            drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
+                    }
+                       
+                    break;
+                }
+                
+                case 4: // Get 2nd ball
                 {
                     pickup.inward();
 
                     if(autoTimer.get() >= Config.Autonomous.pickupBallTime)
                     {
+                        pickup.up();
                         autoTimer.reset();
                         autoStep++;
                     }
 
-                    break;
-                }
-
-                case 4: // Put pickup up to get ball properly
-                {
-                    pickup.up();
-                    autoTimer.reset();
-                    autoStep++;
                     break;
                 }
 
@@ -483,6 +498,7 @@ public class Autonomous
                     if(autoTimer.get() >= Config.Autonomous.pickupMoveUpTime)
                     {
                         pickup.stop();
+                        pickup.down();
                         autoTimer.reset();
                         autoStep++;
                     }
@@ -490,15 +506,7 @@ public class Autonomous
                     break;
                 }
 
-                case 6: // Put pickup down
-                {
-                    pickup.down();
-                    autoTimer.reset();
-                    autoStep++;
-                    break;
-                }
-
-                case 7: // Turn to other/original goal
+                case 6: // Turn to other/original goal
                 {
                     if(shootFirst) // If shot first, turn to other goal
                     {
@@ -509,25 +517,18 @@ public class Autonomous
                             drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
                     }
                     
-                    else // Else, turn to original goal
-                    {
-                        if(startedLeft) // Turn to the left
-                            drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
-                        
-                        else // Turn to the right
-                            drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
-                    }
-                    
                     if(autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
                     {
+                        pickup.down();
                         drive.stop();
                         autoTimer.reset();
                         autoStep++;
-                        break;
                     }
+                    
+                    break;
                 }
                 
-                case 8: // Shoot 2nd ball
+                case 7: // Shoot 2nd ball
                 {
                     catapult.fire();
 
@@ -541,27 +542,25 @@ public class Autonomous
                     break;
                 }
 
-                case 9: // If we shot first we need to turn back
-                {
-                    if(shootFirst) // If shot first, turn back to original goal
-                    {
-                        if(startedLeft) // Turn to the left
-                            drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
-                            
-                        else // Turn to the right
-                            drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
-                    }
-                    
-                    else if(!shootFirst || (autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime))
+                case 8: // If we shot first we need to turn back
+                {                    
+                    if(!shootFirst || (autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime))
                     {
                         drive.stop();
                         autoTimer.reset();
                         autoStep++;
-                        break;
                     }
+                    
+                    if(startedLeft) // Turn to the left
+                        drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
+                            
+                    else // Turn to the right
+                        drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
+                    
+                    break;
                 }
                 
-                case 10: // Drive to alliance zone
+                case 9: // Drive to alliance zone
                 {
                     drive.moveForward(Config.Autonomous.driveToAllianceTime, true);
 
@@ -571,7 +570,7 @@ public class Autonomous
                         autoTimer.reset();
                         autoStep++;
                     }
-
+                    
                     break;
                 }
 

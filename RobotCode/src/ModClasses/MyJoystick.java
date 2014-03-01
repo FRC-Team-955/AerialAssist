@@ -32,7 +32,7 @@ public class MyJoystick extends Joystick
      * @param button number of the button being pressed
      * @return true if the button was pressed but false if held
      */
-    public boolean runDebounce(int button)
+    private boolean runDebounce(int button)
     {
         boolean ret = false;
         

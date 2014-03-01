@@ -72,13 +72,27 @@ public class Drive
     {
         speedLeft = -speedLeft;
         
-        mtLeft1.ramp(speedLeft);
-        mtLeft2.ramp(speedLeft);
-        mtLeft3.ramp(speedLeft);
+        if(ramp)
+        {
+            mtLeft1.ramp(speedLeft);
+            mtLeft2.ramp(speedLeft);
+            mtLeft3.ramp(speedLeft);
+
+            mtRight1.ramp(speedRight);
+            mtRight2.ramp(speedRight);
+            mtRight3.ramp(speedRight);
+        }
         
-        mtRight1.ramp(speedRight);
-        mtRight2.ramp(speedRight);
-        mtRight3.ramp(speedRight);
+        else
+        {
+            mtLeft1.set(speedLeft);
+            mtLeft2.set(speedLeft);
+            mtLeft3.set(speedLeft);
+
+            mtRight1.set(speedRight);
+            mtRight2.set(speedRight);
+            mtRight3.set(speedRight);
+        }
     }
     
     /**

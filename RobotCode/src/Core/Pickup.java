@@ -40,18 +40,28 @@ public class Pickup
         if(joy.getButton(Config.Joystick.btStopPickupMotor))
           pickupSpeed = 0;
         
-        mtPickup.ramp(pickupSpeed);
-        
-        // Flips the pickupSpeed solenoids when pressed
+        // Flips the pickup solenoids when pressed
         if(joy.getButton(Config.Joystick.btMovePickupSols))
         {
             solPickup.flip();
             
-            if(!solPickup.get()) // If solPick is false then stop pickupSpeed motorz
+            if(isUp()) // If pickup is up, stop motorz
                 pickupSpeed = 0;
         }
         
+        mtPickup.ramp(pickupSpeed);
+        
         Station.print(Config.Station.pickupSpeed, "Pickup: " + mtPickup.get());
+    }
+    
+    /**
+     * Checks if the pickup is up, true means it is up
+     * @return 
+     */
+    private boolean isUp()
+    {
+        // False means pickup is up
+        return !solPickup.get();
     }
     
     /**

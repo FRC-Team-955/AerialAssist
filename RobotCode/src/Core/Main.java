@@ -40,7 +40,7 @@ public class Main extends IterativeRobot
         joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
         joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
         pickUp.up();
-        System.out.println("Init called: CODE FOR DISTRICT 1");
+        System.out.println("Init called: CODE FOR OREGON CITY");
     }
     
     /**
@@ -56,6 +56,7 @@ public class Main extends IterativeRobot
      */
     public void autonomousPeriodic()
     {
+        Station.clearAllText();
         auto.run();
     }
     
@@ -64,7 +65,6 @@ public class Main extends IterativeRobot
      */
     public void teleopInit()
     {
-        Station.clearAllText();
         compressor.start();
         auto.end();
     }
@@ -77,7 +77,7 @@ public class Main extends IterativeRobot
         Station.clearAllText();
         Station.print(Config.Station.mainCodeType, "CODE FOR OREGON CITY");
         joy.updateButtons();
-	drive.run();
+        drive.run();
         catapult.run();
         pickUp.run();
     }

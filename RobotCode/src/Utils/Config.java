@@ -27,7 +27,7 @@ public class Config
         
         // Buttons
         public static final int btFlipDriveDir = 10;
-        public static final int btMovePickupSols = 6;
+        public static final int btMovePickupSols = 3;
         public static final int btStopPickupMotor = 2;
         public static final int btPickupOutward = 4;
         public static final int btPickupInward = 1;
@@ -35,7 +35,7 @@ public class Config
         public static final int btStopCatapult = 7;
         public static final int btSlowMode = 9;
         public static final int btManualFire = 5;
-        public static final int btAutoFire = 3;
+        public static final int btAutoFire = 6;
     }
     
     public class Catapult

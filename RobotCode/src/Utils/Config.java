@@ -26,16 +26,16 @@ public class Config
         public static final double minDpadVal = 0.2;
         
         // Buttons
-        public static final int btFlipDriveDir = 10;
+        public static final int btFlipDriveDir = 12;
         public static final int btMovePickupSols = 4;
         public static final int btStopPickupMotor = 2;
         public static final int btPickupOutward = 3;
         public static final int btPickupInward = 1;
-        public static final int btFireCatapult = 8;
-        public static final int btStopCatapult = 7;
+        public static final int btFireCatapult = 6;
+        public static final int btStopCatapult = 5;
         public static final int btSlowMode = 9;
-        public static final int btManualFire = 5;
-        public static final int btAutoFire = 6;
+        public static final int btManualFire = 7;
+        public static final int btAutoFire = 8;
     }
     
     public class Catapult
@@ -105,11 +105,12 @@ public class Config
         public static final double minShootTime = 1;
         
         // Pickup time
-        public static final double pickupBallTime = 1.25;
+        public static final double pickupBallTime = 1.0;
         public static final double pickupMoveUpTime = 0.75;
+        public static final double ballSettleTime = 1.5;
         
         // Drive time
-        public static final double driveToAllianceTime = 1;
+        public static final double driveToAllianceTime = 0.75;
         public static final double driveToAllianceSpeed = 1;
         public static final double turnToOtherGoalTime = 1;
         public static final double turnToOtherGoalSpeed = 0.75;

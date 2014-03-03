@@ -47,8 +47,8 @@ public class Drive
         if(isDriveFlipped)
             y = -y;  
         
-        double left = y + x;
-        double right = y - x;
+        double left = y - x;
+        double right = y + x;
         
         if(isSlowMode)
         {
@@ -63,14 +63,14 @@ public class Drive
     }
     
     /**
-    * Makes both sides go at the same speed.
+    * Makes both sides go at the same speed. Negative values = Forward
     * @param speedLeft Speed of left talons.
     * @param speedRight Speed of right talons.
     * @param ramp True to ramp, false to not ramp to the desired speed
     */
     private void setSpeed(double speedLeft, double speedRight, boolean ramp) 
     {
-        speedLeft = -speedLeft;
+        speedRight = -speedRight;
         
         if(ramp)
         {
@@ -102,7 +102,7 @@ public class Drive
      */
     public void turnRight(double speed, boolean ramp)
     {
-        setSpeed(speed, -speed, ramp);
+        setSpeed(-speed, speed, ramp);
     }
     
     /** 
@@ -112,7 +112,7 @@ public class Drive
      */
     public void turnLeft(double speed, boolean ramp)
     {
-        setSpeed(-speed, speed, ramp);
+        setSpeed(speed, -speed, ramp);
     }
     
     /**
@@ -122,7 +122,7 @@ public class Drive
      */
     public void moveForward(double speed, boolean ramp)
     {
-        setSpeed(Math.abs(speed), Math.abs(speed), ramp);
+        setSpeed(-Math.abs(speed), -Math.abs(speed), ramp);
     }
     
     /**
@@ -132,7 +132,7 @@ public class Drive
      */
     public void moveBackward(double speed, boolean ramp)
     {
-        setSpeed(-Math.abs(speed), -Math.abs(speed), ramp);
+        setSpeed(Math.abs(speed), Math.abs(speed), ramp);
     }
     
     /**

@@ -360,15 +360,7 @@ public class Autonomous
                 break;
             }
             
-            case 5: // Put pickup down
-            {
-                pickup.down();
-                autoTimer.reset();
-                autoStep++;
-                break;
-            }
-            
-            case 6: // Let ball settle in the catapult
+            case 5: // Let ball settle in the catapult
             {
                 if(autoTimer.get() >= Config.Autonomous.ballSettleTime)
                 {
@@ -379,7 +371,7 @@ public class Autonomous
                 break;
             }
             
-            case 7: // Shoot 2nd ball
+            case 6: // Shoot 2nd ball
             {
                 catapult.fire();
                 
@@ -393,7 +385,7 @@ public class Autonomous
                 break;
             }
             
-            case 8: // Drive to alliance zone
+            case 7: // Drive to alliance zone
             {
                 drive.moveForward(Config.Autonomous.driveToAllianceTime, true);
                 

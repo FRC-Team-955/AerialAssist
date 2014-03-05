@@ -193,16 +193,8 @@ public class Autonomous
     private void oneBallNoVisionWhite()
     {
         switch(autoStep)
-        {
-            case 0: // Put pickup down
-            {
-                pickup.down();
-                autoTimer.reset();
-                autoStep++;
-                break;
-            }
-            
-            case 1: // Shoot one ball
+        {  
+            case 0: // Shoot one ball
             {
                 catapult.fire();
                 
@@ -216,7 +208,7 @@ public class Autonomous
                 break;
             }
             
-            case 2: // Drive to alliance zone 
+            case 1: // Drive to alliance zone 
             {
                 drive.moveForward(Config.Autonomous.driveToAllianceSpeed, true);
                 
@@ -244,15 +236,7 @@ public class Autonomous
     {
         switch(autoStep)
         {
-            case 0: // Put pickup down
-            {
-                pickup.down();
-                autoTimer.reset();
-                autoStep++;
-                break;
-            }
-            
-            case 1: // See if goal we're pointed at is hot
+            case 0: // See if goal we're pointed at is hot
             {
                 if(vision.foundHotTarget() || autoGlobalTimer.get() >= 5)
                 {
@@ -263,7 +247,7 @@ public class Autonomous
                 break;
             }
             
-            case 2: // Shoot one ball
+            case 1: // Shoot one ball
             {
                 catapult.fire();
                 
@@ -277,7 +261,7 @@ public class Autonomous
                 break;
             }
             
-            case 3: // Drive to alliance zone 
+            case 2: // Drive to alliance zone 
             {
                 drive.moveForward(Config.Autonomous.driveToAllianceSpeed, true);
                 
@@ -501,7 +485,17 @@ public class Autonomous
                     if(autoTimer.get() >= Config.Autonomous.pickupMoveUpTime)
                     {
                         pickup.stop();
-                        pickup.down();
+                        autoTimer.reset();
+                        autoStep++;
+                    }
+
+                    break;
+                }
+                
+                case 6: // Let ball settle in the catapult
+                {
+                    if(autoTimer.get() >= Config.Autonomous.ballSettleTime)
+                    {
                         autoTimer.reset();
                         autoStep++;
                     }
@@ -509,7 +503,7 @@ public class Autonomous
                     break;
                 }
 
-                case 6: // Turn to other/original goal
+                case 7: // Turn to other/original goal
                 {
                     if(shootFirst) // If shot first, turn to other goal
                     {
@@ -520,9 +514,8 @@ public class Autonomous
                             drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
                     }
                     
-                    if(autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
+                    if(!shootFirst || autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
                     {
-                        pickup.down();
                         drive.stop();
                         autoTimer.reset();
                         autoStep++;
@@ -531,7 +524,7 @@ public class Autonomous
                     break;
                 }
                 
-                case 7: // Shoot 2nd ball
+                case 8: // Shoot 2nd ball
                 {
                     catapult.fire();
 
@@ -545,7 +538,7 @@ public class Autonomous
                     break;
                 }
 
-                case 8: // If we shot first we need to turn back
+                case 9: // If we shot first we need to turn back
                 {                    
                     if(!shootFirst || (autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime))
                     {
@@ -554,16 +547,19 @@ public class Autonomous
                         autoStep++;
                     }
                     
-                    if(startedLeft) // Turn to the left
-                        drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
-                            
-                    else // Turn to the right
-                        drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
+                    else
+                    {
+                        if(startedLeft) // Turn to the left
+                            drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
+
+                        else // Turn to the right
+                            drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
+                    }
                     
                     break;
                 }
                 
-                case 9: // Drive to alliance zone
+                case 10: // Drive to alliance zone
                 {
                     drive.moveForward(Config.Autonomous.driveToAllianceTime, true);
 

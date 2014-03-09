@@ -44,7 +44,7 @@ public class Config
         public static final int chnCat1 = 10;
         public static final int chnCat2 = 6;
         public static final double fireSpeed = 1.0;   
-        public static final double manualSpeed = 0.5;
+        public static final double manualSpeed = 0.25;
     }
     
     public class Station
@@ -110,7 +110,7 @@ public class Config
         public static final double ballSettleTime = 1.5;
         
         // Drive time
-        public static final double driveToAllianceTime = 0.75;
+        public static final double driveToAllianceTime = 0.55;
         public static final double driveToAllianceSpeed = 1;
         public static final double turnToOtherGoalTime = 1;
         public static final double turnToOtherGoalSpeed = 0.75;

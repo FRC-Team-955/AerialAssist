@@ -190,17 +190,24 @@ public class Autonomous
     /**
      * Start white, shoot one ball, drive forward
      */
-    private void oneBallNoVisionWhite()
+	private void oneBallNoVisionWhite()
     {
         switch(autoStep)
         {  
-            case 0: // Shoot one ball
+			case 0: // Put pickup down
             {
-                catapult.fire();
+                pickup.down();
+                autoTimer.reset();
+                autoStep++;
+                break;
+            }
+				
+			case 1: // Get 2nd ball
+            {
+                pickup.inward();
                 
-                if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
+                if(autoTimer.get() >= Config.Autonomous.pickupBallTime)
                 {
-                    catapult.stop();
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -208,13 +215,58 @@ public class Autonomous
                 break;
             }
             
-            case 1: // Drive to alliance zone 
+            case 2: // Put pickup up to get ball properly
+            {
+                pickup.up();
+                autoTimer.reset();
+                autoStep++;
+                break;
+            }
+            
+            case 3: // Dont shoot till pick up is all the way up
+            {
+                if(autoTimer.get() >= Config.Autonomous.pickupMoveUpTime)
+                {
+                    pickup.stop();
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+            }
+            
+            case 4: // Let ball settle in the catapult
+            {
+                if(autoTimer.get() >= Config.Autonomous.ballSettleTime)
+                {
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+            }
+				
+			case 5: // Drive to alliance zone 
             {
                 drive.moveForward(Config.Autonomous.driveToAllianceSpeed, true);
                 
                 if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
                 {
                     drive.stop();
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+            }
+				
+            case 6: // Shoot one ball
+            {
+                catapult.fire();
+                
+                if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
+                {
+                    catapult.stop();
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -282,14 +334,28 @@ public class Autonomous
         }
     }
     
-    /** 
-     * Start white, shoot 1st ball, pick up 2nd ball, shoot 2nd ball
+	/** 
+     * Start white, shoot 1st ball, pick up 2nd ball, shoot 2nd ball, NO TIME SAVING
      */
     private void twoBallNoVisionWhite()
     {
         switch(autoStep)
         {
-            case 0: // Put pickup down
+			case 0: // Drive to alliance zone 
+            {
+                drive.moveForward(Config.Autonomous.driveToAllianceSpeed, true);
+                
+                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
+                {
+                    drive.stop();
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+            }
+				
+            case 1: // Put pickup down
             {
                 pickup.down();
                 autoTimer.reset();
@@ -297,7 +363,7 @@ public class Autonomous
                 break;
             }
             
-            case 1: // Shoot 1st ball
+            case 2: // Shoot 1st ball
             {
                 catapult.fire();
                 
@@ -311,7 +377,22 @@ public class Autonomous
                 break;
             }
             
-            case 2: // Get 2nd ball
+			case 3:	// Move back to original position
+			{
+				drive.moveBackward(Config.Autonomous.driveToAllianceSpeed, true);
+                pickup.inward();
+				
+                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
+                {
+                    drive.stop();
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+			}
+				
+            case 4: // Get 2nd ball
             {
                 pickup.inward();
                 
@@ -324,7 +405,7 @@ public class Autonomous
                 break;
             }
             
-            case 3: // Put pickup up to get ball properly
+            case 5: // Put pickup up to get ball properly
             {
                 pickup.up();
                 autoTimer.reset();
@@ -332,7 +413,7 @@ public class Autonomous
                 break;
             }
             
-            case 4: // Dont shoot till pick up is all the way up
+            case 6: // Dont shoot till pick up is all the way up
             {
                 if(autoTimer.get() >= Config.Autonomous.pickupMoveUpTime)
                 {
@@ -344,7 +425,7 @@ public class Autonomous
                 break;
             }
             
-            case 5: // Let ball settle in the catapult
+            case 7: // Let ball settle in the catapult
             {
                 if(autoTimer.get() >= Config.Autonomous.ballSettleTime)
                 {
@@ -354,28 +435,28 @@ public class Autonomous
                 
                 break;
             }
-            
-            case 6: // Shoot 2nd ball
+			
+			case 8:	// Move back to shooting position
+			{   
+				drive.moveForward(Config.Autonomous.driveToAllianceSpeed, true);
+                
+                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
+                {
+                    drive.stop();
+                    autoTimer.reset();
+                    autoStep++;
+                }
+                
+                break;
+			}
+				
+            case 9: // Shoot 2nd ball
             {
                 catapult.fire();
                 
                 if(autoTimer.get() >= Config.Autonomous.minShootTime && catapult.isCocked())
                 {
                     catapult.stop();
-                    autoTimer.reset();
-                    autoStep++;
-                }
-                
-                break;
-            }
-            
-            case 7: // Drive to alliance zone
-            {
-                drive.moveForward(Config.Autonomous.driveToAllianceTime, true);
-                
-                if(autoTimer.get() >= Config.Autonomous.driveToAllianceTime)
-                {
-                    drive.stop();
                     autoTimer.reset();
                     autoStep++;
                 }
@@ -390,7 +471,7 @@ public class Autonomous
         }
     }
     
-    /** 
+	/**
      * Start white, find goal thats hot turn to it, shoot, turn to other, shoot, move forward
      */
     private void twoBallVisionWhite()

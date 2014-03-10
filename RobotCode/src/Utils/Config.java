@@ -60,11 +60,11 @@ public class Config
         // Digital Channels 1-8 available only
         public static final int chnDebugMode = 1;
         public static final int chnPrefSideLeft = 2;
-        public static final int chnNoBallNoVisionWhite = 3;
-        public static final int chnOneBallNoVisionWhite = 4;
-        public static final int chnTwoBallNoVisionWhite = 5;
-        public static final int chnOneBallVisionWhite = 6;
-        public static final int chnTwoBallVisionWhite = 7;
+        public static final int chnDriveForwardOnly = 3;
+        public static final int chnOneBallNoVision = 4;
+        public static final int chnTwoBallNoVision = 5;
+        public static final int chnOneBallVision = 6;
+        public static final int chnTwoBallVision = 7;
     }
     
     public class Pickup 

@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class Autonomous
 {  
     private int autoStep = 0;
-    private boolean noBallNoVisionWhiteMode = false;
-    private boolean oneBallNoVisionWhiteMode = false;
-    private boolean twoBallNoVisionWhiteMode = false;
-    private boolean oneBallVisionWhiteMode = false;
-    private boolean twoBallVisionWhiteMode = false;
+    private boolean driveForwardOnlyMode = false;
+    private boolean oneBallNoVisionMode = false;
+    private boolean twoBallNoVisionMode = false;
+    private boolean oneBallVisionMode = false;
+    private boolean twoBallVisionMode = false;
     private boolean shootFirst = false;
     private boolean startedLeft = false;
     private Timer autoGlobalTimer = new Timer();
@@ -62,11 +62,11 @@ public class Autonomous
         stopEverything();
         autoTimer.stop();
         autoGlobalTimer.stop();
-        noBallNoVisionWhiteMode = false;
-        oneBallNoVisionWhiteMode = false;
-        twoBallNoVisionWhiteMode = false;
-        oneBallVisionWhiteMode = false;
-        twoBallVisionWhiteMode = false;
+        driveForwardOnlyMode = false;
+        oneBallNoVisionMode = false;
+        twoBallNoVisionMode = false;
+        oneBallVisionMode = false;
+        twoBallVisionMode = false;
     }
     
     /**
@@ -92,20 +92,20 @@ public class Autonomous
      */
     private void getAutoVersion()
     {
-        if(Station.getDigitalIn(Config.Station.chnNoBallNoVisionWhite))
-            noBallNoVisionWhiteMode = true;
+        if(Station.getDigitalIn(Config.Station.chnDriveForwardOnly))
+            driveForwardOnlyMode = true;
         
-        else if(Station.getDigitalIn(Config.Station.chnOneBallNoVisionWhite))
-            oneBallNoVisionWhiteMode = true;
+        else if(Station.getDigitalIn(Config.Station.chnOneBallNoVision))
+            oneBallNoVisionMode = true;
         
-        else if(Station.getDigitalIn(Config.Station.chnTwoBallNoVisionWhite))
-            twoBallNoVisionWhiteMode = true;
+        else if(Station.getDigitalIn(Config.Station.chnTwoBallNoVision))
+            twoBallNoVisionMode = true;
         
-        else if(Station.getDigitalIn(Config.Station.chnOneBallVisionWhite))
-            oneBallVisionWhiteMode = true;
+        else if(Station.getDigitalIn(Config.Station.chnOneBallVision))
+            oneBallVisionMode = true;
         
-        else if(Station.getDigitalIn(Config.Station.chnTwoBallVisionWhite))
-            twoBallVisionWhiteMode = true;
+        else if(Station.getDigitalIn(Config.Station.chnTwoBallVision))
+            twoBallVisionMode = true;
     }
     
     /**
@@ -117,34 +117,34 @@ public class Autonomous
         
         if(autoTimer.get() <= Config.Autonomous.maxAutoTime)
         {
-            if(noBallNoVisionWhiteMode)
+            if(driveForwardOnlyMode)
             {
-                noBallNoVisionWhite();
-                status = "NoBallNoVisionWhite: ";
+                driveForwardOnly();
+                status = "driveForwardOnly: ";
             }
             
-            else if(oneBallNoVisionWhiteMode)
+            else if(oneBallNoVisionMode)
             {
-                oneBallNoVisionWhite();
-                status = "OneBallNoVisionWhite: ";
+                oneBallNoVision();
+                status = "oneBallNoVision: ";
             }
             
-            else if(twoBallNoVisionWhiteMode)
+            else if(twoBallNoVisionMode)
             {
-                twoBallNoVisionWhite();
-                status = "TwoBallNoVisionWhite: ";
+                twoBallNoVision();
+                status = "twoBallNoVision: ";
             }
             
-            else if(oneBallVisionWhiteMode)
+            else if(oneBallVisionMode)
             {
-                oneBallVisionWhite();
-                status = "OneBallVisionWhite: ";
+                oneBallVision();
+                status = "oneBallVision: ";
             }
             
-            else if(twoBallVisionWhiteMode)
+            else if(twoBallVisionMode)
             {
-                twoBallVisionWhite();
-                status = "TwoBallVisionWhite: ";
+                twoBallVision();
+                status = "twoBallVision: ";
             }
             
             status += autoStep;
@@ -162,7 +162,7 @@ public class Autonomous
     /**
      * Moves forward to alliance zone
      */
-    private void noBallNoVisionWhite()
+    private void driveForwardOnly()
     {
         switch(autoStep)
         {
@@ -188,9 +188,9 @@ public class Autonomous
     }
     
     /**
-     * Start white, shoot one ball, drive forward
+     * Shoot one ball, drive forward
      */
-	private void oneBallNoVisionWhite()
+	private void oneBallNoVision()
     {
         switch(autoStep)
         {  
@@ -284,7 +284,7 @@ public class Autonomous
     /**
      * Shoot in high goal when its hot, move forward afterwards
      */
-    private void oneBallVisionWhite()
+    private void oneBallVision()
     {
         switch(autoStep)
         {
@@ -335,9 +335,9 @@ public class Autonomous
     }
     
 	/** 
-     * Start white, shoot 1st ball, pick up 2nd ball, shoot 2nd ball, NO TIME SAVING
+     * Shoot 1st ball, pick up 2nd ball, shoot 2nd ball
      */
-    private void twoBallNoVisionWhite()
+    private void twoBallNoVision()
     {
         switch(autoStep)
         {
@@ -472,9 +472,9 @@ public class Autonomous
     }
     
 	/**
-     * Start white, find goal thats hot turn to it, shoot, turn to other, shoot, move forward
+     * Find goal thats hot turn to it, shoot, turn to other, shoot, move forward
      */
-    private void twoBallVisionWhite()
+    private void twoBallVision()
     {
         if(autoGlobalTimer.get() <= Config.Autonomous.visionFindTime)
             shootFirst = vision.foundHotTarget();

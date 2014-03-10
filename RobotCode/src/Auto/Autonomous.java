@@ -586,20 +586,20 @@ public class Autonomous
 
                 case 7: // Turn to other/original goal
                 {
-                    if(shootFirst) // If shot first, turn to other goal
+                    if(!shootFirst || autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
+                    {
+                        drive.stop();
+                        autoTimer.reset();
+                        autoStep++;
+                    }
+                    
+                    else // If shot first, turn to other goal
                     {
                         if(startedLeft) // Turn to the right
                             drive.turnRight(Config.Autonomous.turnToOtherGoalSpeed, true);
                         
                         else // Turn to the left
                             drive.turnLeft(Config.Autonomous.turnToOtherGoalSpeed, true);
-                    }
-                    
-                    if(!shootFirst || autoTimer.get() >= Config.Autonomous.turnToOtherGoalTime)
-                    {
-                        drive.stop();
-                        autoTimer.reset();
-                        autoStep++;
                     }
                     
                     break;

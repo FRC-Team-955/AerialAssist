@@ -44,7 +44,6 @@ public class Autonomous
         vision.resetTable();
         vision.setPrefSideLeft(startedLeft);
         vision.setDebugMode(Station.getDigitalIn(Config.Station.chnDebugMode));
-        vision.startVision();
         autoGlobalTimer.reset();
         autoGlobalTimer.start();
         autoTimer.reset();

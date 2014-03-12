@@ -36,22 +36,6 @@ public class Vision
     }
     
     /**
-     * Tell raspberry pi to start vision
-     */
-    public void startVision()
-    {
-        table.putBoolean(Config.Vision.runVisionId, true);
-    }
-     
-    /**
-     * Tell raspberry pi to stop vision
-     */
-    public void stopVision()
-    {
-        table.putBoolean(Config.Vision.runVisionId, false);
-    }
-    
-    /**
      * Turn off the raspberry pi
      */
     public void turnOffPi()
@@ -76,7 +60,6 @@ public class Vision
         table.putBoolean(Config.Vision.prefSideLeftId, false);
         table.putBoolean(Config.Vision.debugModeId, true);
         table.putBoolean(Config.Vision.shutDownId, false);
-        table.putBoolean(Config.Vision.runVisionId, false);
         table.putBoolean(Config.Vision.isGoalHotId, false);
     }
 }

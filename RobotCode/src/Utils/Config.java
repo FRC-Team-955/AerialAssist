@@ -90,7 +90,6 @@ public class Config
     {
         public static final String tableId = "955";
         public static final String isGoalHotId = "isGoalHot";
-        public static final String runVisionId = "runVision";
         public static final String shutDownId = "shutdown";
         public static final String prefSideLeftId = "prefSideLeft";
         public static final String debugModeId = "debugMode";

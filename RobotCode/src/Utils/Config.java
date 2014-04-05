@@ -65,6 +65,7 @@ public class Config
         public static final int chnTwoBallNoVision = 5;
         public static final int chnOneBallVision = 6;
         public static final int chnTwoBallVision = 7;
+		public static final int chnThreeBallNoVision = 8;
     }
     
     public class Pickup 
@@ -106,7 +107,7 @@ public class Config
         // Pickup time
         public static final double pickupBallTime = 1.0;
         public static final double pickupMoveUpTime = 0.75;
-        public static final double ballSettleTime = 1.5;
+        public static final double ballSettleTime = 1.0;
         
         // Drive time
         public static final double driveToAllianceTime = 0.55;

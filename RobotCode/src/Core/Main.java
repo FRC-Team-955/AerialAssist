@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class Main extends IterativeRobot 
 {
+	String codeVersion = "CODE FOR OSU DISTRICT";
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
     Catapult catapult = new Catapult(joy);
@@ -40,7 +41,7 @@ public class Main extends IterativeRobot
         joy.setAxisChannel(MyJoystick.AxisType.kX, 3);
         joy.setAxisChannel(MyJoystick.AxisType.kY, 2);
         pickUp.up();
-        System.out.println("Init called: CODE FOR OREGON CITY");
+        System.out.println("Init called: " + codeVersion);
     }
     
     /**
@@ -75,7 +76,7 @@ public class Main extends IterativeRobot
     public void teleopPeriodic() 
     {
         Station.clearAllText();
-        Station.print(Config.Station.mainCodeType, "CODE FOR OREGON CITY");
+        Station.print(Config.Station.mainCodeType, codeVersion);
         joy.updateButtons();
         drive.run();
         catapult.run();

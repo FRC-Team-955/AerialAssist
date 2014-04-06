@@ -48,8 +48,8 @@ public class Catapult
         {
             if(isCocked() || joy.getButton(Config.Joystick.btStopCatapult))
                 catSpeed = 0;
-            
-            /*
+			
+			/*
                 We're using getRawButton instead of getButton because if we set
                 the motor speed once by using getButton the limit switch  still
                 might be being activated since the catapultManualFire hasn't moved that 
@@ -64,6 +64,8 @@ public class Catapult
         mtCat2.set(catSpeed);
         
         Station.print(Config.Station.catapultManualFire, "Manual Fire: " + isManualFireMode);
+		
+		System.out.println(limitSwitch.get());
     }
     
     /**

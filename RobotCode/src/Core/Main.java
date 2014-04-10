@@ -13,7 +13,8 @@ import Utils.Config;
 import Auto.Autonomous;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Compressor;
-
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -30,6 +31,7 @@ public class Main extends IterativeRobot
     Pickup pickUp = new Pickup(joy);
     Autonomous auto = new Autonomous(catapult, drive, pickUp);
     Compressor compressor = new Compressor(Config.Compressor.chnDigInPressure, Config.Compressor.chnDigOutCompressor);
+	Test test = new Test(drive, catapult, pickUp);
     
     /**
      * This function is run when the robot is first started up and should be
@@ -90,4 +92,20 @@ public class Main extends IterativeRobot
     {
         auto.resetVision();
     }
+	
+	/**
+	 * This function is called once before testPeriodic
+	 */
+	public void testInit()
+	{
+		test.reset();
+	}
+	
+	/**
+	 * This function is called periodically during test
+	 */
+	public void testPeriodic()
+	{
+		test.run();
+	}
 }

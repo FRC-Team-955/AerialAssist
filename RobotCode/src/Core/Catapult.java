@@ -94,4 +94,14 @@ public class Catapult
     {
         return limitSwitch.get();
     }
+	
+	/**
+	 * Sets the catapult motors
+	 * @param speed 
+	 */
+	public void testCatapult(int speed)
+	{
+		mtCat1.set(speed);
+		mtCat2.set(speed);
+	}
 }

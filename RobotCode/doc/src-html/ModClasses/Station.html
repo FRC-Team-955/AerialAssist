@@ -1,0 +1,129 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    package ModClasses;<a name="line.1"></a>
+<FONT color="green">002</FONT>    <a name="line.2"></a>
+<FONT color="green">003</FONT>    import edu.wpi.first.wpilibj.DriverStation;<a name="line.3"></a>
+<FONT color="green">004</FONT>    import edu.wpi.first.wpilibj.DriverStationLCD;<a name="line.4"></a>
+<FONT color="green">005</FONT>    <a name="line.5"></a>
+<FONT color="green">006</FONT>    /**<a name="line.6"></a>
+<FONT color="green">007</FONT>     *<a name="line.7"></a>
+<FONT color="green">008</FONT>     * @author Merfoo<a name="line.8"></a>
+<FONT color="green">009</FONT>     */<a name="line.9"></a>
+<FONT color="green">010</FONT>    public class Station <a name="line.10"></a>
+<FONT color="green">011</FONT>    {<a name="line.11"></a>
+<FONT color="green">012</FONT>        /**<a name="line.12"></a>
+<FONT color="green">013</FONT>         * Gets the button status from the driverstation, 1 - 8 available.<a name="line.13"></a>
+<FONT color="green">014</FONT>         * @param iChan<a name="line.14"></a>
+<FONT color="green">015</FONT>         * @return <a name="line.15"></a>
+<FONT color="green">016</FONT>         */<a name="line.16"></a>
+<FONT color="green">017</FONT>        public static boolean getDigitalIn(int iChan)<a name="line.17"></a>
+<FONT color="green">018</FONT>        {<a name="line.18"></a>
+<FONT color="green">019</FONT>            return DriverStation.getInstance().getDigitalIn(iChan);<a name="line.19"></a>
+<FONT color="green">020</FONT>        }<a name="line.20"></a>
+<FONT color="green">021</FONT>        <a name="line.21"></a>
+<FONT color="green">022</FONT>        /**<a name="line.22"></a>
+<FONT color="green">023</FONT>         * Gets the analog value from the driverstation, 1 - 8 available.<a name="line.23"></a>
+<FONT color="green">024</FONT>         * @param iChan<a name="line.24"></a>
+<FONT color="green">025</FONT>         * @return <a name="line.25"></a>
+<FONT color="green">026</FONT>         */<a name="line.26"></a>
+<FONT color="green">027</FONT>        public static double getAnalogIn(int iChan)<a name="line.27"></a>
+<FONT color="green">028</FONT>        {<a name="line.28"></a>
+<FONT color="green">029</FONT>            return DriverStation.getInstance().getAnalogIn(iChan);<a name="line.29"></a>
+<FONT color="green">030</FONT>        }<a name="line.30"></a>
+<FONT color="green">031</FONT>    <a name="line.31"></a>
+<FONT color="green">032</FONT>        /**<a name="line.32"></a>
+<FONT color="green">033</FONT>         * Prints specified message to the driver station on the corresponding line<a name="line.33"></a>
+<FONT color="green">034</FONT>         * 1-6 are available.<a name="line.34"></a>
+<FONT color="green">035</FONT>         * @param line<a name="line.35"></a>
+<FONT color="green">036</FONT>         * @param msg<a name="line.36"></a>
+<FONT color="green">037</FONT>         */<a name="line.37"></a>
+<FONT color="green">038</FONT>        public static void print(int line, String msg)<a name="line.38"></a>
+<FONT color="green">039</FONT>        {<a name="line.39"></a>
+<FONT color="green">040</FONT>            DriverStationLCD.Line printLine = null;<a name="line.40"></a>
+<FONT color="green">041</FONT>            <a name="line.41"></a>
+<FONT color="green">042</FONT>            switch(line)<a name="line.42"></a>
+<FONT color="green">043</FONT>            {<a name="line.43"></a>
+<FONT color="green">044</FONT>                case 1: printLine = DriverStationLCD.Line.kUser1; break;<a name="line.44"></a>
+<FONT color="green">045</FONT>                case 2: printLine = DriverStationLCD.Line.kUser2; break;<a name="line.45"></a>
+<FONT color="green">046</FONT>                case 3: printLine = DriverStationLCD.Line.kUser3; break;<a name="line.46"></a>
+<FONT color="green">047</FONT>                case 4: printLine = DriverStationLCD.Line.kUser4; break;<a name="line.47"></a>
+<FONT color="green">048</FONT>                case 5: printLine = DriverStationLCD.Line.kUser5; break;<a name="line.48"></a>
+<FONT color="green">049</FONT>                case 6: printLine = DriverStationLCD.Line.kUser6; break;<a name="line.49"></a>
+<FONT color="green">050</FONT>            }<a name="line.50"></a>
+<FONT color="green">051</FONT>            <a name="line.51"></a>
+<FONT color="green">052</FONT>            DriverStationLCD.getInstance().println(printLine, 1, msg);<a name="line.52"></a>
+<FONT color="green">053</FONT>            DriverStationLCD.getInstance().updateLCD(); <a name="line.53"></a>
+<FONT color="green">054</FONT>        }<a name="line.54"></a>
+<FONT color="green">055</FONT>        <a name="line.55"></a>
+<FONT color="green">056</FONT>        /**<a name="line.56"></a>
+<FONT color="green">057</FONT>         * Clears all the text in the driver station<a name="line.57"></a>
+<FONT color="green">058</FONT>         */<a name="line.58"></a>
+<FONT color="green">059</FONT>        public static void clearAllText()<a name="line.59"></a>
+<FONT color="green">060</FONT>        {<a name="line.60"></a>
+<FONT color="green">061</FONT>            DriverStationLCD.getInstance().clear();<a name="line.61"></a>
+<FONT color="green">062</FONT>        }<a name="line.62"></a>
+<FONT color="green">063</FONT>    }<a name="line.63"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

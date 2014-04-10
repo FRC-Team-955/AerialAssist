@@ -103,4 +103,13 @@ public class Pickup
     {
         mtPickup.set(0);
     }
+	
+	/**
+	 * Sets the pickup motor
+	 * @param speed 
+	 */
+	public void testPickup(int speed)
+	{
+		mtPickup.set(speed);
+	}
 }

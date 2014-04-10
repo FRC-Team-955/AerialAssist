@@ -134,7 +134,61 @@ public class Drive
     {
         setSpeed(Math.abs(speed), Math.abs(speed), ramp);
     }
-    
+	
+	/**
+	 * Sets the 1st left motor speed
+	 * @param speed 
+	 */
+    public void setMotorLeft1(int speed)
+	{
+		mtLeft1.set(speed);
+	}
+	
+	/**
+	 * Sets the 2nd left motor speed
+	 * @param speed 
+	 */
+	public void setMotorLeft2(int speed)
+	{
+		mtLeft2.set(speed);
+	}
+	
+	/**
+	 * Sets the 3rd left motor speed
+	 * @param speed 
+	 */
+	public void setMotorLeft3(int speed)
+	{
+		mtLeft3.set(speed);
+	}
+	
+	/**
+	 * Sets the 1st right motor speed
+	 * @param speed 
+	 */
+	public void setMotorRight1(int speed)
+	{
+		mtRight1.set(speed);
+	}
+	
+	/**
+	 * Sets the 2nd right motor speed
+	 * @param speed 
+	 */
+	public void setMotorRight2(int speed)
+	{
+		mtRight2.set(speed);
+	}
+	
+	/**
+	 * Sets the 3rd motor speed
+	 * @param speed 
+	 */
+	public void setMotorRight3(int speed)
+	{
+		mtRight3.set(speed);
+	}
+	
     /**
      * Stops the drive motors
      */

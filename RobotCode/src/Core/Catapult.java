@@ -99,9 +99,13 @@ public class Catapult
 	 * Sets the catapult motors
 	 * @param speed 
 	 */
-	public void testCatapult(int speed)
+	public void testCatapultOne(int speed)
 	{
 		mtCat1.set(speed);
+	}
+	
+	public void testCatapultTwo(int speed)
+	{
 		mtCat2.set(speed);
 	}
 }

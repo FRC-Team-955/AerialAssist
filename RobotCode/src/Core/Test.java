@@ -70,14 +70,9 @@ public class Test
 				case 7: 
 					testTimer.reset();
 					drive.setMotorRight3(0);
-					cat.testCatapult(1);
-					break;
-				case 8: 
-					testTimer.reset();
-					cat.testCatapult(0);
 					pickup.testPickup(1);
 					break;
-				case 9: 
+				case 8: 
 					testTimer.reset();
 					pickup.testPickup(0);
 					running = false;
@@ -98,3 +93,76 @@ public class Test
 		i = 1;
 	}
 }
+
+
+///**
+//	 * Runs the test routine
+//	 */
+//	public void run()
+//	{
+//		if(starting)
+//		{
+//			testTimer.start();
+//			starting = false;
+//		}
+//		
+//		if(testTimer.get() > .5 && running)
+//		{
+//			switch(i) 
+//			{
+//				case 1:
+//					testTimer.reset();
+//					drive.setMotorLeft1(1);
+//					break;
+//				case 2: 
+//					testTimer.reset();
+//					drive.setMotorLeft1(0);
+//					drive.setMotorLeft2(1);
+//					break;
+//				case 3: 
+//					testTimer.reset();
+//					drive.setMotorLeft2(0);
+//					drive.setMotorLeft3(1);
+//					break;
+//				case 4: 
+//					testTimer.reset();
+//					drive.setMotorLeft3(0);
+//					drive.setMotorRight1(1);
+//					break;
+//				case 5: 
+//					testTimer.reset();
+//					drive.setMotorRight1(0);
+//					drive.setMotorRight2(1);
+//					break;
+//				case 6: 
+//					testTimer.reset();
+//					drive.setMotorRight2(0);
+//					drive.setMotorRight3(1);
+//					break;
+//				case 7: 
+//					testTimer.reset();
+//					drive.setMotorRight3(0);
+//					if(!cat.isCocked())
+//						cat.testCatapultOne(1);
+//					break;
+//				case 8: 
+//					testTimer.reset();
+//					cat.testCatapultOne(0);
+//					if(!cat.isCocked())
+//						cat.testCatapultTwo(1);
+//					break;
+//				case 9: 
+//					testTimer.reset();
+//					cat.testCatapultTwo(0);
+//					pickup.testPickup(1);
+//					break;
+//				case 10: 
+//					testTimer.reset();
+//					pickup.testPickup(0);
+//					running = false;
+//					i = 1;
+//					break;
+//			}
+//			i+=1;
+//		}
+//	}

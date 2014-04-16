@@ -13,8 +13,7 @@ import Utils.Config;
 import Auto.Autonomous;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -24,7 +23,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class Main extends IterativeRobot 
 {
-	String codeVersion = "CODE FOR OSU DISTRICT";
+	String codeVersion = "CODE FOR PORTLAND CHAMPS";
     MyJoystick joy = new MyJoystick(Config.Joystick.chn);
     Drive drive = new Drive(joy);
     Catapult catapult = new Catapult(joy);

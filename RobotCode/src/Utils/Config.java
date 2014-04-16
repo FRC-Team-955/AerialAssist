@@ -108,12 +108,20 @@ public class Config
         public static final double pickupBallTime = 1.0;
         public static final double pickupMoveUpTime = 0.75;
         public static final double ballSettleTime = 1.0;
+		
+		// VISION SPEED NEEDED
+		public static final double pickupBallTimeVision = 1.0;
+        public static final double pickupMoveUpTimeVision = 0.75;
+        public static final double turnedBallSettleTimeVision = 0.75;
+		
+		public static final double runVisionAutoAfter = 5.125;
         
         // Drive time
-        public static final double driveToAllianceTime = 0.55;
+        public static final double driveToAllianceTime = 0.75;
+		public static final double driveToWhiteTime = 0.75;
         public static final double driveToAllianceSpeed = 1;
-        public static final double turnToOtherGoalTime = 1;
-        public static final double turnToOtherGoalSpeed = 0.75;
+        public static final double turnToOtherGoalTime = 0.75;
+        public static final double turnToOtherGoalSpeed = 0.1;
         
         // Vision
         public static final double visionFindTime = 1;
